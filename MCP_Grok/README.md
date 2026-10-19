@@ -24,6 +24,7 @@ This directory contains the public templates, system prompts, skills, and bridge
 ### 2. JustLegal Fraud & Whistleblower Navigator (EO 14395 & Qui Tam)
 - **Target Audience:** Citizen investigators, healthcare whistleblowers, and relators investigating government program fraud under **Executive Order 14395** (*Executive Order 14395 — Establishing the Task Force to Eliminate Fraud*) and the **False Claims Act (31 U.S.C. §§ 3729–3733)**.
 - **Recipe & Prompt:** `bot_fraud_recipe.json` & `system_prompt_fraud.md`
+- **Conversational Intake Flow:** The "Coffee Shop Investigator" persona — takes proactive conversational lead, delivers immediate safety & anti-viral warnings (31 U.S.C. § 3730(e)(4)), asks 3 simple visible questions, runs silent background NPI checks, and coaches discreet photo capture.
 - **Skills (`MCP_Grok/skills/`):**
   - `skill_entity_crosscheck.md`: CMS NPPES NPI and USAspending public verification.
   - `skill_fraud_triage.md`: FRCP Rule 9(b) 6-element scoring rubric (0–100 scale).
