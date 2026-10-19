@@ -5,6 +5,48 @@ Official Website: [justlegal.me](https://justlegal.me) • Fraud Triage Specific
 
 ---
 
+## 🚀 Quick Downloads (Choose Your Device)
+
+Download official, cryptographically verified installers directly from our [Latest GitHub Release (v0.1.0)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest):
+
+### 🪟 Windows (Recommended for most desktop users)
+[![Download Windows 64-bit](https://img.shields.io/badge/Download-Windows%2064--bit%20Setup%20(.exe)-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Setup.exe)
+
+- [👉 **Download Windows 64-bit Setup (.exe)** (23.7 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Setup.exe) — **Main Desktop Application**. Double-click to install on Windows 10 or 11.
+- [👉 **Download Windows Enterprise MSI (.msi)** (34.3 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Enterprise.msi) — Enterprise / system-wide installer for Windows administrators.
+- [👉 **Download Standalone Windows CLI (.exe)** (39.5 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_CLI.exe) — Headless Command-Line Interface and MCP Server for Windows developers.
+
+---
+
+### 🍏 Mac (Apple macOS)
+[![Download Mac Apple Silicon](https://img.shields.io/badge/Download-Mac%20Apple%20Silicon%20(.dmg)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_AppleSilicon.dmg)
+
+- [👉 **Download Mac for Apple Silicon (.dmg)** (33.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_AppleSilicon.dmg) — For all modern Macs (M1, M2, M3, M4 chips).
+- [👉 **Download Mac for Intel 64-bit (.dmg)** (33.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_Intel.dmg) — For older Intel-based Mac laptops and desktops.
+
+---
+
+### 🤖 Linux & GrokBot AI Agent Container
+[![Download GrokBot Linux](https://img.shields.io/badge/Download-Linux%20%2F%20GrokBot%20CLI-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-grokbot-x86_64)
+
+- [👉 **Download GrokBot Cloud Container Binary (x86_64)** (47.4 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-grokbot-x86_64) — Standalone Linux CLI binary for GrokBot and cloud agent sandboxes.
+- [👉 **Download Linux Standard CLI (x86_64)** (47.4 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-x86_64) — Standalone 64-bit Linux CLI binary (Ubuntu, Debian, Fedora, Arch).
+- [👉 **Download Linux ARM64 CLI (aarch64)** (45.6 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-aarch64) — Standalone ARM64 Linux CLI binary.
+
+**1-Line Terminal / GrokBot Installer:**
+```bash
+curl -sSL https://raw.githubusercontent.com/Just-Liberty-Incorporated/JustLegalOS/main/scripts/install-linux.sh | bash
+```
+
+The script automatically detects CPU architecture (`x86_64` or `aarch64`), verifies the cryptographic SHA-256 checksum, installs `justlegalos-cli` to `~/.local/bin`, and runs system health checks via `justlegalos-cli --json doctor`.
+
+---
+
+### 🔒 Cryptographic Verification
+- [👉 **SHA256SUMS.txt (Official Manifest)**](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/SHA256SUMS.txt) — Every binary is cryptographically hashed and verified.
+
+---
+
 ## What is JustLegal OS?
 
 **JustLegal OS** is an offline legal operating system and procedural document compiler. Built to level the playing field for self-represented litigants, tenants, families, and citizen whistleblowers, JustLegal turns a person's own words and court records into properly formatted, court-ready pleadings, exhibit packets, and fraud triage dossiers.
@@ -12,38 +54,6 @@ Official Website: [justlegal.me](https://justlegal.me) • Fraud Triage Specific
 It includes an offline court document assembly and False Claims Act / Qui Tam fraud triage engine under **Executive Order 14395** (*Executive Order 14395 — Establishing the Task Force to Eliminate Fraud*).
 
 > **Important Notice:** JustLegal OS is an offline document formatting and assembly engine, not a law firm. It does not practice law, give legal advice, file papers, or serve process. Users are solely responsible for reviewing every page before filing.
-
----
-
-## Official Releases & Download Matrix
-
-Download official, cryptographically verified installers directly from our [Latest GitHub Release](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest):
-
-| Platform | Format | Description | Direct Download |
-|---|---|---|---|
-| **Windows** | `.exe` (NSIS) | Desktop Application Setup | [`JustLegalOS_0.1.0_x64-setup.exe`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_0.1.0_x64-setup.exe) |
-| **Windows** | `.msi` (WiX) | Enterprise / MSI Installer | [`JustLegalOS_0.1.0_x64_en-US.msi`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_0.1.0_x64_en-US.msi) |
-| **macOS** | `.dmg` | Apple Silicon (M1/M2/M3/M4) | [`JustLegalOS-0.1.0-aarch64.dmg`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS-0.1.0-aarch64.dmg) |
-| **macOS** | `.dmg` | Intel 64-bit | [`JustLegalOS-0.1.0-x64.dmg`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS-0.1.0-x64.dmg) |
-| **Linux** | Binary | Headless CLI (x86_64) | [`justlegalos-cli-linux-x86_64`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-x86_64) |
-| **Linux** | Binary | Headless CLI (ARM64) | [`justlegalos-cli-linux-aarch64`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-aarch64) |
-| **Verification**| `.txt` | SHA-256 Checksums | [`SHA256SUMS.txt`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/SHA256SUMS.txt) |
-
----
-
-## 1-Line Headless Linux & Agent Container Installer
-
-For cloud Linux containers, headless servers, and autonomous agent sandboxes (such as x.ai GrokBot), install the standalone CLI with zero desktop dependencies:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/Just-Liberty-Incorporated/JustLegalOS/main/scripts/install-linux.sh | bash
-```
-
-The script automatically:
-1. Detects your CPU architecture (`x86_64` or `aarch64`).
-2. Downloads the official release binary and verifies its cryptographic SHA-256 checksum.
-3. Installs `justlegalos-cli` to `~/.local/bin` and initializes the standard workspace.
-4. Verifies system readiness via `justlegalos-cli --json doctor`.
 
 ---
 
