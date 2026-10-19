@@ -58,7 +58,7 @@ JustLegal OS utilizes a split distribution model:
      - Charter Panel qui tam plaintiff law firms.
 
 To request an institutional source audit, please contact:
-**`security@justlegal.me`** or **`josh@truejust.org`**.
+**`josh@truejust.org`**.
 
 ---
 
@@ -66,6 +66,5 @@ To request an institutional source audit, please contact:
 
 If you discover a potential security vulnerability within JustLegal OS, the CLI, or our public distribution infrastructure, please report it responsibly:
 
-- **Email:** `security@justlegal.me` (Subject: `SECURITY VULNERABILITY REPORT`)
-- **PGP / Sensitive Inquiries:** Please request our security team's PGP key prior to transmitting exploit details.
+- **Email:** `josh@truejust.org` (Subject: `SECURITY VULNERABILITY REPORT`)
 - **Response Commitment:** We review all reports within 24 hours and will coordinate a validated fix prior to public disclosure.
