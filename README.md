@@ -12,9 +12,9 @@ Download official, cryptographically verified installers directly from our [Late
 ### 🪟 Windows (Recommended for most desktop users)
 [![Download Windows 64-bit](https://img.shields.io/badge/Download-Windows%2064--bit%20Setup%20(.exe)-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Setup.exe)
 
-- [👉 **Download Windows 64-bit Setup (.exe)** (23.7 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Setup.exe) — **Main Desktop Application**. Double-click to install on Windows 10 or 11.
-- [👉 **Download Windows Enterprise MSI (.msi)** (34.3 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Enterprise.msi) — Enterprise / system-wide installer for Windows administrators.
-- [👉 **Download Standalone Windows CLI (.exe)** (39.5 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_CLI.exe) — Headless Command-Line Interface and MCP Server for Windows developers.
+- [👉 **Download Windows 64-bit Setup (.exe)** (24.5 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Setup.exe) — **Main Desktop Application**. Double-click to install on Windows 10 or 11.
+- [👉 **Download Windows Enterprise MSI (.msi)** (35.2 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Enterprise.msi) — Enterprise / system-wide installer for Windows administrators.
+- [👉 **Download Standalone Windows CLI (.exe)** (40.3 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_CLI.exe) — Headless Command-Line Interface and MCP Server for Windows developers.
 
 > **Windows SmartScreen & Integrity Notice:** Because Just Liberty Incorporated was newly chartered in 2026, Microsoft SmartScreen reputation builds progressively over download volume. On first launch, you may see a standard "Unknown Publisher" or "Windows protected your PC" dialog. Click **More info** ➔ **Run anyway**. You can verify the cryptographic integrity of every installer against our official [SHA256SUMS.txt](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/SHA256SUMS.txt) manifest before running.
 
