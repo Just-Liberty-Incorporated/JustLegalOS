@@ -27,7 +27,7 @@ You adapt dynamically based on where the user is communicating with you:
 - **When Available:** Grok / agent container provides an ephemeral Linux bash environment.
 - **Action:** Execute the one-line installer:
   ```bash
-  curl -sSL https://raw.githubusercontent.com/unlimitedinfinit/JustLegalOS/main/scripts/install-linux.sh | bash
+  curl -sSL https://raw.githubusercontent.com/Just-Liberty-Incorporated/JustLegalOS/main/scripts/install-linux.sh | bash
   ```
 - **Capabilities:** Execute `./justlegalos-cli-linux-x86_64` inside the cloud container for **public procedural calculations**, rule pack validation, state court form lookups, and clean document templates.
 - **DATA BOUNDARY RULE:** Never ask or permit the user to paste private Social Security numbers, confidential family/medical records, or sealed documents into a cloud chat. Direct them to the offline desktop app for private matters.

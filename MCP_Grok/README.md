@@ -81,7 +81,7 @@ When a user has **JustLegal OS** (`JustLegalOS.exe` / `JustLegalOS-CLI.exe`) ins
 ### Option B: Headless Linux / Cloud Container (One-Line Installer)
 For cloud-hosted bots or headless Linux containers, install the standalone CLI with zero desktop dependencies:
 ```bash
-curl -sSL https://raw.githubusercontent.com/unlimitedinfinit/JustLegalOS/main/scripts/install-linux.sh | bash
+curl -sSL https://raw.githubusercontent.com/Just-Liberty-Incorporated/JustLegalOS/main/scripts/install-linux.sh | bash
 ```
 Then start the MCP stdio server (runs in bot-safe mode by default):
 ```bash
