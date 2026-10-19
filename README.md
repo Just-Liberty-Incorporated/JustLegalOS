@@ -16,13 +16,17 @@ Download official, cryptographically verified installers directly from our [Late
 - [👉 **Download Windows Enterprise MSI (.msi)** (34.3 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Enterprise.msi) — Enterprise / system-wide installer for Windows administrators.
 - [👉 **Download Standalone Windows CLI (.exe)** (39.5 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_CLI.exe) — Headless Command-Line Interface and MCP Server for Windows developers.
 
+> **Windows SmartScreen & Integrity Notice:** Because Just Liberty Incorporated was newly chartered in 2026, Microsoft SmartScreen reputation builds progressively over download volume. On first launch, you may see a standard "Unknown Publisher" or "Windows protected your PC" dialog. Click **More info** ➔ **Run anyway**. You can verify the cryptographic integrity of every installer against our official [SHA256SUMS.txt](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/SHA256SUMS.txt) manifest before running.
+
 ---
 
 ### 🍏 Mac (Apple macOS)
 [![Download Mac Apple Silicon](https://img.shields.io/badge/Download-Mac%20Apple%20Silicon%20(.dmg)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_AppleSilicon.dmg)
 
-- [👉 **Download Mac for Apple Silicon (.dmg)** (33.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_AppleSilicon.dmg) — For all modern Macs (M1, M2, M3, M4 chips).
-- [👉 **Download Mac for Intel 64-bit (.dmg)** (33.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_Intel.dmg) — For older Intel-based Mac laptops and desktops.
+- [👉 **Download Mac for Apple Silicon (.dmg)** (33.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_AppleSilicon.dmg) — For modern Macs (M1, M2, M3, M4 chips).
+- [👉 **Download Mac for Intel 64-bit (.dmg)** (33.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Mac_Intel.dmg) — For Intel-based Mac laptops and desktops.
+
+> **Apple macOS Note:** The downloadable DMG contains a universal binary compiled to execute on both Apple Silicon and Intel x86_64 Mac platforms.
 
 ---
 
@@ -32,6 +36,8 @@ Download official, cryptographically verified installers directly from our [Late
 - [👉 **Download GrokBot Cloud Container Binary (x86_64)** (47.4 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-grokbot-x86_64) — Standalone Linux CLI binary for GrokBot and cloud agent sandboxes.
 - [👉 **Download Linux Standard CLI (x86_64)** (47.4 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-x86_64) — Standalone 64-bit Linux CLI binary (Ubuntu, Debian, Fedora, Arch).
 - [👉 **Download Linux ARM64 CLI (aarch64)** (45.6 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-aarch64) — Standalone ARM64 Linux CLI binary.
+
+> **Linux System Requirement:** Requires standard 64-bit Linux with GLIBC 2.35 or newer (e.g., Ubuntu 22.04 LTS+, Debian 12+, Fedora 36+, or modern bot container base images).
 
 **1-Line Terminal / GrokBot Installer:**
 ```bash
@@ -102,6 +108,12 @@ Generated via JustLegal.me / Just Liberty Inc. (501c3) Verification Engine
 To protect statutory whistleblower rights, the engine routes dossiers through a strict fork:
 - **Track A (Relator Reward Track — Qui Tam Counsel First):** For potential fraud over $1M with firsthand documentation. Generates privileged inquiry packages under ABA Model Rule 1.18 for private False Claims Act attorneys (who typically evaluate high-dollar matters on contingency; 15%–30% statutory relator bounty under 31 U.S.C. § 3730(d)), strictly protecting mandatory *in camera* court seals (31 U.S.C. § 3730(b)(2)).
 - **Track B (Citizen Watchdog / Direct Agency Track):** For localized storefront abuse or administrative enforcement. Formats character-limited (<2,000 char) text blocks pre-mapped to HHS-OIG, DOJ Civil Fraud, and State AG MFCU web portals.
+
+### The 3-Tier Entity Verification Architecture
+To eliminate false accusations and ensure rigorous compliance with EO 14395 and Rule 9(b), the verification engine evaluates targets across three distinct evidentiary tiers:
+1. **Tier 1 (CMS NPPES Provider Registry):** Direct federal NPI-1 (individual) and NPI-2 (organization) enumeration via the CMS NPPES v2.1 API. Confirms active registration, primary practice location, authorized officials, and healthcare provider taxonomy codes. Checks network lookup status to ensure network failures never falsely brand a legitimate provider as unregistered.
+2. **Tier 2 (USAspending Direct Federal Awards):** Direct federal procurement contracts, prime grants, and direct loans from HHS, VA, and DoD under Federal Award ID / UEI records.
+3. **Tier 3 (State-Administered Medicaid Claims Guidance):** State Medicaid expenditures and managed care organization (MCO) disbursements flow through state health agencies rather than direct USAspending awards. The absence of direct awards on USAspending does not indicate zero Medicaid billing; the engine flags this distinction and provides tailored state open records (FOIA/MGDPA/OPRA) guidance.
 
 ---
 
