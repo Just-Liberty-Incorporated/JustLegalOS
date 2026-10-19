@@ -1,2 +1,139 @@
-# JustLegalOS
-JustLegal OS: Offline Court Document Assembly Engine & EO 14395 Fraud Triage
+# JustLegal OS
+### The Legal Operating System & Offline Court Formatting Engine
+Developed by **Just Liberty Incorporated** (Colorado 501(c)(3) Nonprofit Public Benefit Corporation)  
+Official Website: [justlegal.me](https://justlegal.me) • Verification Standard: [justlegal.me/qui-tam](https://justlegal.me/qui-tam) • Contact: `josh@truejust.org`
+
+---
+
+## What is JustLegal OS?
+
+**JustLegal OS** is an offline legal operating system and procedural document compiler. Built to level the playing field for self-represented litigants, tenants, families, and citizen whistleblowers, JustLegal turns a person's own words and court records into properly formatted, court-ready pleadings, exhibit packets, and fraud triage dossiers.
+
+It includes the **OpenSeason** engine for offline court document assembly and False Claims Act / Qui Tam fraud triage under **Executive Order 14395** (*Executive Order 14395 — Establishing the Task Force to Eliminate Fraud*).
+
+> **Important Notice:** JustLegal OS is an offline document formatting and assembly engine, not a law firm. It does not practice law, give legal advice, file papers, or serve process. Users are solely responsible for reviewing every page before filing.
+
+---
+
+## Official Releases & Download Matrix
+
+Download official, cryptographically verified installers directly from our [Latest GitHub Release](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest):
+
+| Platform | Format | Description | Direct Download |
+|---|---|---|---|
+| **Windows** | `.exe` (NSIS) | Desktop Application Setup | [`JustLegalOS_0.1.0_x64-setup.exe`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_0.1.0_x64-setup.exe) |
+| **Windows** | `.msi` (WiX) | Enterprise / MSI Installer | [`JustLegalOS_0.1.0_x64_en-US.msi`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_0.1.0_x64_en-US.msi) |
+| **macOS** | `.dmg` | Apple Silicon (M1/M2/M3/M4) | [`JustLegalOS-0.1.0-aarch64.dmg`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS-0.1.0-aarch64.dmg) |
+| **macOS** | `.dmg` | Intel 64-bit | [`JustLegalOS-0.1.0-x64.dmg`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS-0.1.0-x64.dmg) |
+| **Linux** | Binary | Headless CLI (x86_64) | [`justlegalos-cli-linux-x86_64`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-x86_64) |
+| **Linux** | Binary | Headless CLI (ARM64) | [`justlegalos-cli-linux-aarch64`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/justlegalos-cli-linux-aarch64) |
+| **Verification**| `.txt` | SHA-256 Checksums | [`SHA256SUMS.txt`](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/SHA256SUMS.txt) |
+
+---
+
+## 1-Line Headless Linux & Agent Container Installer
+
+For cloud Linux containers, headless servers, and autonomous agent sandboxes (such as x.ai GrokBot), install the standalone CLI with zero desktop dependencies:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Just-Liberty-Incorporated/JustLegalOS/main/scripts/install-linux.sh | bash
+```
+
+The script automatically:
+1. Detects your CPU architecture (`x86_64` or `aarch64`).
+2. Downloads the official release binary and verifies its cryptographic SHA-256 checksum.
+3. Installs `justlegalos-cli` to `~/.local/bin` and initializes the standard workspace.
+4. Verifies system readiness via `justlegalos-cli --json doctor`.
+
+---
+
+## The 3-Mode Operating Paradigm
+
+JustLegal OS and its Model Context Protocol (MCP) server adapt to three operational environments:
+
+```
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                           THE 3-MODE OPERATING CONTRACT                           │
+├───────────────────────┬───────────────────────────┬───────────────────────────────┤
+│ Mode 1: Local Desktop │ Mode 2: Cloud Linux Agent │ Mode 3: Mobile / Pure Web Chat│
+├───────────────────────┼───────────────────────────┼───────────────────────────────┤
+│ • 100% Offline Airgap │ • Headless CLI Container  │ • Conversational Front-Door   │
+│ • Local encrypted     │ • Live public data checks │ • ZERO FABRICATION RULE:      │
+│   vault storage       │   (CMS NPPES/USAspending) │   No hallucinated hashes or   │
+│ • .sealed cases NEVER │ • STRICT RULE: Never      │   fake Rule 9(b) scores!      │
+│   touch the network   │   upload HIPAA PHI or     │ • Routes to browser tools at  │
+│ • Zero telemetry      │   unfiled qui tam secrets │   https://justlegal.me/qui-tam│
+└───────────────────────┴───────────────────────────┴───────────────────────────────┘
+```
+
+---
+
+## Executive Order 14395 Calling Card Specification
+
+Every qui tam fraud dossier, attorney inquiry, and agency report generated by JustLegal OS begins with our standardized, machine-readable Diagnostic Header:
+
+```text
+======================================================================
+JUSTLEGAL OS | JUSTLEGAL STANDARDIZED FRAUD DISCLOSURE [SCHEMA v1.0 | EO-14395]
+Generated via JustLegal.me / Just Liberty Inc. (501c3) Verification Engine
+======================================================================
+• MATTER CLASSIFICATION: [Medicaid Provider Enrollment / Shell Facility | EO 14395]
+• TARGET ENTITY: [Legal Name] | NPI: [10-Digit Verified] | UEI: [12-Char Verified]
+• REGISTERED TAXONOMY: [Code + Description] vs. Observed Physical Status
+• VERIFIED FEDERAL NEXUS: $[Amount] ([USAspending / CMS / State Lookups Confirmed])
+• RULE 9(b) READINESS GRADE: [Grade (e.g. A- 88/100)] — [Key Strength / Verification Match]
+• PUBLIC DISCLOSURE STATUS: CLEAR (Firsthand Documentation; No Social Media Leakage)
+• EVIDENCE MANIFEST HASH (SHA-256): [Merkle Root or Primary Manifest Hash]
+• VERIFY SCHEMA / SOURCE TOOLS: https://justlegal.me/qui-tam
+======================================================================
+```
+
+### The Dual-Track Submission Engine
+To protect statutory whistleblower rights, the engine routes dossiers through a strict fork:
+- **Track A (Relator Reward Track — Qui Tam Counsel First):** For potential fraud over $1M with firsthand documentation. Generates privileged inquiry packages under ABA Model Rule 1.18 for private False Claims Act attorneys on 100% contingency ($0 upfront; 15%–30% statutory relator bounty under 31 U.S.C. § 3730(d)), strictly protecting mandatory *in camera* court seals (31 U.S.C. § 3730(b)(2)).
+- **Track B (Citizen Watchdog / Direct Agency Track):** For localized storefront abuse or administrative enforcement. Formats character-limited (<2,000 char) text blocks pre-mapped to HHS-OIG, DOJ Civil Fraud, and State AG MFCU web portals.
+
+---
+
+## Agent Integration: Stdio MCP Server (`justlegalos-cli mcp`)
+
+JustLegal OS exposes a native JSON-RPC 2.0 Model Context Protocol (MCP) server for local AI agents (GrokBot, Claude Desktop, Cursor):
+
+```json
+{
+  "mcpServers": {
+    "justlegalos": {
+      "command": "justlegalos-cli",
+      "args": ["mcp", "--safe"]
+    }
+  }
+}
+```
+
+- **Bot-Safe by Default:** In safe mode (`--safe`), dangerous capabilities (`cloud_push`, `cloud_pull`, `sign_pdf`, `packs_remove`) are completely hidden and blocked.
+- **Strict Path Confinement:** All file access is restricted to the user's `Cases/` directory; traversal attacks and arbitrary disk access are rejected with structured errors.
+- **Zero-Hallucination Guardrails:** The engine never fabricates dates, citations, or party names. Missing parameters are returned as structured gap fields.
+
+See [`MCP_Grok/`](MCP_Grok/) for complete system prompts, recipes, and specialized skill modules.
+
+---
+
+## Architecture & Maintenance Model
+
+JustLegal OS operates on the **Public Distribution & Specification** model:
+
+1. **Clean Public Distribution Repository (This Repo):**
+   - Maintained under the **Just Liberty Incorporated** organization.
+   - Hosts public releases, SHA-256 verification manifests, installer scripts, agent recipes, and the public schema.
+2. **Core Deterministic Engine (Private Repository):**
+   - The underlying 46-file Rust engine, proprietary Rule 9(b) scoring algorithms, and procedural rule packs are developed in a private core repository.
+   - **Why?** To prevent fraudulent providers from studying and gaming our fraud detection thresholds, and to protect our nonprofit infrastructure from commercial exploitation.
+   - **Institutional Source Audits:** Full source code and build pipeline audits are available under standard institutional NDA to DOJ/OIG oversight investigators, accredited foundation grantmakers, and Charter Panel law firms. See [`SECURITY.md`](SECURITY.md) for details.
+
+---
+
+## License & Nonprofit Attribution
+
+- **Public Distribution & Specifications:** Licensed under the [Apache License, Version 2.0](LICENSE).
+- **Organization:** Developed with care by **Just Liberty Incorporated**, a Colorado 501(c)(3) nonprofit public benefit corporation.
+- **Mission:** Leveling the playing field so every person can navigate the law with dignity, precision, and verified truth.

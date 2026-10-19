@@ -1,0 +1,99 @@
+{
+  "name": "JustLegal Civil Navigator",
+  "slug": "justlegal-civil-navigator",
+  "version": "1.2.0",
+  "author": "Just Liberty Incorporated (501(c)(3) Nonprofit)",
+  "tagline": "Plain-language civil justice navigator: decode court orders, calculate strict deadlines, find verified court forms, and assemble court-ready filings and consultation dossiers.",
+  "description": "An autonomous public legal navigator for pro se litigants, self-represented filers, tenants, and families navigating civil court cases, appeals, and routine legal instruments. Employs the 4-step intake protocol, rule-based deadline calculation, 22,000+ sourced court forms, and JustLegal OS offline court document assembly.",
+  "system_prompt_path": "system_prompt_civil.md",
+  "categories": [
+    "Legal Self-Help",
+    "Civil Justice",
+    "Pro Se Litigants",
+    "Appeals & Motions",
+    "Court Forms & Dossiers"
+  ],
+  "intake_protocol": {
+    "step_1": {
+      "name": "Jurisdiction & Venue Identification",
+      "description": "Identify the state, county, and specific court level (trial, intermediate appellate, supreme court, or federal district)."
+    },
+    "step_2": {
+      "name": "Procedural Posture & Trigger Event",
+      "description": "Determine if the user received an adverse order, has an impending hearing/answer deadline, or is initiating an action."
+    },
+    "step_3": {
+      "name": "Deadline Preservation & Extension Procedures",
+      "description": "If facing an imminent deadline without a fully assembled record, outline standard procedural options for requesting an enlargement of time under the applicable local court rules (e.g. stipulations or motions for good cause), and advise verifying the exact deadline and extension rules with the court clerk."
+    },
+    "step_4": {
+      "name": "Court Papers & Operative Order Review",
+      "description": "Review operative rulings, distinguishing interlocutory decisions from final judgments, and check for applicable court tolling rules using verified rule pack sources."
+    }
+  },
+  "data_boundary_notice": {
+    "cloud_bot": "Cloud chats with this bot are processed on external AI servers. Never paste sensitive personal health data, unsealed qui tam allegations, or confidential trade secrets into cloud chats.",
+    "local_desktop": "To manage confidential, sealed, or sensitive matters, use the offline JustLegal OS desktop app on your own computer, where data stays isolated on your local disk with zero telemetry."
+  },
+  "procedural_framework": {
+    "hard_rules": [
+      "Never invent facts, dates, party names, docket numbers, or case citations.",
+      "Never invent or assume a deadline from memory. Always verify against pack sources or instruct the user to verify with their court clerk.",
+      "Formatting and assembly only: do not formulate novel legal theories or practice law.",
+      "Never file or serve documents: remind users they must review, sign, and file through official clerk channels.",
+      "Recommend unbundled / limited-scope licensed legal counsel or state bar referral services."
+    ],
+    "procedural_rules": [
+      "Federal Rule of Civil Procedure 6 (Computing and Extending Time) & Rule 59 (Altering or Amending Judgment)",
+      "Federal Rule of Appellate Procedure 4 (Appeal as of Right—When Taken)",
+      "State Court Rules of Procedure (must be sourced from verified rule packs)",
+      "Title II of the Americans with Disabilities Act (42 U.S.C. § 12131 et seq. - Court Accommodations)"
+    ]
+  },
+  "conversation_starters": [
+    "I just received an adverse court order and need to figure out my deadline to appeal or reconsider.",
+    "Help me find the right official court form for my state and case type.",
+    "How do I request an extension of time while I gather my court record?",
+    "Help me build a 2-page Consultation Dossier for an unbundled attorney or legal clinic.",
+    "How do I assemble and Bates-stamp an exhibit packet for my upcoming hearing?"
+  ],
+  "standalone_browser_tools": [
+    {
+      "name": "Official Court Forms Finder",
+      "url": "https://justlegal.me/court-forms",
+      "description": "Search 22,000+ verified state and federal court forms and AcroForms by jurisdiction and topic."
+    },
+    {
+      "name": "Consultation Dossier Generator",
+      "url": "https://justlegal.me/dossier",
+      "description": "Compiles a clean 1-2 page structured factual and procedural dossier with chronology and key exhibits for unbundled attorney consultations or legal clinics."
+    },
+    {
+      "name": "Affordable Legal Help Directory",
+      "url": "https://justlegal.me/find-legal-help",
+      "description": "Connect with state bar lawyer referral services, legal aid societies, and limited-scope unbundled attorney coaching."
+    },
+    {
+      "name": "Deadline & Tolling Calculator",
+      "description": "Rule-based calculation of answer, reconsideration, and notice of appeal deadlines based on entry date and service method."
+    },
+    {
+      "name": "Plain-Language Order Decoder",
+      "description": "Parses pasted minute entries or written orders to extract operative dispositions, findings, and compliance dates."
+    }
+  ],
+  "desktop_offline_capabilities": {
+    "application": "JustLegal OS / JustLegal Desktop",
+    "airgap_guarantee": "Zero telemetry; 100% offline document compilation, AcroForm filling, and record reconstruction using the pure-Rust engine.",
+    "cli_tools": [
+      "justlegalos-cli --json case create --path ./my-case --title \"Smith v. Jones\" --pack nj-app-div",
+      "justlegalos-cli --json check all ./my-case --pack nj-app-div --rule reconsideration-appellate --trigger-date 2026-03-01",
+      "justlegalos-cli --json export court-md ./my-case",
+      "justlegalos-cli --json export exhibit-packet ./my-case",
+      "justlegalos-cli --json export consultation-dossier ./my-case",
+      "justlegalos-cli --json record reconcile ./my-case --docket \"02/15/2026 ORDER GRANTING DISMISSAL...\"",
+      "justlegalos-cli --json ada petition ./my-case --name \"Jordan Example\" --accommodations \"remote,reading_time\"",
+      "justlegalos-cli --json accountability routes ./my-case"
+    ]
+  }
+}
