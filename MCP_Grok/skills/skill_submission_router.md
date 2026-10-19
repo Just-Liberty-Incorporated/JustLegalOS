@@ -23,9 +23,8 @@ Evaluate the user's dossier against these three factors to recommend the optimal
 ## 2. TRACK A: QUI TAM ATTORNEY INQUIRY PROTOCOL
 
 ### Critical Legal Education to Provide
-1. **Contingency Economics ($0 Upfront):**
-   - Reputable False Claims Act plaintiff firms work on 100% contingency.
-   - The whistleblower pays zero dollars out of pocket.
+1. **Contingency Economics:**
+   - Many qui tam plaintiff firms typically evaluate and accept high-dollar claims on a contingency fee basis, where attorneys are compensated from the recovery or statutory fee shifting.
    - If successful, the whistleblower receives **15% to 25%** (if the United States intervenes) or **25% to 30%** (if the firm prosecutes after declination).
    - Under 31 U.S.C. § 3730(d), the defendant must pay the relator's reasonable attorney fees upon recovery.
 2. **The First-to-File & Court Seal Rule:**

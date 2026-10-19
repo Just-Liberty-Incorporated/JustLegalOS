@@ -27,7 +27,7 @@ Defense attorneys and federal judges scrutinize how evidence was obtained. A sin
 ## 2. Cryptographic Ingestion & EXIF Extraction
 Digital photos taken on smartphones contain embedded EXIF metadata (exact GPS coordinates and timestamp).
 
-When the user ingests a photo into OpenSeason Desktop:
+When the user ingests a photo into JustLegal OS:
 ```bash
 .\JustLegalOS-CLI.exe --json qui-tam ingest-observation ./my-case --file "C:/Photos/clinic_tuesday_1400.jpg" --notes "Doors locked, no staff visible at 2:00 PM on Tuesday."
 ```

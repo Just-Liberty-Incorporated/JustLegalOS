@@ -67,36 +67,20 @@ if command -v curl >/dev/null 2>&1; then
         echo -e "Ensure a release has been published for ${GITHUB_REPO}."
         exit 1
     fi
-    if curl -fsSL "$CHECKSUM_URL" -o "$TMP_SUMS" 2>/dev/null; then
-        echo -e "${BLUE}[INFO] Verifying SHA-256 checksum...${NC}"
-        EXPECTED_HASH="$(grep "justlegalos-cli-linux-${TARGET_ARCH}" "$TMP_SUMS" 2>/dev/null | awk '{print $1}' || echo "")"
-        if [ -n "$EXPECTED_HASH" ]; then
-            ACTUAL_HASH="$(sha256sum "$TMP_BIN" | awk '{print $1}')"
-            if [ "$EXPECTED_HASH" != "$ACTUAL_HASH" ]; then
-                echo -e "${RED}[ERROR] Checksum mismatch!${NC}"
-                echo -e "Expected: $EXPECTED_HASH"
-                echo -e "Actual:   $ACTUAL_HASH"
-                exit 1
-            fi
-            echo -e "${GREEN}[INFO] SHA-256 checksum verified successfully.${NC}"
-        fi
+    if ! curl -fsSL "$CHECKSUM_URL" -o "$TMP_SUMS"; then
+        echo -e "${RED}[ERROR] Failed to download checksum manifest from $CHECKSUM_URL.${NC}"
+        echo -e "Refusing to install unverified binary."
+        exit 1
     fi
 elif command -v wget >/dev/null 2>&1; then
     if ! wget -qO "$TMP_BIN" "$DOWNLOAD_URL"; then
         echo -e "${RED}[ERROR] Failed to download binary from $DOWNLOAD_URL.${NC}"
         exit 1
     fi
-    if wget -qO "$TMP_SUMS" "$CHECKSUM_URL" 2>/dev/null; then
-        echo -e "${BLUE}[INFO] Verifying SHA-256 checksum...${NC}"
-        EXPECTED_HASH="$(grep "justlegalos-cli-linux-${TARGET_ARCH}" "$TMP_SUMS" 2>/dev/null | awk '{print $1}' || echo "")"
-        if [ -n "$EXPECTED_HASH" ]; then
-            ACTUAL_HASH="$(sha256sum "$TMP_BIN" | awk '{print $1}')"
-            if [ "$EXPECTED_HASH" != "$ACTUAL_HASH" ]; then
-                echo -e "${RED}[ERROR] Checksum mismatch!${NC}"
-                exit 1
-            fi
-            echo -e "${GREEN}[INFO] SHA-256 checksum verified successfully.${NC}"
-        fi
+    if ! wget -qO "$TMP_SUMS" "$CHECKSUM_URL"; then
+        echo -e "${RED}[ERROR] Failed to download checksum manifest from $CHECKSUM_URL.${NC}"
+        echo -e "Refusing to install unverified binary."
+        exit 1
     fi
 else
     echo -e "${RED}[ERROR] Neither curl nor wget found. Please install curl or wget.${NC}"
@@ -104,9 +88,35 @@ else
 fi
 
 if [ ! -s "$TMP_BIN" ]; then
-    echo -e "${RED}[ERROR] Downloaded file is empty or corrupted.${NC}"
+    echo -e "${RED}[ERROR] Downloaded binary is empty or corrupted.${NC}"
     exit 1
 fi
+
+echo -e "${BLUE}[INFO] Verifying SHA-256 checksum...${NC}"
+EXPECTED_HASH="$(grep "justlegalos-cli-linux-${TARGET_ARCH}" "$TMP_SUMS" 2>/dev/null | awk '{print $1}' || echo "")"
+if [ -z "$EXPECTED_HASH" ]; then
+    echo -e "${RED}[ERROR] Checksum entry for justlegalos-cli-linux-${TARGET_ARCH} not found in SHA256SUMS.txt.${NC}"
+    echo -e "Refusing to install unverified binary."
+    exit 1
+fi
+
+if command -v sha256sum >/dev/null 2>&1; then
+    ACTUAL_HASH="$(sha256sum "$TMP_BIN" | awk '{print $1}')"
+elif command -v shasum >/dev/null 2>&1; then
+    ACTUAL_HASH="$(shasum -a 256 "$TMP_BIN" | awk '{print $1}')"
+else
+    echo -e "${RED}[ERROR] Neither sha256sum nor shasum found to verify checksum.${NC}"
+    exit 1
+fi
+
+if [ "$EXPECTED_HASH" != "$ACTUAL_HASH" ]; then
+    echo -e "${RED}[ERROR] SHA-256 checksum mismatch!${NC}"
+    echo -e "Expected: $EXPECTED_HASH"
+    echo -e "Actual:   $ACTUAL_HASH"
+    echo -e "Refusing to install corrupted or tampered binary."
+    exit 1
+fi
+echo -e "${GREEN}[INFO] SHA-256 checksum verified successfully: ${ACTUAL_HASH}${NC}"
 
 mv -f "$TMP_BIN" "$BIN_TARGET"
 

@@ -134,7 +134,7 @@ When triage is complete, **NEVER blindly submit the packet to a public web porta
 
 ### Track A: The Relator Reward Track (Qui Tam Counsel First)
 *Trigger when: Potential fraud exceeds $1M, user has non-public firsthand documentation, and seeks a whistleblower reward.*
-- **Contingency Economics ($0 Upfront):** Legitimate False Claims Act firms work on 100% contingency. The relator pays $0 out of pocket. If the government recovers funds, the relator receives **15% to 25%** (if DOJ intervenes) or **25% to 30%** (if pursued independently), and the defendant is statutorily required to pay attorney fees (31 U.S.C. § 3730(d)).
+- **Contingency Economics:** Many False Claims Act plaintiff firms typically evaluate and accept high-dollar claims on a contingency fee basis. If the government recovers funds, the relator receives **15% to 25%** (if DOJ intervenes) or **25% to 30%** (if pursued independently), and the defendant is statutorily required to pay attorney fees upon recovery (31 U.S.C. § 3730(d)).
 - **Why NOT Submit to Public OIG Portals First:** To qualify for the reward, the complaint must be filed *under seal* in federal district court with formal service of the Written Disclosure Statement on the U.S. Attorney General and local U.S. Attorney (31 U.S.C. § 3730(b)(2)). An online OIG web tip is an administrative complaint—it forfeits First-to-File priority and the relator's bounty!
 - **Attorney-Client Privilege Protection (ABA Model Rule 1.18):** Inquiries sent to prospective qui tam attorneys to seek representation are protected by attorney-client privilege, even if the firm declines the case.
 - **Bot Output for Track A:**

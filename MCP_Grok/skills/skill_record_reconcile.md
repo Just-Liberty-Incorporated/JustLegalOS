@@ -12,7 +12,7 @@ Pro se litigants frequently discover too late that:
 - Critical hearing transcripts were never requested or paid for.
 - Opposing counsel filed an ex-parte letter or brief that never reached the litigant.
 
-Reconciling the official court docket history against local case documents is the only reliable way to guarantee complete filings and avoid dismissal for incomplete appendix/record.
+Reconciling the official court docket history against local case documents helps ensure the record is thorough and helps prevent procedural dismissal for an incomplete appendix.
 
 ---
 

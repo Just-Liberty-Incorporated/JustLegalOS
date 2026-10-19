@@ -1,7 +1,7 @@
 # JustLegal OS
 ### The Legal Operating System & Offline Court Formatting Engine
 Developed by **Just Liberty Incorporated** (Colorado 501(c)(3) Nonprofit Public Benefit Corporation)  
-Official Website: [justlegal.me](https://justlegal.me) • Verification Standard: [justlegal.me/qui-tam](https://justlegal.me/qui-tam) • Contact: `josh@truejust.org`
+Official Website: [justlegal.me](https://justlegal.me) • Fraud Triage Specification: [justlegal.me/qui-tam](https://justlegal.me/qui-tam) • Contact: `josh@truejust.org`
 
 ---
 
@@ -9,7 +9,7 @@ Official Website: [justlegal.me](https://justlegal.me) • Verification Standard
 
 **JustLegal OS** is an offline legal operating system and procedural document compiler. Built to level the playing field for self-represented litigants, tenants, families, and citizen whistleblowers, JustLegal turns a person's own words and court records into properly formatted, court-ready pleadings, exhibit packets, and fraud triage dossiers.
 
-It includes the **OpenSeason** engine for offline court document assembly and False Claims Act / Qui Tam fraud triage under **Executive Order 14395** (*Executive Order 14395 — Establishing the Task Force to Eliminate Fraud*).
+It includes an offline court document assembly and False Claims Act / Qui Tam fraud triage engine under **Executive Order 14395** (*Executive Order 14395 — Establishing the Task Force to Eliminate Fraud*).
 
 > **Important Notice:** JustLegal OS is an offline document formatting and assembly engine, not a law firm. It does not practice law, give legal advice, file papers, or serve process. Users are solely responsible for reviewing every page before filing.
 
@@ -90,7 +90,7 @@ Generated via JustLegal.me / Just Liberty Inc. (501c3) Verification Engine
 
 ### The Dual-Track Submission Engine
 To protect statutory whistleblower rights, the engine routes dossiers through a strict fork:
-- **Track A (Relator Reward Track — Qui Tam Counsel First):** For potential fraud over $1M with firsthand documentation. Generates privileged inquiry packages under ABA Model Rule 1.18 for private False Claims Act attorneys on 100% contingency ($0 upfront; 15%–30% statutory relator bounty under 31 U.S.C. § 3730(d)), strictly protecting mandatory *in camera* court seals (31 U.S.C. § 3730(b)(2)).
+- **Track A (Relator Reward Track — Qui Tam Counsel First):** For potential fraud over $1M with firsthand documentation. Generates privileged inquiry packages under ABA Model Rule 1.18 for private False Claims Act attorneys (who typically evaluate high-dollar matters on contingency; 15%–30% statutory relator bounty under 31 U.S.C. § 3730(d)), strictly protecting mandatory *in camera* court seals (31 U.S.C. § 3730(b)(2)).
 - **Track B (Citizen Watchdog / Direct Agency Track):** For localized storefront abuse or administrative enforcement. Formats character-limited (<2,000 char) text blocks pre-mapped to HHS-OIG, DOJ Civil Fraud, and State AG MFCU web portals.
 
 ---

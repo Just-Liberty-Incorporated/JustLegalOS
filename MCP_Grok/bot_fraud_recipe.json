@@ -14,14 +14,14 @@
     "Whistleblower Protection"
   ],
   "calling_card_standard": {
-    "schema": "JustLegal Standard v1.0 | EO-14395 Compliant",
-    "verification_url": "https://justlegal.me/qui-tam",
+    "schema": "JustLegal Standard v1.0 | EO-14395 Schema",
+    "specification_url": "https://justlegal.me/qui-tam",
     "purpose": "A standardized machine-readable diagnostic header recognized by federal OIG analysts and qui tam law firms to accelerate intake triage."
   },
   "dual_track_engine": {
     "track_a": {
       "name": "Relator Reward Track (Qui Tam Counsel First)",
-      "target": "Private False Claims Act contingency attorneys ($0 upfront; 15-30% statutory relator bounty under 31 U.S.C. § 3730(d))",
+      "target": "Private False Claims Act attorneys (who typically evaluate high-dollar matters on contingency; 15-30% statutory relator bounty under 31 U.S.C. § 3730(d))",
       "seal_rule": "Mandatory in-camera filing under seal (31 U.S.C. § 3730(b)(2)). Prohibits public portal tips before filing.",
       "privilege": "ABA Model Rule 1.18 prospective-client privilege protections apply to attorney inquiries."
     },
