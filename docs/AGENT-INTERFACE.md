@@ -134,6 +134,9 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 | `records track DIR --id ID --law LAW --agency AGENCY --sent DATE [--days N] [--ext N]` | Track open records requests with working-day date math (skips weekends and federal holidays) |
 | `records followup DIR --id ID --law LAW --agency AGENCY [--kind late|denied|wrong-route]` | Generate statutory follow-up, administrative appeal, or own-claim correction letter |
 | `records org` | View requester organization profile (Just Liberty Inc. 501(c)(3) EIN 93-3704483) |
+| `claim translate --vernacular TEXT` | **Vernacular-to-Doctrine Translator**: maps colloquial complaints to statutory claims and mountain-of-proof blueprints (X + Y + Z) (P17) |
+| `sovereign-immunity [--state ST] [--target TYPE] [--claim CLAIMS...]` | **Sovereign Immunity Audit**: audits 11th Amendment barriers and evaluates 5 bypass pathways (*Ex parte Young*, ADA Title II, § 504 waiver, Monell, Contractors) (P18) |
+| `collective-action --mode MODE [--title TEXT] [--defendant TEXT]` | **Collective Legal Action Builder**: FRCP Rule 20(a)(1) permissive joinder pro se force multiplier, Rule 23 class pitch binder, or APA rulemaking petition (P19) |
 | `export receiver DIR --to dol-oig|co-osa|gao-fraudnet|counsel [--anonymity PREF]` | **Receiver-Ready Submission Packages** formatted to exact character limits and field structures |
 | `mcp` | Stdio MCP server (same tools) |
 | `sync DIR --action backup` | Stub. Standard: `not_implemented`. Confidential: refused |
@@ -167,6 +170,12 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 - `form_inspect`: Inspect official court PDF forms and list AcroForm fields.
 - `form_fill`: Auto-map `case.json` profile values into official court forms.
 - `cloud_pull` & `cloud_push`: Autonomous additive sync with JustLegal Cloud (airgap protected).
+- `claim_translate`: Maps vernacular grievances to statutory causes of action and mountain-of-proof blueprints (P17).
+- `sovereign_immunity_audit`: Audits 11th Amendment state immunity and identifies valid bypass pathways (P18).
+- `collective_action_build`: Generates Rule 20 permissive joinder, Rule 23 binder, or APA rulemaking petition (P19).
+- `records_find`, `records_draft`, `records_track`, `records_followup`, `records_org`: Statutory open records discovery suite (P2-P8).
+- `accountability_map`: 14-Pathway Institutional & Systemic Fraud Accountability Map (P1).
+- `receiver_export`: Generates receiver-ready submission payloads (DOL-OIG, CO-OSA, GAO FraudNet, Counsel) (P16).
 - Motion path tools: `case_create`, `draft_import`, `check_fact`, `check_authority`, `check_deadline`, `check_signoff`, `export_pleading`, `export_court_md`.
 - Form packs & guide: `packs_install`, `packs_verify`, `guide_find`, `help_links`.
 

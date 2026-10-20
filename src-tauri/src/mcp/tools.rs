@@ -1,0 +1,130 @@
+use serde_json::{json, Value};
+
+pub fn tool(name: &str, description: &str, props: Value, required: &[&str]) -> Value {
+    json!({
+        "name": name,
+        "description": description,
+        "inputSchema": {"type": "object", "properties": props, "required": required}
+    })
+}
+
+pub fn tool_list() -> Value {
+    tool_list_with_opts(true)
+}
+
+pub fn tool_list_with_opts(safe_mode: bool) -> Value {
+    let path = json!({"type": "string", "description": "Path to the case folder (contains case.json). Must remain confined to the JustLegal cases directory."});
+    let all_tools = vec![
+        tool("case_list", "List active cases and matters in the JustLegal Cases folder with metadata (title, kind, court, status). Sealed/confidential contents are protected from bot inspection.", json!({"root": {"type": "string", "description": "Optional custom cases root folder. Defaults to Documents/JustLegal/Cases."}}), &[]),
+        tool("playbook", "Return the offline motion playbook. Read this first. Never invent cites. Never file.", json!({}), &[]),
+        tool("case_create", "Create a local case folder. kind: reconsideration|enlargement|stay|amend_findings|appellate_motion|appellate_brief|notice_of_appeal. Never files.", json!({"path": path, "title": {"type": "string", "description": "Caption like Lucille Example v. Sample County Board"}, "kind": {"type": "string"}, "pack": {"type": "string", "description": "nj-app-div, co-mandamus, or generic-us-appellate"}, "dry_run": {"type": "boolean", "description": "If true, validate parameters without creating folders on disk."}}), &["path", "title"]),
+        tool("case_seed", "Copy the fake Lucille Example reconsideration case into path. For tests only.", json!({"path": path}), &["path"]),
+        tool("draft_import", "Import a court-markdown draft (YAML caption, ::: signature, ::: certificate).", json!({"path": path, "markdown": {"type": "string"}, "dry_run": {"type": "boolean", "description": "If true, parse and preview markdown structure without writing to disk."}}), &["path", "markdown"]),
+        tool("draft_preview", "Preview a Markdown draft as a court caption (NJ or CO boxed) plus body. Does not write files. Never files.", json!({"path": path, "markdown": {"type": "string"}}), &["markdown"]),
+        tool("draft_sections", "List guided drafting sections and hints for this case kind.", json!({"path": path}), &["path"]),
+        tool("draft_fill", "Fill one guided section with the user's own words. Do not invent text.", json!({"path": path, "id": {"type": "string", "description": "Section id from draft_sections"}, "text": {"type": "string"}}), &["path", "id", "text"]),
+        tool("evidence_add", "Copy an exhibit into evidence/. First file becomes Ex. A after evidence_index.", json!({"path": path, "file": {"type": "string"}, "description": {"type": "string"}, "dry_run": {"type": "boolean", "description": "If true, verify exhibit file exists and can be added without copying to disk."}}), &["path", "file"]),
+        tool("evidence_index", "Rebuild the exhibit index (Ex. A, Ex. B).", json!({"path": path}), &["path"]),
+        tool("evidence_link", "Link a fact-check row to an exhibit letter. Does not invent a cite.", json!({"path": path, "fact_id": {"type": "integer"}, "letter": {"type": "string"}}), &["path", "fact_id", "letter"]),
+        tool("check_fact", "Split the draft into sentences. Missing cites stay issues. Optional id/cite/exhibit to attach a user cite.", json!({"path": path, "id": {"type": "integer"}, "cite": {"type": "string"}, "exhibit": {"type": "string"}, "verified": {"type": "boolean"}}), &["path"]),
+        tool("check_authority", "List cites already in the draft. Status starts unverified. Never invents a cite.", json!({"path": path, "id": {"type": "integer"}, "status": {"type": "string", "description": "verified|unverified|not_found"}, "source": {"type": "string"}}), &["path"]),
+        tool("check_deadline", "Compute a deadline from a rule pack. Weekend/holiday roll. Does not file.", json!({"path": path, "pack": {"type": "string"}, "rule": {"type": "string"}, "trigger_date": {"type": "string", "description": "YYYY-MM-DD"}}), &["path", "pack", "rule", "trigger_date"]),
+        tool("check_all", "Run fact, authority, deadline, and sign-off. ok=false until a human checks every box.", json!({"path": path, "pack": {"type": "string"}, "rule": {"type": "string"}, "trigger_date": {"type": "string"}}), &["path"]),
+        tool("export_court", "Render Word and PDF. Never files or serves.", json!({"path": path, "kind": {"type": "string"}}), &["path"]),
+        tool("export_packet", "Assemble notice of motion, motion, certification, proposed order, certificate of service.", json!({"path": path}), &["path"]),
+        tool("export_ics", "Write a .ics reminder for a computed deadline.", json!({"path": path, "pack": {"type": "string"}, "rule": {"type": "string"}, "trigger_date": {"type": "string"}}), &["path", "pack", "rule", "trigger_date"]),
+        tool("packs_list", "List bundled rule packs and installable form packs. Shows download sizes. Never files.", json!({"catalog": {"type": "string"}}), &[]),
+        tool("packs_validate", "Validate a rule-pack JSON file. New states are data, not code.", json!({"file": {"type": "string"}}), &["file"]),
+        tool("packs_install", "Install a forms pack for a state (optional situation). Uses a local file or catalog local_dir. Does not open a browser. Never files.", json!({"state": {"type": "string"}, "situation": {"type": "string"}, "file": {"type": "string"}, "catalog": {"type": "string"}}), &["state"]),
+        tool("packs_remove", "Remove an installed forms pack.", json!({"state": {"type": "string"}}), &["state"]),
+        tool("packs_verify", "Verify SHA-256 hashes of installed form files.", json!({"state": {"type": "string"}}), &[]),
+        tool("guide_questions", "What do I need to file? Return the plain-language questions. Legal information, not advice.", json!({}), &[]),
+        tool("guide_find", "Recommend forms or a packet from pack data. Never invents a rule. Includes help_links as data and never opens a browser.", json!({"state": {"type": "string"}, "court": {"type": "string"}, "situation": {"type": "string"}, "trigger_date": {"type": "string", "description": "YYYY-MM-DD"}}), &["state", "situation"]),
+        tool("help_links", "JustLegal Get legal help / Find resources URLs as data. Never opens a browser. UI must confirm first.", json!({}), &[]),
+        tool("gaps_add", "Capture a justice-gap note. Fake names only.", json!({"path": path, "title": {"type": "string"}, "court": {"type": "string"}, "rule": {"type": "string"}, "happened": {"type": "string"}, "hard": {"type": "string"}}), &["path", "title"]),
+        tool("check_preflight", "Court readiness pre-flight checklist. Verifies caption, docket, filer, deadline, fact cites, authorities, transcripts, and packet parts.", json!({"path": path}), &["path"]),
+        tool("check_transcripts", "Audit hearing transcripts in evidence/ and check grounding of [Tr. Page:Line] citations.", json!({"path": path}), &["path"]),
+        tool("export_exhibit_packet", "Assemble Table of Exhibits and Bates-stamped Exhibit Packet PDF with exhibit divider sheets.", json!({"path": path, "prefix": {"type": "string"}, "start": {"type": "integer"}}), &["path"]),
+        tool("form_inspect", "Inspect court PDF form fields (e.g. Colorado JDF series or NJ forms) and map values from case.json.", json!({"pdf": {"type": "string"}, "path": path}), &["pdf"]),
+        tool("form_fill", "Auto-fill an official court PDF companion and JSON field map using case profile data.", json!({"pdf": {"type": "string"}, "path": path, "dry_run": {"type": "boolean", "description": "If true, verify form exists and case profile can be mapped without writing output PDF."}}), &["pdf", "path"]),
+        tool("cloud_pull", "Pull matters, orders, and evidence from JustLegal Cloud (justlegal.me) into local folders.", json!({"case": {"type": "string"}, "root": {"type": "string"}}), &[]),
+        tool("cloud_push", "Push local case exports and filings to JustLegal Cloud.", json!({"path": path}), &["path"]),
+        tool("motion_list", "List all motions and filings in a case docket.", json!({"path": path}), &["path"]),
+        tool("motion_create", "Add a new motion or filing to the case docket.", json!({"path": path, "title": {"type": "string"}, "kind": {"type": "string"}, "rule": {"type": "string"}, "text": {"type": "string"}}), &["path", "title"]),
+        tool("motion_export", "Export a specific motion from the case docket to Word and PDF.", json!({"path": path, "id": {"type": "string"}}), &["path", "id"]),
+        tool("service_cert", "Generate a court Certificate of Service PDF and plain text with auto-populated opposing parties.", json!({"path": path, "filing": {"type": "string"}, "method": {"type": "string"}, "date": {"type": "string"}}), &["path"]),
+        tool("service_order", "Generate a court Proposed Form of Order PDF and Word docx.", json!({"path": path, "title": {"type": "string"}, "relief": {"type": "string"}}), &["path"]),
+        tool("pdf_merge", "Merge multiple PDFs into one unified court submission PDF.", json!({"files": {"type": "array", "items": {"type": "string"}}, "out": {"type": "string"}}), &["files", "out"]),
+        tool("pdf_split", "Extract specific pages from a PDF.", json!({"pdf": {"type": "string"}, "pages": {"type": "string"}, "out": {"type": "string"}}), &["pdf", "pages", "out"]),
+        tool("pdf_rotate", "Rotate PDF pages by 90, 180, or 270 degrees.", json!({"pdf": {"type": "string"}, "degrees": {"type": "integer"}, "out": {"type": "string"}}), &["pdf", "degrees", "out"]),
+        tool("pdf_redact", "Scrub SSNs, phone numbers, or custom keywords from a PDF at the byte level.", json!({"pdf": {"type": "string"}, "words": {"type": "array", "items": {"type": "string"}}, "out": {"type": "string"}}), &["pdf", "out"]),
+        tool("sign_pdf", "Stamp court-compliant electronic signature block onto a PDF.", json!({"pdf": {"type": "string"}, "name": {"type": "string"}, "page": {"type": "integer"}, "x": {"type": "number"}, "y": {"type": "number"}, "out": {"type": "string"}}), &["pdf", "name"]),
+        tool("case_context", "Consolidated 1-call Legal OS snapshot: profile, tier, venue rules, timeline, exhibits, filings, intake wizard status, and predictive next steps.", json!({"path": path}), &["path"]),
+        tool("case_next_steps", "Predictive Procedural State Graph: compute downstream branches, deadlines, and tolling (NJ pause vs CO/Fed reset) from timeline & orders.", json!({"path": path, "event": {"type": "string"}, "trigger_date": {"type": "string"}}), &["path"]),
+        tool("case_escalate", "Graduate Tier 2 Pre-Suit -> Tier 3 Lawsuit or escalate Trial -> Appellate / Mandamus / SCOTUS, carrying over record exhibits.", json!({"path": path, "target": {"type": "string", "description": "trial_lawsuit|appellate_appeal|mandamus|scotus_cert"}}), &["path", "target"]),
+        tool("intake_status", "1-question-at-a-time Guided Intake Wizard status, progress percentage, and next_question prompt.", json!({"path": path, "filing_id": {"type": "string"}}), &["path"]),
+        tool("intake_answer", "Answer a single question in the Guided Intake Wizard (updates profile, parties, or filing-scoped draft sections).", json!({"path": path, "question_id": {"type": "string"}, "answer": {"type": "string"}, "filing_id": {"type": "string"}}), &["path", "question_id", "answer"]),
+        tool("intake_scan", "Offline PDF text extraction & candidate detection (docket numbers, dates, courts) across orders/ and evidence/.", json!({"path": path}), &["path"]),
+        tool("check_venue", "Deterministic Multi-Venue Competence Matrix check (NJ R. 1:4-4(b) oath, CO conferral/declaration as needs_verification, 28 U.S.C. § 1746, SCOTUS Rule 14.1, Will witnesses).", json!({"path": path}), &["path"]),
+        tool("portfolio_status", "Multi-state, multi-venue Portfolio Deadline Radar across all matters in the cases directory.", json!({"root": {"type": "string"}}), &[]),
+        tool("record_inventory", "Scan workspace into 4 evidentiary tiers (Official, Transcripts, Archive, Unsubmitted) with SHA-256 hashes.", json!({"path": path}), &["path"]),
+        tool("record_reconcile", "Reconcile plain-text docket sheet against local case files to detect missing records.", json!({"path": path, "docket": {"type": "string"}}), &["path", "docket"]),
+        tool("record_missing", "List missing records identified during inventory or docket reconciliation.", json!({"path": path}), &["path"]),
+        tool("record_request_form", "Generate prefilled court records request packet (NJ Form CN 10200 or PACER).", json!({"path": path, "state": {"type": "string"}}), &["path"]),
+        tool("accountability_audit", "Cross-check order findings against verified record evidence to flag unsupported findings.", json!({"path": path}), &["path"]),
+        tool("accountability_routes", "List procedural remedies (Interlocutory Lawson v. Dewar R. 4:42-2 vs. Final R. 4:49-2 vs. ACJC/OAE with non-tolling warnings).", json!({"path": path, "issue_id": {"type": "string"}}), &["path"]),
+        tool("accountability_resources", "Authoritative agency directory for judicial/attorney ethics and public records.", json!({"state": {"type": "string"}, "category": {"type": "string"}}), &[]),
+        tool("accountability_packet", "Assemble objective factual discrepancy packet grounded in SHA-256 hashes and docket timestamps.", json!({"path": path, "issue_id": {"type": "string"}}), &["path", "issue_id"]),
+        tool("ada_petition", "Generate Title II ADA reasonable accommodation petition with federal confidentiality notice.", json!({"path": path, "name": {"type": "string"}, "role": {"type": "string"}, "phone": {"type": "string"}, "email": {"type": "string"}, "accommodations": {"type": "array", "items": {"type": "string"}}, "needs": {"type": "string"}, "date": {"type": "string"}}), &["path", "name", "accommodations"]),
+        tool("pdf_extract_text", "Extract text page-by-page from a local PDF offline (never uploads).", json!({"pdf": {"type": "string"}}), &["pdf"]),
+        tool("agent_manifest", "List every CLI/MCP tool with a one-line description, MCP launch config, and a copyable starter prompt. Never files.", json!({}), &[]),
+        tool("import_folder", "Copy (never move) drafts/notes/orders from a folder into a case. Proposes parties, dockets, and order dates. Does not auto-commit guesses.", json!({"path": path, "from": {"type": "string", "description": "Folder of drafts, notes, and orders"}, "title": {"type": "string"}}), &["path", "from"]),
+        tool("order_decode", "Decode a court order or notice PDF: extract signer ('BY THE COURT' vs Judge), operative clauses, and candidate response windows. Optionally pass path to ingest order into case, record timeline event, evaluate sourced deadline, and formulate workflow plan.", json!({"pdf": {"type": "string", "description": "Absolute path to court order PDF"}, "path": {"type": "string", "description": "Optional path to case folder to ingest order directly"}}), &["pdf"]),
+        tool("timeline_audit_mail", "Audit mailing postmarks vs clerk receipt timestamps for jurisdictional traps (e.g. Dobler v. CDOC, 2026).", json!({"path": path, "order_date": {"type": "string"}, "postmark": {"type": "string"}, "delivery": {"type": "string"}, "clerk_date": {"type": "string"}, "state": {"type": "string"}}), &["path", "order_date"]),
+        tool("case_bootstrap", "Bootstrap and rescue an unorganized directory of documents into a clean 4-tier JustLegal case folder.", json!({"from": {"type": "string", "description": "Source folder with unorganized files"}, "to": {"type": "string", "description": "Target cases root folder"}, "title": {"type": "string"}}), &["from", "to"]),
+        tool("court_access_directory", "List court access directory entries (clerk counter hours, e-filing portals, pro se rules, transcript deposit fees).", json!({}), &[]),
+        tool("court_access_profile", "Lookup detailed court access profile, clerk counter hours, electronic portal, and transcript rules by court name or state.", json!({"query": {"type": "string", "description": "Court name, ID, or state code (e.g. NJ, Colorado, Federal)"}}), &["query"]),
+        tool("record_retrieval_plan", "Plan retrieval of missing court records (orders, transcripts, return of service) with form recommendations and fee waivers.", json!({"path": path}), &["path"]),
+        tool("record_retrieval_execute", "Generate formal court records request packet, export to markdown, and register a 14-day follow-up task.", json!({"path": path, "state": {"type": "string"}}), &["path"]),
+        tool("workflow_plan", "Formulate an actionable multi-step legal workflow plan from a natural language objective.", json!({"path": path, "objective": {"type": "string"}}), &["path", "objective"]),
+        tool("workflow_status", "Inspect active workflow plan, current step, and pending human approval.", json!({"path": path}), &["path"]),
+        tool("workflow_advance", "Advance active workflow plan to the next step, evaluating human approvals and operation receipts.", json!({"path": path, "approve": {"type": "boolean"}}), &["path"]),
+        tool("issues_stress_test", "Stress test identified legal/factual issues against devil's advocate counter-arguments and procedural hurdles (standard of review, lack of grounding, preservation, interlocutory finality).", json!({"path": path, "issue_id": {"type": "string"}}), &["path"]),
+        tool("consultation_prepare", "Generate a concise 2-page Attorney Consultation Dossier with verified citations, stress-tests, SHA-256 exhibits, and targeted counsel questions.", json!({"path": path, "questions": {"type": "array", "items": {"type": "string"}}}), &["path"]),
+        tool("extension_evaluate", "Evaluate procedural extension routes: 30-day consent stipulation letter vs formal pro se motion for enlargement (e.g. Form CN 10503) vs jurisdictional hard limits.", json!({"path": path, "target": {"type": "string"}, "days": {"type": "integer"}, "consent": {"type": "boolean"}}), &["path", "target"]),
+        tool("extension_suggest", "Assess case baseline completeness (missing exhibits/transcripts/docket), and suggest 30-day extension with opposing counsel conferral letter and formal motion drafts.", json!({"path": path}), &["path"]),
+        tool("qui_tam_verify_entity", "Verify suspect provider or clinic across CMS NPPES v2.1 registry and USAspending.gov.", json!({"query": {"type": "string", "description": "Target clinic name, officer name, or 10-digit NPI"}, "state": {"type": "string", "description": "Optional state abbreviation (e.g. MN, NJ)"}}), &["query"]),
+        tool("qui_tam_audit_9b", "Evaluate case against 31 U.S.C. § 3729 & FRCP Rule 9(b) 6-element viability standard (Who, What, When, Where, How, Scienter; 0-100 score).", json!({"path": path}), &["path"]),
+        tool("qui_tam_ingest_observation", "Ingest observational photo/video with EXIF GPS/timestamps, dual SHA-256/512 hashes, read-only file lock, and provenance.json log.", json!({"path": path, "file": {"type": "string", "description": "Path to photo, video, or document"}, "notes": {"type": "string", "description": "Observational notes (e.g. facility dark during operating hours)"}, "observer": {"type": "string", "description": "Observer name"}}), &["path", "file", "notes"]),
+        tool("qui_tam_records_pack", "Generate state-specific licensing, fire inspection, or public records request (MGDPA, OPRA, CORA, CPRA, FOIA).", json!({"path": path, "state": {"type": "string", "description": "State code (e.g. MN, NJ, CO, CA)"}}), &["path"]),
+        tool("qui_tam_export_disclosure", "Compile turnkey DOJ 60-Day Relator Written Disclosure Packet (JSON manifest + Typst PDF) under mandatory seal.", json!({"path": path, "category": {"type": "string", "description": "EO 14395 category"}, "attestation": {"type": "string", "description": "Optional custom relator attestation"}}), &["path"]),
+        tool("qui_tam_format_portal", "Format pre-trimmed (<2,000 char) agency web form auto-fill blocks (HHS-OIG, DOJ, State MFCU, USDA, SBA) with JustLegal Standardized Calling Card header.", json!({"path": path, "agency": {"type": "string", "description": "HHS, DOJ, STATE, USDA, or SBA"}}), &["path"]),
+        tool("qui_tam_format_inquiry", "Format ABA Model Rule 1.18 privileged attorney inquiry package with Calling Card header for prospective qui tam counsel.", json!({"path": path}), &["path"]),
+        tool("case_profile", "View or configure target profile (target-type, program, ALN, contracts, Stevens FCA analysis).", json!({"path": path, "target_type": {"type": "string"}, "program": {"type": "string"}, "aln": {"type": "string"}, "contract_id": {"type": "string"}, "category": {"type": "string"}, "tier": {"type": "string"}}), &["path"]),
+        tool("accountability_map", "14-pathway Institutional & Systemic Fraud Accountability Map across all legal and regulatory routes (OIG, State Auditor, § 1983, Qui Tam, Open Records, Judicial Ethics).", json!({"path": path, "state": {"type": "string"}, "program": {"type": "string"}, "target_type": {"type": "string"}, "role": {"type": "string"}, "key_date": {"type": "string"}}), &["path"]),
+        tool("records_find", "Discover governing open records statute, custodian, deadline, fee rules, and own-claim route for a jurisdiction (CO, US, NC).", json!({"jurisdiction": {"type": "string"}, "type": {"type": "string"}}), &["jurisdiction"]),
+        tool("records_draft", "Generate formal regime-correct public records request letter with fee waiver under 501(c)(3) profile.", json!({"path": path, "jurisdiction": {"type": "string"}, "type": {"type": "string"}, "fee_waiver": {"type": "boolean"}, "requester": {"type": "string"}}), &["path", "jurisdiction"]),
+        tool("records_track", "Track sent records requests with working-day date math (skips weekends and federal holidays).", json!({"path": path, "id": {"type": "string"}, "law": {"type": "string"}, "agency": {"type": "string"}, "sent": {"type": "string"}, "days": {"type": "integer"}, "ext": {"type": "integer"}, "tracking": {"type": "string"}, "payment": {"type": "string"}, "cost": {"type": "number"}}), &["path", "id", "sent"]),
+        tool("records_followup", "Draft statutory follow-up, administrative appeal, or wrong-route correction letter.", json!({"path": path, "id": {"type": "string"}, "law": {"type": "string"}, "agency": {"type": "string"}, "kind": {"type": "string"}}), &["path", "id", "agency"]),
+        tool("records_org", "View requester organization profile (Just Liberty Inc. 501(c)(3) EIN 93-3704483).", json!({}), &[]),
+        tool("export_receiver", "Format standardized regulatory receiver submissions (dol-oig, co-osa, gao-fraudnet, counsel).", json!({"path": path, "to": {"type": "string"}, "anonymity": {"type": "string"}}), &["path", "to"]),
+        tool("claim_translate", "Translate everyday citizen complaints (treason, RICO, kickbacks, systemic reform, class action) into exact causes of action and mountain of proof blueprint.", json!({"vernacular": {"type": "string", "description": "Colloquial citizen complaint or theory"}}), &["vernacular"]),
+        tool("sovereign_immunity_audit", "Audit 11th Amendment sovereign immunity barriers & evaluate valid bypass pathways (Ex parte Young, ADA Title II abrogation, Section 504 waiver, Monell).", json!({"state": {"type": "string"}, "target": {"type": "string"}, "claims": {"type": "array", "items": {"type": "string"}}, "federal_funds": {"type": "boolean"}}), &["state"]),
+        tool("collective_action_build", "Collective legal action builder: FRCP Rule 20 permissive joinder, Rule 23 class pitch binder, or APA rulemaking petition.", json!({"mode": {"type": "string", "description": "rule20-joinder | rule23-binder | rulemaking-petition"}, "title": {"type": "string"}, "defendant": {"type": "string"}, "path": path, "subject": {"type": "string"}}), &["mode", "title"]),
+    ];
+
+    let restricted = ["cloud_pull", "cloud_push", "sign_pdf", "packs_remove"];
+    let filtered: Vec<Value> = if safe_mode {
+        all_tools
+            .into_iter()
+            .filter(|t| {
+                let name = t.get("name").and_then(|n| n.as_str()).unwrap_or("");
+                !restricted.contains(&name)
+            })
+            .collect()
+    } else {
+        all_tools
+    };
+    Value::Array(filtered)
+}
+
