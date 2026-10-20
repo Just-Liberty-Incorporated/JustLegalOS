@@ -78,3 +78,26 @@ After generating this score, invoke `skill_submission_router.md` to guide the us
 # 5. Export formal DOJ 60-Day Triage & Relator Disclosure Packet
 .\JustLegalOS-CLI.exe --json qui-tam export-disclosure ./my-case
 ```
+
+---
+
+## 5. Systemic Government & Contractor Fraud Routing (The Dual-Track Prism)
+
+When the grievance targets a **state agency or large government contractor** (e.g. unemployment insurance, Medicaid claims processing, state IT systems, benefits portals):
+
+1. **Activate the Government Fraud Skills:**
+   - `skill_gov_target_intake.md`: Classifies target and enforces the *Stevens* rule (*Vermont ANR v. Stevens*, 529 U.S. 765: State agency is NOT a qui tam defendant).
+   - `skill_gov_evidence_types.md`: Ingests contracts, invoices, audits, and claimant files with formal types.
+   - `skill_records_request_flow.md`: CORA/FOIA open records discovery, 501(c)(3) fee waiver drafting, working-day tracking.
+   - `skill_accountability_map.md`: Evaluates all 14 statutory pathways (`justlegalos-cli accountability map ./my-case`).
+   - `skill_gov_receiver_router.md`: Formats receiver packages for DOL-OIG, State Auditor (CO-OSA), GAO FraudNet, or Counsel (`export receiver`).
+   - `skill_public_disclosure_check.md`: Audits original source standing against the Public Disclosure Bar (*Schindler Elevator*, 563 U.S. 401).
+
+2. **The 74-Point Physical Invoice Cap:**
+   - Under Rule 9(b), an FCA claim cannot exceed **74/100 (Developing / Fixable)** unless at least one physical invoice, billing voucher, or drawdown record is deposited in `evidence/`.
+   - Never award 100/100 based on text keywords alone.
+
+3. **Follow the Dual-Track Prism:**
+   - **Track 1:** Target private contractors under 31 U.S.C. § 3729(b)(2)(A)(ii) for false certifications of SOC 1 Type II, SOW non-delivery, and billing for defective fraud filters.
+   - **Track 2:** Target state agency systemic waste via DOL-OIG, State Auditor, CORA/FOIA records requests, and § 1983 prospective relief under *Ex parte Young* / *Java*.
+

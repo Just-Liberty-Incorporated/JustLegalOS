@@ -1,0 +1,192 @@
+# Agent Interface (First-Class Surface)
+
+The **JustLegal OS** engine is driven identically by a person clicking in the desktop window and by an autonomous agent on the command line. Both call the exact same deterministic Rust engine in `open_season_lib`. The application never files or serves.
+
+Read [AGENTS.md](../AGENTS.md) first. Never invent facts, arguments, or citations.
+
+There is no remote cloud API and no remote model dependency. Headless agent execution is 100% local: the native `JustLegalOS-CLI.exe` binary (`--json`) and an optional stdio JSON-RPC 2.0 MCP server (`justlegalos-cli mcp`).
+
+## Contract
+
+`--json` prints one structured envelope per command:
+
+```json
+{
+  "ok": false,
+  "never_files": true,
+  "never_serves": true,
+  "notice": "This app never files or serves. Josh (or the user) signs, files, and serves by hand...",
+  "issues": [{ "field": "fact.1", "message": "Fact has no record cite" }],
+  "data": {}
+}
+```
+
+Rules:
+
+- `never_files` and `never_serves` are always true.
+- `ok` is true only when `issues` is empty. If an inner report has `ok: false` (for example preflight), the outer envelope is also `ok: false`.
+- Exit code 0 means the command ran. Read `ok`. A missing file or bad argument is exit 1 plus an envelope whose `issues[0].field` is `cli` or `mcp`. Clap usage errors also print this envelope when `--json` is set.
+- An agent should stop and ask the user when a fact has no record cite or a cite is `unverified`. Do not fill those fields yourself.
+
+## CLI
+
+From the repository root (using the pre-compiled binary or npm wrapper):
+
+```bash
+# Using the pre-compiled binary:
+.\JustLegalOS-CLI.exe --json case context ./my-case
+.\JustLegalOS-CLI.exe --json intake scan ./my-case
+.\JustLegalOS-CLI.exe --json export court-md ./my-case
+
+# Or via npm script:
+npm run cli -- --json case context ./my-case
+```
+
+Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin justlegalos-cli -- --json ...`
+
+### Commands
+
+| Command | What it does |
+|---|---|
+| `case create --path DIR --title TEXT [--kind KIND] [--pack PACK] [--mode standard]` | Create a portable case folder and `case.json` |
+| `case validate DIR` | Caption and layout check |
+| `case seal DIR` | Writes `.sealed`. Does not encrypt files |
+| `draft import DIR --md FILE` | Import md2court subset into `drafts/draft.md` |
+| `draft preview [--md FILE] [DIR]` | Preview caption + body. Does not write files |
+| `evidence add DIR --file FILE [--description TEXT]` | Copy an exhibit into `evidence/` |
+| `check fact DIR` | Split the draft into sentences. Does not invent cites |
+| `check fact DIR --id N --cite TEXT --exhibit NAME --verified` | Attach a user-supplied cite |
+| `check authority DIR` | List cites already in the draft. Status starts `unverified` |
+| `check authority DIR --id N --status verified --source URL` | Record a human/agent verification |
+| `check deadline DIR --pack PACK --rule RULE --trigger-date YYYY-MM-DD` | Weekend/holiday roll |
+| `check signoff DIR` / `--id ID --checked` | Sign-off checklist |
+| `check all DIR [--pack --rule --trigger-date]` | Fact + authority + deadline + sign-off |
+| `export court-md DIR [--out DIR]` | Court-formatted Word + PDF |
+| `export pleading DIR --kind KIND` | Notice, motion, brief, mandamus, complaint |
+| `export notice-of-appeal DIR` | Notice of Appeal Word + PDF |
+| `draft sections DIR` | List guided prompts for this case kind |
+| `draft fill DIR --id ID --text TEXT` | Fill one section with the user's words |
+| `evidence index DIR` | Number exhibits Ex. A, Ex. B |
+| `evidence link DIR --fact-id N --letter A` | Attach a fact to an exhibit |
+| `case seed --path DIR --template lucille` | Fake Lucille Example sample |
+| `export packet DIR` | Notice of motion, motion, certification, proposed order, certificate of service |
+| `export ics DIR --pack --rule --trigger-date` | Deadline calendar (.ics) |
+| `packs validate FILE` | Validate a rule-pack JSON file |
+| `gaps add DIR --title TEXT` / `gaps export DIR` | Justice-gap notes |
+| `docs playbook` / `docs fields` | Agent playbook and field help |
+| `packs list` | Bundled rule packs plus form-pack catalog (sizes first) |
+| `packs install STATE [--situation NAME] [--file ZIP]` | Download or copy a forms pack; verify SHA-256; offline afterward |
+| `packs remove STATE` / `packs verify [STATE]` | Uninstall or re-check hashes |
+| `packs catalog --url URL` | Cache a catalog JSON (JustLegal registry or your host) |
+| `guide questions` / `guide find --state --situation [--court] [--trigger-date]` | What do I need to file? Teaching from packs. Never invents rules |
+| `docs links` | JustLegal help/resource URLs as data. Never opens a browser |
+| `check preflight DIR` | Live readiness audit across caption, docket, filer, deadline, facts, authorities, and packet parts |
+| `check transcripts DIR` | Line-index hearing and deposition transcripts and verify draft record citations |
+| `export exhibit-packet DIR [--prefix PREFIX] [--start N]` | Assemble Bates-stamped exhibit packet with SHA-256 Table of Exhibits |
+| `form inspect FILE` | Inspect PDF AcroForm fields, types, and detect standard court forms |
+| `form fill --case DIR FILE [--out OUT]` | Fill official PDF form with case profile data and export filled PDF + JSON |
+| `cloud login --email EMAIL --password PASS` | Authenticate with JustLegal Cloud |
+| `cloud status` | Check current JustLegal Cloud connection status |
+| `cloud pull [--case CASE_ID]` | Pull cloud matters and download associated orders, filings, and evidence |
+| `cloud push DIR` | Push local case profile and files to JustLegal Cloud (airgapped cases refused) |
+| `cloud logout` | Clear local session tokens |
+| `motion list DIR` | List all independent motions, stays, and pleadings on the case docket |
+| `motion create DIR --title TEXT [--kind KIND] [--rule RULE] [--text TEXT] [--relief TEXT]` | Add or update a motion entry on the case docket |
+| `motion export DIR --id ID` | One-click compile an individual motion to Word (.docx) and PDF |
+| `service cert DIR --title TEXT [--date DATE] [--method METHOD] [--signer NAME] [--recipient "Name|Role|Address|Email"]` | Generate court-mandated Certificate of Service (PDF + text audit) |
+| `service order DIR --motion TEXT [--relief TEXT]` | Generate standard judicial Proposed Form of Order (PDF + Word DOCX) |
+| `pdf merge --inputs FILE1 FILE2... --out OUT` | 100% offline pure-Rust PDF combiner. Zero cloud leakage |
+| `pdf split --in FILE --pages "1-3,5" --out OUT` | Extract specific pages into a clean court PDF |
+| `pdf rotate --in FILE --degrees 90 [--pages "1,3"] --out OUT` | Reorient scanned court documents (90°, 180°, 270° clockwise) |
+| `pdf redact --in FILE [--ssn] [--phone] [--dob] [--pattern REGEX] --out OUT` | Scrub sensitive identifiers and PII from PDF byte streams |
+| `pdf extract-text --in FILE` | Extract text page-by-page offline from a local PDF (`lopdf`) |
+| `sign stamp --in FILE --text TEXT [--page N] [--x X] [--y Y] [--out OUT]` | Stamp electronic `/s/` or signature block onto specified PDF page |
+| `case context DIR` | **1-Call Consolidated Legal OS Bundle**: profile, tier, venue rules, next steps, intake status, and exhibits |
+| `case next-steps DIR` | **Predictive Procedural State Graph**: downstream branches, deadlines, and tolling (NJ pause vs CO/Fed reset) |
+| `case escalate DIR --target STAGE [--out DIR]` | Graduate Tier 2 $\rightarrow$ Tier 3 Lawsuit or escalate Trial $\rightarrow$ Appeal / Mandamus / SCOTUS, copying lower record |
+| `intake status DIR` | 1-question-at-a-time Guided Intake Wizard status, completion %, and `next_question` |
+| `intake answer DIR --id QUESTION_ID --value TEXT` | Answer a question in the Guided Intake Wizard (updates profile, parties, or draft sections) |
+| `intake scan DIR` | Offline PDF text extraction & candidate detection (docket numbers, dates, courts) across `orders/` and `evidence/` |
+| `check venue DIR` | Deterministic Multi-Venue Competence Matrix check (NJ R. 1:4-4(b), CO conferral/declaration as needs_verification, 28 U.S.C. § 1746, SCOTUS Rule 14.1, Will witnesses) |
+| `portfolio status [--root DIR]` | Multi-state, multi-venue Portfolio Deadline Radar & Global Filer Profile |
+| `record inventory DIR` | Scan workspace into 4 evidentiary tiers (Official, Transcripts, Archive, Unsubmitted) with SHA-256 hashes & clerk stamp detection |
+| `record reconcile DIR --docket TEXT` | Reconcile plain-text court docket sheet against local files and identify gaps |
+| `record missing DIR` | List missing transcripts, orders, or opposition briefs needed to perfect the record |
+| `record request-form DIR [--state STATE]` | Generate prefilled Court Records Request (NJ Form CN 10200 @ 5¢/7¢ or PACER fee waiver notice) |
+| `review record DIR` | Audit judicial findings in orders vs. verified record evidence to detect unsupported findings |
+| `accountability routes DIR [--issue ID]` | List procedural remedies (Interlocutory *Lawson v. Dewar* R. 4:42-2 vs. Final R. 4:49-2 vs. ACJC/OAE with non-tolling warnings) |
+| `accountability resources [--state STATE] [--category CAT]` | Query authoritative registry for ACJC (CN 11166), OAE ethics, CO CJD, 28 U.S.C. § 351 |
+| `accountability packet DIR --issue ID` | Assemble objective factual discrepancy packet grounded in SHA-256 hashes and docket timestamps |
+| `ada petition DIR --name TEXT --accommodations "remote,reading_time..." [--phone P] [--email E]` | Generate Title II ADA accommodation petition (42 U.S.C. § 12132; 28 C.F.R. Part 35; NJ Directive #01-19) |
+| `doctor` | System diagnostic & integrity verification (CLI version, cases/packs roots, offline crypto, airgap status, qui tam engine) |
+| `qui-tam verify-entity [--name TEXT] [--npi NPI] [--state STATE]` | Cross-reference entity across CMS NPPES v2.1 and USAspending.gov to detect ghost clinics and shell entities |
+| `qui-tam audit-9b DIR` | Evaluate case against FRCP Rule 9(b) particularity standards (Who, What, When, Where, How, Scienter; 0–100 score) |
+| `qui-tam ingest-observation DIR --file FILE --notes TEXT [--observer NAME]` | Ingest site observation photo/video, extract EXIF GPS/timestamps, dual-hash (SHA-256/512), mark read-only, and log to `provenance.json` |
+| `qui-tam records-pack DIR --state STATE [--agency AGENCY]` | Generate statutory FOIA/public records request for facility licensing (MGDPA, OPRA, CORA, CPRA, FOIA) |
+| `qui-tam export-disclosure DIR` | Compile turnkey DOJ 60-Day Relator Written Disclosure Packet (`openseason-disclosure-v1.json` + `DOJ_Relator_Disclosure_Packet.pdf`) |
+| `qui-tam format-portal DIR [--agency HHS\|DOJ\|STATE\|USDA\|SBA]` | Pre-trimmed character-limited (<2,000 chars) payload for government web forms with OpenSeason Calling Card |
+| `qui-tam format-inquiry DIR` | ABA Model Rule 1.18 privileged attorney inquiry package for private qui tam counsel on 100% contingency |
+| `version` | Print engine version, feature set, and airgap status |
+| `case profile DIR [--target-type TYPE] [--program PROG] [--aln ALN] [--contract-id ID] [--tier TIER]` | Target entity classification, Assistance Listing Number, and Stevens legal viability check |
+| `accountability map DIR [--state ST] [--program PROG] [--target-type TYPE] [--role ROLE] [--key-date DATE]` | **14-Pathway Systematic Accountability Map** across administrative, audit, § 1983, qui tam, and open records routes |
+| `records find [--jurisdiction ST] [--type TYPE]` | Discover governing open records statute, custodian, deadline, and fee rules (CORA, FOIA, Privacy Act, NC DES) |
+| `records draft DIR [--jurisdiction ST] [--type TYPE] [--fee-waiver] [--requester NAME]` | Generate formal regime-correct public records request letter with Just Liberty 501(c)(3) fee waiver |
+| `records track DIR --id ID --law LAW --agency AGENCY --sent DATE [--days N] [--ext N]` | Track open records requests with working-day date math (skips weekends and federal holidays) |
+| `records followup DIR --id ID --law LAW --agency AGENCY [--kind late|denied|wrong-route]` | Generate statutory follow-up, administrative appeal, or own-claim correction letter |
+| `records org` | View requester organization profile (Just Liberty Inc. 501(c)(3) EIN 93-3704483) |
+| `export receiver DIR --to dol-oig|co-osa|gao-fraudnet|counsel [--anonymity PREF]` | **Receiver-Ready Submission Packages** formatted to exact character limits and field structures |
+| `mcp` | Stdio MCP server (same tools) |
+| `sync DIR --action backup` | Stub. Standard: `not_implemented`. Confidential: refused |
+| `agent manifest` | List CLI/MCP tools, MCP launch config, and a copyable starter prompt |
+| `case import-folder DIR --from FOLDER [--title TEXT]` | Copy drafts/notes/orders into a case. Never moves originals. Proposes parties and dates; does not auto-commit guesses |
+
+## MCP (stdio)
+
+`justlegalos-cli mcp` speaks JSON-RPC 2.0 with `Content-Length` framing **or newline-delimited JSON**. Tools include:
+- `agent_manifest`: Tool list, MCP launch config, and starter prompt.
+- `import_folder`: Copy a folder of drafts/notes/orders. Does not auto-commit guesses.
+- `case_context`: One-call consolidated Legal OS context bundle for immediate AI agent orientation.
+- `case_next_steps`: Predictive Procedural State Graph (NJ `pause_remaining` vs. CO/Federal `reset_full` tolling + mail service offset).
+- `case_escalate`: Cross-venue graduation/escalation (`trial_lawsuit`, `appellate_appeal`, `mandamus`, `scotus_cert`) with automatic appendix record carryover.
+- `intake_status`, `intake_answer`, `intake_scan`: 1-question-at-a-time Guided Intake Wizard & offline PDF candidate discovery.
+- `check_venue`: Multi-Venue Competence Matrix audit (`NJ`, `CO`, `FEDERAL`, `SCOTUS`, and Tier 1 Wills/Leases/Contracts).
+- `portfolio_status`: Multi-state deadline radar across all matters.
+- `record_inventory`, `record_reconcile`, `record_missing`, `record_request_form`: 4-tier evidentiary record reconstruction, docket matching, and CN 10200 records requests.
+- `accountability_audit`, `accountability_routes`, `accountability_resources`, `accountability_packet`: Multi-track judicial discrepancy audit, *Lawson v. Dewar* routing, ACJC/OAE registry, and objective factual packets.
+- `ada_petition`: Title II ADA reasonable accommodation petition generator with federal confidentiality protections.
+- `doctor_diagnostic`: Real-time system health and airgap integrity diagnostics.
+- `quitam_verify_entity`, `quitam_audit_9b`, `quitam_ingest_observation`, `quitam_records_pack`, `quitam_export_disclosure`, `quitam_format_portal`, `quitam_format_inquiry`: Full EO 14395 Qui Tam / False Claims Act fraud triage and dual-track engine.
+- `pdf_extract_text`: Page-by-page offline PDF text extraction.
+- `motion_list`, `motion_create`, `motion_export`: Autonomous multi-motion docket drafting & compilation.
+- `service_cert` & `service_order`: Court-mandated proof of service and judge-ready proposed order generation.
+- `pdf_merge`, `pdf_split`, `pdf_rotate`, `pdf_redact`: Local airgapped PDF power manipulation without cloud surveillance.
+- `sign_pdf`: Automated AcroForm and PDF electronic signature placement.
+- `check_preflight`: Run comprehensive court readiness pre-flight checklist.
+- `check_transcripts`: Index transcripts and cross-reference assertions against record lines.
+- `export_exhibit_packet`: Generate Bates-stamped exhibit packet and Table of Exhibits.
+- `form_inspect`: Inspect official court PDF forms and list AcroForm fields.
+- `form_fill`: Auto-map `case.json` profile values into official court forms.
+- `cloud_pull` & `cloud_push`: Autonomous additive sync with JustLegal Cloud (airgap protected).
+- Motion path tools: `case_create`, `draft_import`, `check_fact`, `check_authority`, `check_deadline`, `check_signoff`, `export_pleading`, `export_court_md`.
+- Form packs & guide: `packs_install`, `packs_verify`, `guide_find`, `help_links`.
+
+`guide_find` and `help_links` return `help_links` as data and never open a browser.
+
+Each `tools/call` result is a text block whose JSON is the same envelope as `--json`. The server is offline. It does not talk to a cloud model host.
+
+## Example end-to-end run
+
+```bash
+bash examples/agent-e2e.sh
+```
+
+That script creates a fake NJ reconsideration case, imports Markdown, records an exhibit, runs every check stage, asserts the JSON envelope, and exports Word and PDF. It uses Jordan Example only.
+
+Library tests that lock the same path: `agent_e2e_import_check_deadline` and `mcp_tools_create_import_check_export`.
+
+## What the checker will not do
+
+- Invent a record cite or a case citation
+- Mark a cite `verified` unless a human (or an agent the user directed) set that status with a source
+- File, e-file, email, mail, or serve anyone
+- Open Josh's personal case folders unless the user points the CLI at a local path they own
