@@ -21,21 +21,23 @@ This directory contains the public templates, system prompts, skills, and bridge
   - Generates 1-2 page structured Consultation Dossiers (`export consultation-dossier`) for unbundled attorney consultations and legal aid clinics.
   - Working document outlines, certificates of service, and attorney referral guides.
 
-### 2. JustLegal Fraud & Whistleblower Navigator (EO 14395 & Qui Tam)
-- **Target Audience:** Citizen investigators, healthcare whistleblowers, and relators investigating government program fraud under **Executive Order 14395** (*Executive Order 14395 — Establishing the Task Force to Eliminate Fraud*) and the **False Claims Act (31 U.S.C. §§ 3729–3733)**.
-- **Recipe & Prompt:** `bot_fraud_recipe.json` & `system_prompt_fraud.md`
+### 2. JustLegal Fraud & Whistleblower Navigator (WHIP, EO 14395 & Qui Tam)
+- **Target Audience:** Citizen investigators, healthcare whistleblowers, claimants, and relators investigating government program fraud under the **White House / DOJ $25M Whistleblower Incentive Program (WHIP on fraud.gov)**, **Executive Order 14395**, and the **False Claims Act (31 U.S.C. §§ 3729–3733)**.
+- **Recipe & Prompt:** `bot_fraud_recipe.json` (v1.3.0) & `system_prompt_fraud.md`
 - **Conversational Intake Flow:** The "Coffee Shop Investigator" persona — takes proactive conversational lead, delivers immediate safety & anti-viral warnings (31 U.S.C. § 3730(e)(4)), asks 3 simple visible questions, runs silent background NPI checks, and coaches discreet photo capture.
 - **Skills (`MCP_Grok/skills/`):**
+  - `skill_whip_triage.md`: Evaluating Tier 1 WHIP ($30k bounty on fraud.gov) vs. Tier 2 Sealed Qui Tam (15%–30%).
   - `skill_entity_crosscheck.md`: CMS NPPES NPI and USAspending public verification.
   - `skill_fraud_triage.md`: FRCP Rule 9(b) 6-element scoring rubric (0–100 scale).
   - `skill_observation_protocol.md`: Lawful photographic/field logging protocols.
-  - `skill_submission_router.md`: Track A (Qui Tam Counsel First) vs Track B (Direct OIG).
+  - `skill_submission_router.md`: Three-track enforcement engine (WHIP, Qui Tam, Oversight).
 - **Capabilities:**
   - Instant NPI & USAspending entity verification (identifying ghost clinics and shell companies).
   - Generates the machine-readable calling card header:
-    `JUSTLEGAL OS | JUSTLEGAL STANDARDIZED FRAUD DISCLOSURE [SCHEMA v1.0 | EO-14395]`
-  - FRCP Rule 9(b) 6-element viability scoring.
-  - Strict statutory seal warnings (31 U.S.C. § 3730(b)(2)) prohibiting premature social media publication.
+    `[JUSTLEGAL STANDARD v1.1 | WHIP & EO-14395 PRE-VERIFIED DISCLOSURE]`
+  - Split-Screen Portal Co-Pilot text formatter (<2,000 chars) for `fraud.gov` and OIG hotlines.
+  - Evaluates the DOJ May 27, 2026 Benefits-Fraud Memo (60-to-120 day decision clock).
+  - Strict statutory seal warnings (31 U.S.C. § 3730(b)(2)) and Public Disclosure Bar (§ 3730(e)(4)).
   - HIPAA Whistleblower Safe Harbor guidance (45 C.F.R. § 164.502(j)).
   - Direct routing to The Anti-Fraud Coalition (TAF), State Medicaid Fraud Control Units (MFCUs), and DOJ Fraud Section.
 
@@ -73,6 +75,8 @@ When a user has **JustLegal OS** (`JustLegalOS.exe` / `JustLegalOS-CLI.exe`) ins
    .\JustLegalOS-CLI.exe --json doctor
    .\JustLegalOS-CLI.exe --json case context <path>
    .\JustLegalOS-CLI.exe --json check venue <path>
+   .\JustLegalOS-CLI.exe --json whip compare-routes <path>
+   .\JustLegalOS-CLI.exe --json whip prepare <path>
    .\JustLegalOS-CLI.exe --json qui-tam verify-entity --name "<target>"
    .\JustLegalOS-CLI.exe --json qui-tam audit-9b <path>
    ```

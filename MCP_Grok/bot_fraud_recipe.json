@@ -1,10 +1,10 @@
 {
   "name": "JustLegal Fraud & Whistleblower Navigator",
   "slug": "justlegal-fraud-navigator",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "Just Liberty Incorporated (501(c)(3) Nonprofit)",
-  "tagline": "Triage government program fraud, verify suspect clinics, audit Rule 9(b) viability, and generate standardized EO 14395 calling cards for Qui Tam counsel or direct OIG submission.",
-  "description": "An autonomous public legal navigator for citizen investigators, healthcare employees, and whistleblowers investigating federal program fraud under Presidential Executive Order 14395 and the False Claims Act (31 U.S.C. §§ 3729–3733). Employs the JustLegal Standard v1.0 diagnostic header and a Dual-Track submission engine separating private Qui Tam counsel from direct agency portals.",
+  "tagline": "Triage government program fraud, compare WHIP ($30k bounty on fraud.gov) vs. sealed Qui Tam (15-30%), audit Rule 9(b) viability, and generate standardized Calling Card v1.1 disclosures.",
+  "description": "An autonomous legal navigator for citizen investigators, healthcare workers, claimants, and whistleblowers investigating federal program fraud under the White House $25 Million Whistleblower Incentive Program (WHIP on fraud.gov), Presidential Executive Order 14395, and the False Claims Act (31 U.S.C. §§ 3729–3733). Employs the JustLegal Standard v1.1 calling card and a Three-Track enforcement engine separating fast-track WHIP bounties, high-dollar sealed Qui Tam lawsuits, and systemic administrative oversight.",
   "system_prompt_path": "system_prompt_fraud.md",
   "categories": [
     "Legal Self-Help",
@@ -14,39 +14,55 @@
     "Whistleblower Protection"
   ],
   "calling_card_standard": {
-    "schema": "JustLegal Standard v1.0 | EO-14395 Schema",
+    "schema": "JustLegal Standard v1.1 | WHIP & EO-14395 Pre-Verified Disclosure",
     "specification_url": "https://justlegal.me/qui-tam",
-    "purpose": "A standardized machine-readable diagnostic header recognized by federal OIG analysts and qui tam law firms to accelerate intake triage."
+    "purpose": "A standardized machine-readable diagnostic header recognized by federal OIG analysts, DOJ WHIP intake officers, and qui tam law firms to accelerate triage."
   },
-  "dual_track_engine": {
-    "track_a": {
-      "name": "Relator Reward Track (Qui Tam Counsel First)",
-      "target": "Private False Claims Act attorneys (who typically evaluate high-dollar matters on contingency; 15-30% statutory relator bounty under 31 U.S.C. § 3730(d))",
+  "three_track_engine": {
+    "tier1_whip": {
+      "name": "Tier 1: Fast-Track Citizen Bounty (DOJ WHIP via fraud.gov)",
+      "bounty": "Up to $30,000 Cash Bounty",
+      "counsel_required": false,
+      "target": "Street-level observations (ghost daycares, dark clinics, shuttered storefronts billing Medicaid/Medicare)",
+      "limits": "Character-limited submission (<2,000 chars), strict PII scrubbing, sha256 photo hash manifest.",
+      "warning": "Filing publicly on fraud.gov waives relator status for subsequent qui tam lawsuits under the Public Disclosure Bar (31 U.S.C. § 3730(e)(4))."
+    },
+    "tier2_quitam": {
+      "name": "Tier 2: High-Dollar Sealed Qui Tam Lawsuit (31 U.S.C. § 3730)",
+      "bounty": "15% to 30% of Total Recovery ($150k to $10M+)",
+      "counsel_required": true,
+      "decision_clock": "60-to-120 Day DOJ Decision Window under May 27, 2026 Benefits-Fraud Memo",
+      "target": "Multi-million dollar schemes involving private contractors, software billing vendors, healthcare systems, or defense contractors.",
       "seal_rule": "Mandatory in-camera filing under seal (31 U.S.C. § 3730(b)(2)). Prohibits public portal tips before filing.",
       "privilege": "ABA Model Rule 1.18 prospective-client privilege protections apply to attorney inquiries."
     },
-    "track_b": {
-      "name": "Citizen Watchdog / Direct Agency Track",
-      "target": "Direct agency submission portals (HHS-OIG, DOJ Civil Fraud, State AG MFCU, SBA-OIG, USDA-OIG)",
-      "purpose": "Immediate administrative audit, license revocation, or program exclusion for sub-$1M or regulatory violations."
+    "track_c_oversight": {
+      "name": "Track C: Administrative Oversight & Civil Rights (Ex parte Young / Rule 20)",
+      "bounty": "None (Injunctive, Declaratory & Systemic Policy Reform Only)",
+      "counsel_required": false,
+      "target": "State agencies protected by sovereign immunity (Stevens/Will bar), automated benefit freezes, ADA Title II / Due Process violations.",
+      "tools": "Ex parte Young official-capacity suits, Pro Se Rule 20 Joinder, Pre-Filing Open Records suite (CORA/FOIA), APA Rulemaking."
     }
   },
   "statutory_framework": {
     "primary_statutes": [
+      "DOJ Whistleblower Incentive Program (WHIP on fraud.gov — Oct 20, 2026)",
+      "DOJ Benefits-Fraud Memorandum (May 27, 2026 — 60-to-120 day decision clock)",
       "False Claims Act (31 U.S.C. §§ 3729–3733)",
-      "Executive Order 14395 — Establishing the Task Force to Eliminate Fraud",
+      "Executive Order 14395 — Task Force to Eliminate Fraud",
+      "Vermont Agency of Natural Resources v. United States ex rel. Stevens, 529 U.S. 765 (2000)",
       "Federal Rule of Civil Procedure 9(b) (Heightened Pleading Standard)",
       "45 C.F.R. § 164.502(j) (HIPAA Whistleblower Safe Harbor)",
       "ABA Model Rules 1.18 (Duties to Prospective Client) and 5.4 (Professional Independence of a Lawyer)"
     ],
     "mandatory_seal_rule": "31 U.S.C. § 3730(b)(2) requires qui tam suits to be filed under seal in federal court and reviewed by the Department of Justice before public disclosure. Premature online publication permanently triggers the Public Disclosure Bar (§ 3730(e)(4)).",
-    "pro_se_rule": "Relators cannot proceed pro se on behalf of the United States and must be represented by licensed qui tam counsel."
+    "pro_se_rule": "Relators cannot proceed pro se on behalf of the United States in qui tam actions and must be represented by licensed relator counsel."
   },
   "conversation_starters": [
-    "I found a healthcare provider billing millions from an empty storefront or residential address.",
-    "Grade my evidence for an EO 14395 False Claims Act dossier (FRCP Rule 9(b) score).",
-    "I need a JustLegal Standard Calling Card header for a suspect Medicaid provider.",
-    "Help me choose between filing with a Qui Tam attorney on contingency or submitting directly to HHS-OIG."
+    "I photographed an empty storefront or ghost daycare that is billing millions to Medicaid. How do I claim the $30k WHIP bounty on fraud.gov?",
+    "Should I file a $30,000 WHIP tip on fraud.gov or retain a Qui Tam attorney for 15-30% of a multi-million dollar recovery?",
+    "Generate a JustLegal Standard v1.1 Calling Card header for a suspect provider enrollment.",
+    "Grade my evidence under FRCP Rule 9(b) and evaluate my risk under the Public Disclosure Bar."
   ],
   "standalone_browser_tools": [
     {
@@ -60,8 +76,8 @@
       "description": "Public specification and verification methodology for federal investigators, state AGs, and qui tam counsel."
     },
     {
-      "name": "Pre-Flight Case Screener",
-      "description": "Interactive wizard vetting public disclosure bars (§ 3730(e)(4)) and threshold loss scales."
+      "name": "Pre-Flight Case Screener & Route Comparator",
+      "description": "Interactive wizard comparing Tier 1 WHIP vs. Tier 2 Qui Tam vs. Track C Oversight."
     },
     {
       "name": "State Recording & HIPAA Safe Harbor Guide",
@@ -76,6 +92,9 @@
     "application": "JustLegal OS / JustLegal Desktop",
     "airgap_guarantee": "Local vault only; zero telemetry; sealed dossiers strictly isolated from external networks.",
     "cli_tools": [
+      "justlegalos-cli --json whip compare-routes <case-folder>",
+      "justlegalos-cli --json whip prepare <case-folder> [--quick]",
+      "justlegalos-cli --json whip quick-pack --name \"<entity>\" [--notes \"<tip>\"] [--file <photo>]",
       "justlegalos-cli --json qui-tam verify-entity --name \"<target>\"",
       "justlegalos-cli --json qui-tam audit-9b <case-folder>",
       "justlegalos-cli --json qui-tam ingest-observation <case-folder> --file <photo>",

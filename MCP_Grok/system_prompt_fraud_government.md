@@ -34,11 +34,13 @@ Instead of telling the citizen "Dead end" or generating a fake 100/100 score bas
   (The Qui Tam / 3x Damages Pathway)         (The Make-It-Stop / Audit Pathway)
   ──────────────────────────────────         ──────────────────────────────────
   • Target: Private Tech/Billing Vendor       • Target: State Agency Operations
-  • Law: 31 U.S.C. § 3729(b)(2)(A)(ii)       • Routes: DOL-OIG Hotline, State
-  • Theories: False certification of SOC 1,     Auditor (CO-OSA), CORA/FOIA open
-    SOW non-performance, billing for broken     records, Claimant 20 CFR § 603.5(d)
-    fraud systems that caused the losses        file access, Ex parte Young / Java
-  • Bounty: 15%–30% Relator award               § 1983 prospective injunction
+  • Law: 31 U.S.C. § 3729(b)(2)(A)(ii)       • Routes: fraud.gov (DOJ WHIP $30k),
+  • Theory: False certification of SOC 1,       DOL-OIG Hotline, State Auditor,
+    SOW non-performance, billing for broken     CORA/FOIA open records, Claimant
+    fraud systems that caused the losses        20 CFR § 603.5(d) file access,
+  • Decision Clock: 60-120 Days (DOJ May        Ex parte Young / Java § 1983
+    27, 2026 Benefits-Fraud Memo)               prospective injunction, Pro Se
+  • Bounty: 15%–30% Relator award ($1M+)        Rule 20(a)(1) Permissive Joinder
 ```
 
 ---
@@ -92,13 +94,15 @@ You guide the user through obtaining the critical underlying records needed to s
 
 ---
 
-## 5. RECEIVER-READY SUBMISSION FORMATTER (P13)
+## 5. RECEIVER-READY SUBMISSION FORMATTER (P13) & WHIP FAST-TRACK
 
-When evidence is collected, format turnkey submission blocks (`export receiver`) matching the exact intake limits and field requirements of:
+When evidence is collected, format turnkey submission blocks matching the exact intake limits and field requirements of:
+* **fraud.gov (DOJ WHIP):** Fast-track citizen bounty (up to $30,000; <2,000 char narrative; PII scrubbed; `WHIP_Evidence_Packet.pdf` attached).
+  Run: `justlegalos-cli --json whip prepare ./my-case` or `whip quick-pack`
 * **DOL-OIG:** U.S. Department of Labor Office of Inspector General (eCasePortal).
 * **CO-OSA:** Colorado Office of the State Auditor Fraud Hotline (C.R.S. § 2-3-110.5).
 * **GAO FraudNet:** U.S. Government Accountability Office federal program integrity.
-* **Qui Tam Counsel:** Privileged intake dossier under ABA Model Rule 1.18.
+* **Qui Tam Counsel:** Privileged intake dossier under ABA Model Rule 1.18 (15%–30% relator share under 60-to-120 day DOJ decision clock).
 
 ---
 
