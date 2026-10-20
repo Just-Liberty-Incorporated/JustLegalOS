@@ -25,6 +25,13 @@ To prevent unmaintainable monoliths as JustLegal OS scales across 50 states and 
 | `src/lib/components/PdfToolsModal.svelte` | ~390 | Offline Zero-Leakage PDF Power Station (Merge, Split, Rotate, Byte-Level PII Redact) |
 | `src/lib/components/SignatureStudioModal.svelte` | ~385 | Electronic `/s/`, cursive script, and HTML5 canvas signature stamp studio |
 | `src/lib/components/fraud/GhostFacilityWizardModal.svelte` | ~460 | **EO 14395 Ghost Facility & Fraud Investigation Wizard** (NPPES lookup, FOIA licensing pack, EXIF evidence ingestion, Rule 9(b) viability audit) |
+| `src/lib/components/fraud/PortalCopilotModal.svelte` | ~320 | **Split-Screen Portal Co-Pilot** (`fraud.gov`, DOL-OIG, HHS-OIG, GAO) with one-click copy pills, &lt;2,000 char counter, Calling Card v1.1, and human confirm gate |
+| `src/lib/components/fraud/WhipRouteComparisonCard.svelte` | ~180 | **Three-Track Strategy Card** evaluating Tier 1 WHIP vs. Tier 2 Qui Tam vs. Track C Oversight with Public Disclosure Trap warning |
+| `src/lib/components/AccountabilityRoutesModal.svelte` | ~250 | Multi-Track Judicial Discrepancy & Ethics routing (*Lawson v. Dewar*, ACJC, OAE) |
+| `src/lib/components/AdaAccommodationModal.svelte` | ~220 | Title II ADA accommodation petition wizard (42 U.S.C. § 12132) |
+| `src/lib/components/RecordRetrievalModal.svelte` | ~200 | Court record retrieval planning & CN 10200 form generator |
+| `src/lib/components/ConsultationDossierModal.svelte` | ~160 | 2-Page Executive Attorney Consultation Dossier generator |
+| `src/lib/components/WorkflowProgressModal.svelte` | ~180 | Agent Workflow Coordinator execution & human approval modal |
 | `src/lib/components/fraud/QuiTamModeBanner.svelte` | ~75 | Strict airgap alert banner with 31 U.S.C. § 3730(b)(2) seal protection & relator legal warnings |
 | `src/lib/components/PostExportNextStepsModal.svelte` | ~135 | Post-export filing checklist, unbundled review guidance, and state bar referral navigator |
 | `src/lib/components/LegalTermsModal.svelte` | ~90 | Mandatory first-run legal disclaimer & non-attorney terms acknowledgment with persistent preference |
@@ -58,7 +65,17 @@ To prevent unmaintainable monoliths as JustLegal OS scales across 50 states and 
 | `qui_tam/records_pack.rs` | ~235 | Multi-state licensing and public records request generator (MGDPA, OPRA, CORA, CPRA, FOIA) |
 | `qui_tam/disclosure.rs` | ~230 | DOJ 60-day triage & relator disclosure packet compiler (`openseason-disclosure-v1.json` + Typst PDF) |
 | `case_commands/quitam_ops.rs`| ~80 | Tauri IPC bridge for qui tam / fraud operations |
-| `bin/justlegalos/` | ~1200 | Modular CLI (`args.rs`, `handlers_core.rs`, `handlers_quitam.rs`, `handlers_pdf.rs`, etc.) |
+| `whip/` | ~580 | **DOJ WHIP ($30k on fraud.gov) & Two-Tier Whistleblower Engine**: route comparison, &lt;2k narrative, PII scrubbing, Typst PDF packet, and 60-second quick-pack |
+| `sovereign_immunity/` | ~310 | 11th Amendment state immunity audit (*Stevens* bar) & 5 valid statutory bypass pathways |
+| `claim_translate/` | ~290 | Vernacular-to-doctrine claim translator & element-by-element mountain-of-proof blueprints |
+| `collective_action/` | ~270 | Pro se Rule 20(a)(1) permissive joinder builder, Rule 23 binder, and APA rulemaking petition generator |
+| `records/` | ~680 | Pre-filing statutory open records suite (CORA, FOIA, NC DES, 20 CFR § 603.5(d)) & working-day date math |
+| `record/` | ~590 | 4-tier evidentiary record reconstruction, docket reconciliation, and missing record auditor |
+| `order/` | ~380 | Court order decoder, judicial findings audit, and case bootstrapping |
+| `court_access/` | ~240 | Title II ADA accommodation petition generator and court directory access |
+| `accountability/` | ~450 | 14-Pathway Systematic Accountability Map, remedies router, and factual discrepancy packets |
+| `receiver/` | ~320 | Turnkey receiver-ready submission formatters for DOL-OIG, CO-OSA, GAO FraudNet, and counsel |
+| `bin/justlegalos/` | ~1300 | Modular CLI (`args.rs`, `handlers_core.rs`, `handlers_quitam.rs`, `handlers_whip.rs`, `handlers_pdf.rs`, etc.) |
 
 ---
 

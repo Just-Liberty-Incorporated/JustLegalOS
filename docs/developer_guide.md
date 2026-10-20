@@ -13,8 +13,8 @@ This guide explains how to build, test, maintain, and extend OpenSeason without 
 | Visual Studio Build Tools | 2022 C++ workload | Required on Windows for Tauri / native linking |
 
 ```bash
-git clone https://github.com/unlimitedinfinit/OpenSeason.git
-cd OpenSeason
+git clone https://github.com/unlimitedinfinit/JustLegalOS.git
+cd JustLegalOS
 npm install --legacy-peer-deps
 ```
 

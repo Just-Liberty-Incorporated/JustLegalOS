@@ -138,6 +138,17 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 | `sovereign-immunity [--state ST] [--target TYPE] [--claim CLAIMS...]` | **Sovereign Immunity Audit**: audits 11th Amendment barriers and evaluates 5 bypass pathways (*Ex parte Young*, ADA Title II, § 504 waiver, Monell, Contractors) (P18) |
 | `collective-action --mode MODE [--title TEXT] [--defendant TEXT]` | **Collective Legal Action Builder**: FRCP Rule 20(a)(1) permissive joinder pro se force multiplier, Rule 23 class pitch binder, or APA rulemaking petition (P19) |
 | `export receiver DIR --to dol-oig|co-osa|gao-fraudnet|counsel [--anonymity PREF]` | **Receiver-Ready Submission Packages** formatted to exact character limits and field structures |
+| `export consultation-dossier DIR [--question TEXT...]` | Generate 2-page executive Attorney Consultation Dossier with verified citations and stress-tests |
+| `whip compare-routes DIR` | **DOJ WHIP Route Evaluator**: Deterministically compares Tier 1 WHIP ($30k fraud.gov) vs. Tier 2 Sealed Qui Tam ($1M+) vs. Track C Oversight |
+| `whip prepare DIR [--quick]` | Compile turnkey `fraud.gov` WHIP submission packet with Calling Card v1.1, hashed evidence PDF, and PII redaction |
+| `whip quick-pack --name TEXT [--file FILE...] [--notes TEXT] [--out DIR]` | Rapid 60-second citizen field verification & WHIP packet generator from target name and photos |
+| `order decode --pdf FILE [--case DIR]` | Decode court order or notice from PDF, detect signer, operative disposition, and candidate deadlines |
+| `timeline audit-mail DIR --order-date DATE [--postmark DATE] [--delivery DATE]` | Audit postmark vs. clerk receipt timestamps for mail delay jurisdictional traps |
+| `court list` / `court info QUERY` | Query court access directory (clerk counter hours, e-filing portals, docket search, fee schedules) |
+| `workflow plan DIR --objective TEXT` / `workflow status DIR` / `workflow advance DIR [--approve]` | **Agent Workflow Coordinator**: Formulate multi-step legal plans, advance steps, and resume across human approval checkpoints |
+| `review stress-test DIR [--issue ID]` | Stress-test case issues against devil's advocate counter-arguments and procedural hurdles |
+| `record plan-retrieval DIR` | Plan retrieval of missing court records using jurisdiction-specific court rules and access directory |
+| `case bootstrap --from DIR --to DIR [--title TEXT]` | Bootstrap and rescue a case from an unorganized folder of mixed documents |
 | `mcp` | Stdio MCP server (same tools) |
 | `sync DIR --action backup` | Stub. Standard: `not_implemented`. Confidential: refused |
 | `agent manifest` | List CLI/MCP tools, MCP launch config, and a copyable starter prompt |
@@ -176,6 +187,9 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 - `records_find`, `records_draft`, `records_track`, `records_followup`, `records_org`: Statutory open records discovery suite (P2-P8).
 - `accountability_map`: 14-Pathway Institutional & Systemic Fraud Accountability Map (P1).
 - `receiver_export`: Generates receiver-ready submission payloads (DOL-OIG, CO-OSA, GAO FraudNet, Counsel) (P16).
+- `whip_compare_routes`: Evaluates Tier 1 WHIP ($30k on fraud.gov) vs. Tier 2 Sealed Qui Tam ($1M+) vs. Track C Oversight.
+- `whip_prepare`: Assembles turnkey `<2,000` char narrative disclosures, scrubs PII, and compiles Typst PDF evidence packet.
+- `whip_quick_pack`: Rapid 60-second citizen field tip verification and SHA-256 hash compiler.
 - Motion path tools: `case_create`, `draft_import`, `check_fact`, `check_authority`, `check_deadline`, `check_signoff`, `export_pleading`, `export_court_md`.
 - Form packs & guide: `packs_install`, `packs_verify`, `guide_find`, `help_links`.
 

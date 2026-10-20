@@ -82,3 +82,32 @@ Run these from PowerShell in `c:\Users\Deus\Documents\DocumentBuilder`:
 ### Issue G: JustLegal Cloud Sync Refused (`ConfidentialForbidden`)
 - **Cause:** The case folder has a `.sealed` marker file, `mode: "confidential"`, or `sealed_at` set.
 - **By Design:** Confidential whistleblower vaults are strictly airgapped in `src-tauri/src/sync.rs`. Never delete `.sealed` to force cloud sync. Use local Word/PDF export or `.osb` encrypted bundle export instead.
+---
+
+### Issue H: `fraud.gov` Narrative Field Truncation (`>2,000 characters`)
+- **Cause:** Official federal agency portals (e.g. `fraud.gov`, `oig.hhs.gov`, `oig.dol.gov`) strictly enforce a 2,000 character maximum limit on web submission forms. Sprawling complaint drafts get cut off mid-sentence.
+- **Fix:** Use `justlegalos-cli --json whip prepare <case>` or the Split-Screen Portal Co-Pilot (`PortalCopilotModal.svelte`). The engine automatically formats high-density narrative blocks under 1,800 characters, embeds the Calling Card v1.1 header, and references the full details in the attached, hashed `WHIP_Evidence_Packet.pdf`.
+
+---
+
+### Issue I: Rule 9(b) Qui Tam Audit Capped at 74/100 (`Score Capped: Missing Billing Records`)
+- **Cause:** Under Federal Rule of Civil Procedure 9(b), an FCA claim alleging false claims cannot survive without representative specific false billings, invoices, or drawdown vouchers. Without physical billing records in `evidence/`, the engine deterministically caps the viability grade at 74/100 (Developing / Fixable).
+- **Fix:** Deposit at least one itemized bill, remittance advice, or ASAP.gov drawdown voucher into `evidence/` and run `justlegalos-cli --json qui-tam audit-9b <case>`.
+
+---
+
+### Issue J: Accidental Forfeiture of Relator Reward under Public Disclosure Bar (31 U.S.C. § 3730(e)(4))
+- **Cause:** Litigant submits a $1M+ contractor claim directly to `fraud.gov` or posts allegations/photos on TikTok, X, or YouTube before filing under seal.
+- **Fix:** Run `justlegalos-cli --json whip compare-routes <case>` BEFORE submitting! High-dollar claims against private contractors (e.g. Deloitte, Maximus) must be filed under seal in federal court through contingency relator counsel to preserve the relator's 15%–30% bounty.
+
+---
+
+### Issue K: Open Records Statutory Deadline Tracking Skips Holidays Incorrectly
+- **Cause:** Manual calendar calculation fails to account for statutory working-day definitions under state sunshine laws (e.g. Colorado CORA C.R.S. § 24-72-205(6) 3-working-day rule).
+- **Fix:** Use `justlegalos-cli --json records track <case> --sent YYYY-MM-DD --days 3`, which uses deterministic working-day date math that automatically excludes Saturdays, Sundays, and official legal holidays.
+
+---
+
+### Issue L: CMS NPPES / USAspending Registry Returns `LOOKUP_FAILED_OR_OFFLINE`
+- **Cause:** Local internet connection is offline or federal API endpoints are experiencing temporary rate limits.
+- **By Design:** The engine sets `lookup_status = LOOKUP_FAILED_OR_OFFLINE` and marks the entity as `Unverified`—it **never** falsely accuses a provider of being unregistered due to a network glitch. Once connected, re-run with explicit NPI: `.\JustLegalOS-CLI.exe --json qui-tam verify-entity --name "<name>" --npi <10-digits>`.
