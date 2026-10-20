@@ -1,10 +1,12 @@
 # JustLegal OS
 ### The Legal Operating System & Offline Court Formatting Engine
 Developed by **Just Liberty Incorporated** (Colorado 501(c)(3) Nonprofit Public Benefit Corporation)  
-Official Website: [justlegal.me](https://justlegal.me) • Fraud Triage Specification: [justlegal.me/qui-tam](https://justlegal.me/qui-tam) • Contact: `josh@truejust.org`
+**Official Portals & Socials:** [truejust.org](https://www.truejust.org) • [justlegal.me](https://justlegal.me) • [Fraud Triage](https://justlegal.me/qui-tam) • [LinkedIn](https://www.linkedin.com/company/just-liberty-incorporated/)  
+**Direct Contact:** [josh@truejust.org](mailto:josh@truejust.org)
 
 [![501(c)(3) Nonprofit](https://img.shields.io/badge/501(c)(3)-Nonprofit%20Public%20Charity-blue?style=for-the-badge)](https://www.truejust.org)
 [![EIN 93-3704483](https://img.shields.io/badge/EIN-93--3704483-green?style=for-the-badge)](https://www.truejust.org)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Just%20Liberty%20Inc.-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/just-liberty-incorporated/)
 [![Airgap](https://img.shields.io/badge/Security-Local%20Airgap%20%7C%20Zero%20Telemetry-orange?style=for-the-badge)](https://github.com/Just-Liberty-Incorporated/JustLegalOS)
 [![EO 14395](https://img.shields.io/badge/Fraud%20Triage-EO%2014395%20Task%20Force-purple?style=for-the-badge)](https://justlegal.me/qui-tam)
 
@@ -177,5 +179,7 @@ JustLegal OS operates on the **Public Distribution & Specification** model:
 - **Terms of Service:** [https://justlegal.me/terms](https://justlegal.me/terms)
 - **Privacy Policy:** [https://justlegal.me/privacy](https://justlegal.me/privacy)
 - **Legal Aid & Bar Referral Hub:** [https://justlegal.me/find-legal-help](https://justlegal.me/find-legal-help)
+- **LinkedIn:** [https://www.linkedin.com/company/just-liberty-incorporated/](https://www.linkedin.com/company/just-liberty-incorporated/)
+- **Contact:** [josh@truejust.org](mailto:josh@truejust.org)
 - **Organization:** Developed with care by **Just Liberty Incorporated**, a Colorado 501(c)(3) nonprofit public benefit corporation (EIN: `93-3704483`).
 - **Mission:** Leveling the playing field so every person can navigate the law with dignity, precision, and verified truth.
