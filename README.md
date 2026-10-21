@@ -21,7 +21,7 @@ Download official, cryptographically verified installers directly from our [Late
 
 - [👉 **Download Windows 64-bit Setup (.exe)** (24.7 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Setup.exe) — **Main Desktop Application**. Double-click to install on Windows 10 or 11. Built with official Scales of Justice application packaging.
 - [👉 **Download Windows Enterprise MSI (.msi)** (35.3 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_64bit_Enterprise.msi) — Enterprise / system-wide installer for Windows administrators.
-- [👉 **Download Standalone Windows CLI (.exe)** (40.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_CLI.exe) — Headless Command-Line Interface and 111-tool Model Context Protocol (MCP) server for Windows developers and autonomous AI agents.
+- [👉 **Download Standalone Windows CLI (.exe)** (40.9 MB)](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/JustLegalOS_v0.1.0_Windows_CLI.exe) — Headless Command-Line Interface and 117-tool Model Context Protocol (MCP) server for Windows developers and autonomous AI agents.
 
 > **Windows SmartScreen & Integrity Notice:** Because Just Liberty Incorporated was newly chartered in 2026, Microsoft SmartScreen reputation builds progressively over download volume. On first launch, you may see a standard "Unknown Publisher" or "Windows protected your PC" dialog. Click **More info** ➔ **Run anyway**. You can verify the cryptographic integrity of every installer against our official [SHA256SUMS.txt](https://github.com/Just-Liberty-Incorporated/JustLegalOS/releases/latest/download/SHA256SUMS.txt) manifest before running.
 
@@ -153,7 +153,10 @@ JustLegal OS exposes a native JSON-RPC 2.0 Model Context Protocol (MCP) server f
 }
 ```
 
-- **111 Deterministic Local Tools:** Form discovery, deadline math, court record reconstruction, ADA Title II accommodation petitions, Rule 9(b) auditing, claim translation, and sovereign immunity audits.
+- **117 Deterministic Local Tools:** Form discovery, deadline math, 50-state jurisdiction verification with traffic-light receipts, court record reconstruction, ADA Title II accommodation petitions, Rule 9(b) auditing, claim translation, and sovereign immunity audits.
+- **50-State Jurisdiction Verification & Primary-Source Rule Pinning:** The engine tracks 5 critical statutory slots with 3-state traffic-light receipts (🟢 `VERIFIED_PACK`, 🟡 `PACK_AVAILABLE`, ⚪ `UNVERIFIED_GAP`, 🔵 `USER_LOCKED`). When local standing orders are unverified, the CLI refuses to guess and provides the direct official `.gov` portal for user or agent pinning via `jurisdiction lock-rule`.
+- **DOJ WHIP Whistleblower Engine (`fraud.gov` — Up to $30k):** Dual-score auditing (`whip_audit`) decouples the 74-point invoice cap from independent forensic analysis, enabling citizens with multi-day hashed site observations to reach 80–100 scores for the 4-Door Submission Menu.
+- **1-Command Workspace Bootstrapping (`init_workspace`):** Automatically initializes `/workspace` with embedded modular skills (`rules_verification.md`, `whip_triage.md`, `state_traps.md`, `gov_target_intake.md`, `independent_analysis.md`, `accountability_map.md`, `civil_dossier.md`) and standard submission templates (`four_door_menu.md`, `bridge_dossier.md`).
 - **Bot-Safe by Default:** In safe mode (`--safe`), administrative capabilities (`cloud_push`, `cloud_pull`, `sign_pdf`, `packs_remove`) are hidden and blocked.
 - **Strict Path Confinement:** All file access is restricted to the user's `Cases/` directory; traversal attacks and arbitrary disk access are rejected with structured errors.
 - **Zero-Hallucination Guardrails:** The engine never fabricates dates, citations, or party names. Missing parameters are returned as structured gap fields.

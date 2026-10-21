@@ -50,75 +50,84 @@ fi
 
 BIN_TARGET="${INSTALL_DIR}/justlegalos-cli"
 
-# Download latest release binary from GitHub Releases
-GITHUB_REPO="${JUSTLEGAL_GITHUB_REPO:-Just-Liberty-Incorporated/JustLegalOS}"
-DOWNLOAD_URL="https://github.com/${GITHUB_REPO}/releases/latest/download/justlegalos-cli-linux-${TARGET_ARCH}"
-CHECKSUM_URL="https://github.com/${GITHUB_REPO}/releases/latest/download/SHA256SUMS.txt"
-echo -e "${BLUE}[INFO] Downloading precompiled binary from:${NC} $DOWNLOAD_URL"
+# Check if compiling locally from source (if repo present) or downloading prebuilt
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." 2>/dev/null && pwd || echo "")"
 
-TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/justlegalos-install.XXXXXX")"
-trap 'rm -rf "$TMP_DIR"' EXIT
-TMP_BIN="${TMP_DIR}/justlegalos-cli"
-TMP_SUMS="${TMP_DIR}/SHA256SUMS.txt"
+if [ -n "$REPO_ROOT" ] && [ -f "${REPO_ROOT}/src-tauri/Cargo.toml" ] && command -v cargo >/dev/null 2>&1; then
+    echo -e "${BLUE}[INFO] Found local repository source. Building headless binary with Cargo...${NC}"
+    cargo build --release --manifest-path "${REPO_ROOT}/src-tauri/Cargo.toml" --no-default-features --bin justlegalos-cli
+    cp -f "${REPO_ROOT}/src-tauri/target/release/justlegalos-cli" "$BIN_TARGET"
+else
+    # Download latest release binary from GitHub Releases
+    GITHUB_REPO="${JUSTLEGAL_GITHUB_REPO:-Just-Liberty-Incorporated/JustLegalOS}"
+    DOWNLOAD_URL="https://github.com/${GITHUB_REPO}/releases/latest/download/justlegalos-cli-linux-${TARGET_ARCH}"
+    CHECKSUM_URL="https://github.com/${GITHUB_REPO}/releases/latest/download/SHA256SUMS.txt"
+    echo -e "${BLUE}[INFO] Downloading precompiled binary from:${NC} $DOWNLOAD_URL"
 
-if command -v curl >/dev/null 2>&1; then
-    if ! curl -fsSL "$DOWNLOAD_URL" -o "$TMP_BIN"; then
-        echo -e "${RED}[ERROR] Failed to download binary from $DOWNLOAD_URL.${NC}"
-        echo -e "Ensure a release has been published for ${GITHUB_REPO}."
+    TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/justlegalos-install.XXXXXX")"
+    trap 'rm -rf "$TMP_DIR"' EXIT
+    TMP_BIN="${TMP_DIR}/justlegalos-cli"
+    TMP_SUMS="${TMP_DIR}/SHA256SUMS.txt"
+
+    if command -v curl >/dev/null 2>&1; then
+        if ! curl -fsSL "$DOWNLOAD_URL" -o "$TMP_BIN"; then
+            echo -e "${RED}[ERROR] Failed to download binary from $DOWNLOAD_URL.${NC}"
+            echo -e "Ensure a release has been published for ${GITHUB_REPO}."
+            exit 1
+        fi
+        if ! curl -fsSL "$CHECKSUM_URL" -o "$TMP_SUMS"; then
+            echo -e "${RED}[ERROR] Failed to download checksum manifest from $CHECKSUM_URL.${NC}"
+            echo -e "Refusing to install unverified binary."
+            exit 1
+        fi
+    elif command -v wget >/dev/null 2>&1; then
+        if ! wget -qO "$TMP_BIN" "$DOWNLOAD_URL"; then
+            echo -e "${RED}[ERROR] Failed to download binary from $DOWNLOAD_URL.${NC}"
+            exit 1
+        fi
+        if ! wget -qO "$TMP_SUMS" "$CHECKSUM_URL"; then
+            echo -e "${RED}[ERROR] Failed to download checksum manifest from $CHECKSUM_URL.${NC}"
+            echo -e "Refusing to install unverified binary."
+            exit 1
+        fi
+    else
+        echo -e "${RED}[ERROR] Neither curl nor wget found. Please install curl or wget.${NC}"
         exit 1
     fi
-    if ! curl -fsSL "$CHECKSUM_URL" -o "$TMP_SUMS"; then
-        echo -e "${RED}[ERROR] Failed to download checksum manifest from $CHECKSUM_URL.${NC}"
+
+    if [ ! -s "$TMP_BIN" ]; then
+        echo -e "${RED}[ERROR] Downloaded binary is empty or corrupted.${NC}"
+        exit 1
+    fi
+
+    echo -e "${BLUE}[INFO] Verifying SHA-256 checksum...${NC}"
+    EXPECTED_HASH="$(grep "justlegalos-cli-linux-${TARGET_ARCH}" "$TMP_SUMS" 2>/dev/null | awk '{print $1}' || echo "")"
+    if [ -z "$EXPECTED_HASH" ]; then
+        echo -e "${RED}[ERROR] Checksum entry for justlegalos-cli-linux-${TARGET_ARCH} not found in SHA256SUMS.txt.${NC}"
         echo -e "Refusing to install unverified binary."
         exit 1
     fi
-elif command -v wget >/dev/null 2>&1; then
-    if ! wget -qO "$TMP_BIN" "$DOWNLOAD_URL"; then
-        echo -e "${RED}[ERROR] Failed to download binary from $DOWNLOAD_URL.${NC}"
+
+    if command -v sha256sum >/dev/null 2>&1; then
+        ACTUAL_HASH="$(sha256sum "$TMP_BIN" | awk '{print $1}')"
+    elif command -v shasum >/dev/null 2>&1; then
+        ACTUAL_HASH="$(shasum -a 256 "$TMP_BIN" | awk '{print $1}')"
+    else
+        echo -e "${RED}[ERROR] Neither sha256sum nor shasum found to verify checksum.${NC}"
         exit 1
     fi
-    if ! wget -qO "$TMP_SUMS" "$CHECKSUM_URL"; then
-        echo -e "${RED}[ERROR] Failed to download checksum manifest from $CHECKSUM_URL.${NC}"
-        echo -e "Refusing to install unverified binary."
+
+    if [ "$EXPECTED_HASH" != "$ACTUAL_HASH" ]; then
+        echo -e "${RED}[ERROR] Checksum mismatch!${NC}"
+        echo -e "Expected: $EXPECTED_HASH"
+        echo -e "Actual:   $ACTUAL_HASH"
+        echo -e "Refusing to install corrupted or tampered binary."
         exit 1
     fi
-else
-    echo -e "${RED}[ERROR] Neither curl nor wget found. Please install curl or wget.${NC}"
-    exit 1
-fi
+    echo -e "${GREEN}[INFO] SHA-256 checksum verified successfully: ${ACTUAL_HASH}${NC}"
 
-if [ ! -s "$TMP_BIN" ]; then
-    echo -e "${RED}[ERROR] Downloaded binary is empty or corrupted.${NC}"
-    exit 1
+    mv -f "$TMP_BIN" "$BIN_TARGET"
 fi
-
-echo -e "${BLUE}[INFO] Verifying SHA-256 checksum...${NC}"
-EXPECTED_HASH="$(grep "justlegalos-cli-linux-${TARGET_ARCH}" "$TMP_SUMS" 2>/dev/null | awk '{print $1}' || echo "")"
-if [ -z "$EXPECTED_HASH" ]; then
-    echo -e "${RED}[ERROR] Checksum entry for justlegalos-cli-linux-${TARGET_ARCH} not found in SHA256SUMS.txt.${NC}"
-    echo -e "Refusing to install unverified binary."
-    exit 1
-fi
-
-if command -v sha256sum >/dev/null 2>&1; then
-    ACTUAL_HASH="$(sha256sum "$TMP_BIN" | awk '{print $1}')"
-elif command -v shasum >/dev/null 2>&1; then
-    ACTUAL_HASH="$(shasum -a 256 "$TMP_BIN" | awk '{print $1}')"
-else
-    echo -e "${RED}[ERROR] Neither sha256sum nor shasum found to verify checksum.${NC}"
-    exit 1
-fi
-
-if [ "$EXPECTED_HASH" != "$ACTUAL_HASH" ]; then
-    echo -e "${RED}[ERROR] SHA-256 checksum mismatch!${NC}"
-    echo -e "Expected: $EXPECTED_HASH"
-    echo -e "Actual:   $ACTUAL_HASH"
-    echo -e "Refusing to install corrupted or tampered binary."
-    exit 1
-fi
-echo -e "${GREEN}[INFO] SHA-256 checksum verified successfully: ${ACTUAL_HASH}${NC}"
-
-mv -f "$TMP_BIN" "$BIN_TARGET"
 
 if [ -f "$BIN_TARGET" ]; then
     chmod +x "$BIN_TARGET"
@@ -154,6 +163,17 @@ fi
 CASES_DIR="${HOME}/Documents/JustLegal/Cases"
 PACKS_DIR="${HOME}/Documents/JustLegal/Packs"
 mkdir -p "$CASES_DIR" "$PACKS_DIR"
+
+# Initialize shared /workspace if running inside x.ai GrokBot or container sandbox
+if [ -d "/workspace" ] || [ -n "${WORKSPACE:-}" ]; then
+    WORKSPACE_ROOT="${WORKSPACE:-/workspace}"
+    echo -e "${BLUE}[INFO] Detected agent environment at ${WORKSPACE_ROOT}. Initializing shared workspace...${NC}"
+    mkdir -p "${WORKSPACE_ROOT}/bin"
+    cp -f "$BIN_TARGET" "${WORKSPACE_ROOT}/bin/justlegalos-cli" 2>/dev/null || ln -sf "$BIN_TARGET" "${WORKSPACE_ROOT}/bin/justlegalos-cli" 2>/dev/null || true
+    chmod +x "${WORKSPACE_ROOT}/bin/justlegalos-cli" 2>/dev/null || true
+    "$BIN_TARGET" --json init-workspace --root "$WORKSPACE_ROOT" || true
+    echo -e "${GREEN}[INFO] Shared agent skills & templates initialized at ${WORKSPACE_ROOT}.${NC}"
+fi
 
 echo -e "${GREEN}[INFO] Legal OS workspace initialized:${NC}"
 echo -e "  • Cases directory: $CASES_DIR"
