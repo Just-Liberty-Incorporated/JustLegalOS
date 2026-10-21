@@ -101,35 +101,34 @@ $$\text{Actionable Claim} = \text{Element } X + \text{Element } Y + \text{Mounta
 
 ---
 
-## Two-Tier Whistleblower Economy: WHIP ($30k on fraud.gov) & Sealed Qui Tam ([justlegal.me/qui-tam](https://justlegal.me/qui-tam))
+## Two-Tier Whistleblower Economy: WHIP (fraud.gov) & Sealed Qui Tam ([justlegal.me/qui-tam](https://justlegal.me/qui-tam))
 
-Under the newly announced **White House / DOJ $25 Million Fraud Whistleblower Incentive Program (WHIP on fraud.gov)**, the **DOJ May 27, 2026 Benefits-Fraud Directive**, and **Presidential Executive Order 14395**, federal fraud enforcement operates on a two-tier track:
+Under the newly announced **White House / DOJ Fraud Whistleblower Incentive Program (WHIP on fraud.gov)**, the **DOJ May 27, 2026 Benefits-Fraud Directive**, and **Presidential Executive Order 14395**, federal fraud enforcement operates on a two-tier track:
 
-Just Liberty Incorporated provides a **free, public-interest pre-seal verification pipeline** that turns citizen observations and insider disclosures into cryptographically hashed, Federal Rule of Civil Procedure 9(b)-graded dossiers:
+Just Liberty Incorporated provides a **free, public-interest pre-seal verification pipeline** that turns citizen observations and insider disclosures into cryptographically hashed, unembellished 4-state verification receipts (`VERIFIED`, `USER_STATED`, `MISSING`, `LOOKUP_FAILED`):
 
 ```
 ======================================================================
-[JUSTLEGAL STANDARD v1.1 — WHIP & EO-14395 PRE-VERIFIED DISCLOSURE]
-Generated via JustLegal.me / Just Liberty Inc. (501c3) Engine
+JUSTLEGAL OPEN-RECORD VERIFICATION RECEIPT
+Generated via JustLegal OS / Just Liberty Inc. (501c3) Engine
 ======================================================================
-• SUSPECT ENTITY: [Exact Legal Name / Registered Business Name]
+• TARGET ENTITY: [Exact Legal Name / Registered Business Name]
 • ENUMERATION DATA: NPI-1 / NPI-2: [10-Digit Verified] | UEI: [12-Char Verified]
 • REGISTERED TAXONOMY: [Code + Description] vs. Observed Physical Status
-• VERIFIED FEDERAL NEXUS: $[Amount] ([USAspending / CMS / State Lookups Confirmed])
-• RULE 9(b) READINESS GRADE: [Grade (e.g. A- 88/100)] — [Key Strength / Verification Match]
-• PUBLIC DISCLOSURE STATUS: CLEAR (Firsthand Documentation; No Social Media Leakage)
-• EVIDENCE MANIFEST HASH (SHA-256): [Merkle Root or Primary Manifest Hash]
-• CITATION STANDARDS: 31 U.S.C. § 3730 / DOJ WHIP (fraud.gov) / EO 14395
-• VERIFY SCHEMA / SOURCE TOOLS: https://justlegal.me/qui-tam
+• FEDERAL AWARDS NEXUS: $[Amount] ([USAspending / CMS / State Lookups])
+• VERIFICATION STATUS: 4-State Receipt (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED)
+• EVIDENCE INTEGRITY: SHA-256 Digest (64-Char Hex) / EXIF GPS Stripped
+• CITATION STANDARDS: 31 U.S.C. § 3730 / DOJ Pilot / EO 14395
+• VERIFY TOOLS: https://justlegal.me/qui-tam
 ======================================================================
 ```
 
 ### The Three-Track Whistleblower Engine
 To protect statutory whistleblower rights, the engine routes dossiers through a strict evaluation:
-- **Tier 1: Fast-Track Citizen Bounty (`WHIP` via `fraud.gov` — Up to $30,000, Zero Lawyer Needed):** Built for street-level observations (ghost daycares, shuttered clinics, strip-mall billing mills). Automatically generates character-limited `<2,000` char submissions, scrubs PII, and compiles an attached, tamper-proof SHA-256 photographic PDF packet (`WHIP_Evidence_Packet.pdf`).
-- **Tier 2: High-Dollar Sealed Qui Tam Lawsuit (31 U.S.C. § 3730 — 15% to 30% Relator Bounty):** For $1M–$100M+ contractor schemes (e.g., Deloitte state UI IT contracts, regional healthcare billing). Evaluates DOJ's fast **60-to-120 day intervention decision clock** under the May 27, 2026 memo. Filed under seal by contingency relator counsel ($0 upfront).
+- **Tier 1: Fast-Track Citizen Bounty (`WHIP` via `fraud.gov`):** Built for street-level observations. Automatically generates character-limited (≤1,950 char) submissions, scrubs PII, strips EXIF GPS coordinates, and compiles a tamper-proof photographic PDF packet with full 64-character SHA-256 hashes (`WHIP_Evidence_Packet.pdf`).
+- **Tier 2: Sealed Qui Tam Lawsuit (31 U.S.C. § 3730 — 15% to 30% Relator Share):** For contractor and institutional schemes (e.g., Deloitte state UI IT contracts, regional healthcare billing). Evaluates DOJ statutory intervention clocks under the May 27, 2026 memo. Filed under seal by contingency relator counsel ($0 upfront).
 - **Track C: Systemic Oversight & Civil Rights (Ex parte Young / Rule 20 Joinder):** For claims targeting immune state agencies (*Stevens* bar), automated benefit freezes, or administrative non-compliance.
-- **⚠️ The Fatal Public Disclosure Trap:** Submitting a high-dollar contractor claim publicly to `fraud.gov` triggers the statutory Public Disclosure Bar (31 U.S.C. § 3730(e)(4)) and wipes out the relator's 15%–30% recovery. The engine routes and protects claims before submission.
+- **⚠️ Insider Gatekeeper Fork (`whip route-hold`):** Non-public insider records held by the relator trigger an automatic lock blocking public portal export (`portal_export_blocked = true`). The system instead exports a factual index and a conflict-check roster (names and identifiers only, zero narrative) for retained counsel.
 
 ### The 3-Tier Entity Verification Architecture
 1. **Tier 1 (CMS NPPES Provider Registry):** Direct federal NPI-1 and NPI-2 enumeration via the CMS NPPES v2.1 API. Confirms active registration, primary practice location, authorized officials, and taxonomy codes.
@@ -155,13 +154,13 @@ JustLegal OS exposes a native JSON-RPC 2.0 Model Context Protocol (MCP) server f
 
 - **117 Deterministic Local Tools:** Form discovery, deadline math, 50-state jurisdiction verification with traffic-light receipts, court record reconstruction, ADA Title II accommodation petitions, Rule 9(b) auditing, claim translation, and sovereign immunity audits.
 - **50-State Jurisdiction Verification & Primary-Source Rule Pinning:** The engine tracks 5 critical statutory slots with 3-state traffic-light receipts (🟢 `VERIFIED_PACK`, 🟡 `PACK_AVAILABLE`, ⚪ `UNVERIFIED_GAP`, 🔵 `USER_LOCKED`). When local standing orders are unverified, the CLI refuses to guess and provides the direct official `.gov` portal for user or agent pinning via `jurisdiction lock-rule`.
-- **DOJ WHIP Whistleblower Engine (`fraud.gov` — Up to $30k):** Dual-score auditing (`whip_audit`) decouples the 74-point invoice cap from independent forensic analysis, enabling citizens with multi-day hashed site observations to reach 80–100 scores for the 4-Door Submission Menu.
+- **DOJ WHIP Verification & Fail-Closed Gaps:** Unembellished 4-state verification receipt (`whip receipt`) and fail-closed gap audit (`whip gaps`) separate blocking procedural defects from informational items, exiting 1 on blocking gaps before allowing export. The pre-export audit linter (`packet lint`) scans all files for forbidden vanity phrases or unverified legal conclusions.
 - **1-Command Workspace Bootstrapping (`init_workspace`):** Automatically initializes `/workspace` with embedded modular skills (`rules_verification.md`, `whip_triage.md`, `state_traps.md`, `gov_target_intake.md`, `independent_analysis.md`, `accountability_map.md`, `civil_dossier.md`) and standard submission templates (`four_door_menu.md`, `bridge_dossier.md`).
 - **Bot-Safe by Default:** In safe mode (`--safe`), administrative capabilities (`cloud_push`, `cloud_pull`, `sign_pdf`, `packs_remove`) are hidden and blocked.
 - **Strict Path Confinement:** All file access is restricted to the user's `Cases/` directory; traversal attacks and arbitrary disk access are rejected with structured errors.
 - **Zero-Hallucination Guardrails:** The engine never fabricates dates, citations, or party names. Missing parameters are returned as structured gap fields.
 
-See [`MCP_Grok/`](MCP_Grok/) for complete system prompts, recipes, and specialized skill modules.
+See [`MCP_Grok/`](MCP_Grok/) for the unified public recipe (`grok_recipe.json`), `system_prompt.md`, and 8 modular skills (`start.md`, `civil.md`, `lookup.md`, `observe.md`, `receipt.md`, `route.md`, `counsel.md`, `export.md`).
 
 ---
 

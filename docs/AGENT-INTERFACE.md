@@ -139,9 +139,18 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 | `collective-action --mode MODE [--title TEXT] [--defendant TEXT]` | **Collective Legal Action Builder**: FRCP Rule 20(a)(1) permissive joinder pro se force multiplier, Rule 23 class pitch binder, or APA rulemaking petition (P19) |
 | `export receiver DIR --to dol-oig|co-osa|gao-fraudnet|counsel [--anonymity PREF]` | **Receiver-Ready Submission Packages** formatted to exact character limits and field structures |
 | `export consultation-dossier DIR [--question TEXT...]` | Generate 2-page executive Attorney Consultation Dossier with verified citations and stress-tests |
-| `whip compare-routes DIR` | **DOJ WHIP Route Evaluator**: Deterministically compares Tier 1 WHIP ($30k fraud.gov) vs. Tier 2 Sealed Qui Tam ($1M+) vs. Track C Oversight |
-| `whip prepare DIR [--quick]` | Compile turnkey `fraud.gov` WHIP submission packet with Calling Card v1.1, hashed evidence PDF, and PII redaction |
-| `whip quick-pack --name TEXT [--file FILE...] [--notes TEXT] [--out DIR]` | Rapid 60-second citizen field verification & WHIP packet generator from target name and photos |
+| `whip receipt DIR` | **4-State Verification Receipt**: Unembellished verification table (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED) |
+| `whip gaps DIR` | **Fail-Closed Gap Audit**: Evaluates blocking gaps vs informational items (exits 1 on blocking gaps) |
+| `whip route-hold DIR [--insider true|false]` | **Insider Gatekeeper Fork**: Checks or records non-public insider records status (blocks portal export if insider=true) |
+| `whip conflict-roster DIR` | **Conflict-Check Roster**: Generates party names and identifiers only for retained counsel (zero narrative) |
+| `whip compare-routes DIR` | **DOJ WHIP Route Evaluator**: Evaluates DOJ Tip Rewards Pilot vs. Civil Qui Tam vs. Agency Hotline |
+| `whip prepare DIR [--quick]` | Compile turnkey `america.gov/fraud` submission packet (≤1,950 chars, full SHA-256 hashes, EXIF GPS stripped) |
+| `whip quick-pack --name TEXT [--file FILE...] [--notes TEXT] [--out DIR]` | Rapid field verification & WHIP packet generator from target name and photos |
+| `packet lint DIR` | **Pre-Export Audit Linter**: Scans generated export files and fails closed on forbidden legal conclusions or vanity grades |
+| `jurisdiction status DIR` | **Jurisdiction & Rules Verification Receipt**: 5-slot statutory check (state traps, .gov portals, FCA scope, open records, local rules) with traffic-light badges |
+| `jurisdiction lock-rule DIR --slot SLOT --cite TEXT --url URL` | Pin verified primary-source .gov court rule or standing order into case (converts UNVERIFIED_GAP to USER_LOCKED) |
+| `check state-traps --state ST` | Check wiretap recording consent (1-party vs 2-party), CA AB 2624 social media safe harbor, and First Amendment limits |
+| `init-workspace [--root DIR]` | Bootstraps unified agent workspace (/workspace) with embedded GrokBot skills, templates, CLI binary, and cases directory |
 | `order decode --pdf FILE [--case DIR]` | Decode court order or notice from PDF, detect signer, operative disposition, and candidate deadlines |
 | `timeline audit-mail DIR --order-date DATE [--postmark DATE] [--delivery DATE]` | Audit postmark vs. clerk receipt timestamps for mail delay jurisdictional traps |
 | `court list` / `court info QUERY` | Query court access directory (clerk counter hours, e-filing portals, docket search, fee schedules) |
@@ -187,9 +196,18 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 - `records_find`, `records_draft`, `records_track`, `records_followup`, `records_org`: Statutory open records discovery suite (P2-P8).
 - `accountability_map`: 14-Pathway Institutional & Systemic Fraud Accountability Map (P1).
 - `receiver_export`: Generates receiver-ready submission payloads (DOL-OIG, CO-OSA, GAO FraudNet, Counsel) (P16).
-- `whip_compare_routes`: Evaluates Tier 1 WHIP ($30k on fraud.gov) vs. Tier 2 Sealed Qui Tam ($1M+) vs. Track C Oversight.
-- `whip_prepare`: Assembles turnkey `<2,000` char narrative disclosures, scrubs PII, and compiles Typst PDF evidence packet.
-- `whip_quick_pack`: Rapid 60-second citizen field tip verification and SHA-256 hash compiler.
+- `whip_receipt`: Generates unembellished 4-state verification receipt (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED).
+- `whip_gaps`: Fail-closed gap audit separating blocking gaps from informational items.
+- `whip_route_hold`: Checks or records non-public insider records status (blocks public portal export if insider=true).
+- `whip_conflict_roster`: Exports party names and identifiers only for retained counsel conflict screening.
+- `packet_lint`: Scans generated exports and fails closed on forbidden legal conclusions or vanity phrases.
+- `whip_compare_routes`: Evaluates DOJ Tip Rewards Pilot vs. Civil Qui Tam vs. Agency Hotline.
+- `whip_prepare`: Assembles turnkey submission packet (≤1,950 chars, full SHA-256 hashes, EXIF GPS stripped).
+- `whip_quick_pack`: Rapid citizen field tip verification and SHA-256 hash compiler.
+- `jurisdiction_status`: 5-slot jurisdiction & court rule readiness receipt with traffic-light badges.
+- `jurisdiction_lock_rule`: Pin verified primary-source .gov rule into case to clear unverified procedural gaps.
+- `check_state_traps`: State-specific wiretapping, 2-party recording consent, and CA AB 2624 audit.
+- `init_workspace`: Bootstraps unified GrokBot / agent workspace filesystem.
 - Motion path tools: `case_create`, `draft_import`, `check_fact`, `check_authority`, `check_deadline`, `check_signoff`, `export_pleading`, `export_court_md`.
 - Form packs & guide: `packs_install`, `packs_verify`, `guide_find`, `help_links`.
 

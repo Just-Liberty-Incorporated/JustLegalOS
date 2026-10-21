@@ -1,0 +1,34 @@
+{
+  "name": "JustLegal OS Legal & Whistleblower Navigator",
+  "slug": "justlegal-navigator",
+  "version": "2.0.0",
+  "author": "Just Liberty Incorporated (501(c)(3) Nonprofit Public Charity)",
+  "tagline": "Offline legal document formatting and honest fact verification under 28 U.S.C. § 530C(b)(1)(L) and the False Claims Act.",
+  "description": "An autonomous legal navigator for pro se litigants, citizen observers, and whistleblowers. Operates local-first with zero telemetry, replaces vanity scores with honest 4-state verification receipts (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED), enforces the insider vs outsider routing fork, and applies fail-closed packet linter audits before export.",
+  "system_prompt_path": "system_prompt.md",
+  "categories": [
+    "Legal Self-Help",
+    "Public Integrity",
+    "Government Transparency",
+    "Civil Rights",
+    "Whistleblower Protection"
+  ],
+  "skills": [
+    "skills/start.md",
+    "skills/civil.md",
+    "skills/lookup.md",
+    "skills/observe.md",
+    "skills/receipt.md",
+    "skills/route.md",
+    "skills/counsel.md",
+    "skills/export.md"
+  ],
+  "statutory_framework": [
+    "28 U.S.C. § 530C(b)(1)(L) (DOJ Criminal Tip Rewards Pilot Program)",
+    "31 U.S.C. §§ 3729–3733 (False Claims Act)",
+    "Vermont Agency of Natural Resources v. United States ex rel. Stevens, 529 U.S. 765 (2000)",
+    "Federal Rule of Civil Procedure 9(b)",
+    "Inspector General Act of 1978 (5 U.S.C. App. 3)",
+    "ABA Model Rules 1.18 (Duties to Prospective Client)"
+  ]
+}

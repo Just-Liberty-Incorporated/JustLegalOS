@@ -1,102 +1,51 @@
-# JustLegal Assistant: GrokBot Blueprints & Connectors
-Developed by **Just Liberty Incorporated** (501(c)(3) Nonprofit)
+# JustLegal Assistant: GrokBot Integration & Modular Skills
+Developed by **Just Liberty Incorporated** (501(c)(3) Nonprofit Public Charity)
 
-This directory contains the public templates, system prompts, skills, and bridge configurations for running **JustLegal Assistant** on x.ai GrokBot and connecting it to **JustLegal OS** (`JustLegalOS.exe` / `justlegalos-cli`).
-
----
-
-## The Two GrokBot Personas
-
-### 1. JustLegal Navigator (General Civil Self-Help & Transactional Dossiers)
-- **Target Audience:** Pro se litigants, tenants, consumers, and families navigating civil court cases, appeals, and routine legal instruments.
-- **Recipe & Prompt:** `bot_civil_recipe.json` & `system_prompt_civil.md`
-- **Skills (`MCP_Grok/skills/`):**
-  - `skill_order_decoder.md`: Parsing minute entries, orders, and identifying tolling rules.
-  - `skill_record_reconcile.md`: Comparing docket entries against local files to find gaps.
-  - `skill_deadline_extension.md`: Structuring motions/stipulations for enlargement of time under court rules.
-- **Capabilities:**
-  - Plain-language intake and time-sensitive obligation detector.
-  - Sourced forms discovery across 22,000+ official court forms on [justlegal.me](https://justlegal.me).
-  - Pasted court order analysis and rule-based deadline calculation.
-  - Generates 1-2 page structured Consultation Dossiers (`export consultation-dossier`) for unbundled attorney consultations and legal aid clinics.
-  - Working document outlines, certificates of service, and attorney referral guides.
-
-### 2. JustLegal Fraud & Whistleblower Navigator (WHIP, EO 14395 & Qui Tam)
-- **Target Audience:** Citizen investigators, healthcare whistleblowers, claimants, and relators investigating government program fraud under the **White House / DOJ $25M Whistleblower Incentive Program (WHIP on fraud.gov)**, **Executive Order 14395**, and the **False Claims Act (31 U.S.C. §§ 3729–3733)**.
-- **Recipe & Prompt:** `bot_fraud_recipe.json` (v1.3.0) & `system_prompt_fraud.md`
-- **Conversational Intake Flow:** The "Coffee Shop Investigator" persona — takes proactive conversational lead, delivers immediate safety & anti-viral warnings (31 U.S.C. § 3730(e)(4)), asks 3 simple visible questions, runs silent background NPI checks, and coaches discreet photo capture.
-- **Skills (`MCP_Grok/skills/`):**
-  - `skill_whip_triage.md`: Evaluating Tier 1 WHIP ($30k bounty on fraud.gov) vs. Tier 2 Sealed Qui Tam (15%–30%).
-  - `skill_entity_crosscheck.md`: CMS NPPES NPI and USAspending public verification.
-  - `skill_fraud_triage.md`: FRCP Rule 9(b) 6-element scoring rubric (0–100 scale).
-  - `skill_observation_protocol.md`: Lawful photographic/field logging protocols.
-  - `skill_submission_router.md`: Three-track enforcement engine (WHIP, Qui Tam, Oversight).
-- **Capabilities:**
-  - Instant NPI & USAspending entity verification (identifying ghost clinics and shell companies).
-  - Generates the machine-readable calling card header:
-    `[JUSTLEGAL STANDARD v1.1 | WHIP & EO-14395 PRE-VERIFIED DISCLOSURE]`
-  - Split-Screen Portal Co-Pilot text formatter (<2,000 chars) for `fraud.gov` and OIG hotlines.
-  - Evaluates the DOJ May 27, 2026 Benefits-Fraud Memo (60-to-120 day decision clock).
-  - Strict statutory seal warnings (31 U.S.C. § 3730(b)(2)) and Public Disclosure Bar (§ 3730(e)(4)).
-  - HIPAA Whistleblower Safe Harbor guidance (45 C.F.R. § 164.502(j)).
-  - Direct routing to The Anti-Fraud Coalition (TAF), State Medicaid Fraud Control Units (MFCUs), and DOJ Fraud Section.
+This directory contains the public recipe, system prompt, and 8 modular on-disk skills for running **JustLegal Assistant** on x.ai GrokBot and connecting it to **JustLegal OS** (`JustLegalOS.exe` / `justlegalos-cli`).
 
 ---
 
-## The 3-Mode Operating Paradigm
+## Operating Philosophy: "The Valuable Object is a Refusal, Not a Grade"
 
-GrokBot can operate across three environments depending on client capabilities:
+JustLegal OS replaces artificial 0–100 scores, letter grades, and synthetic legal certifications with an honest, unembellished **4-State Verification Receipt**:
+- `VERIFIED`: Confirmed against authoritative public registries (CMS NPPES NPI Registry, USAspending API).
+- `USER_STATED`: Stated directly by the reporter (e.g., observation notes, dates, target program nexus).
+- `MISSING`: Field is required or relevant but has not yet been supplied.
+- `LOOKUP_FAILED`: Public registry query failed due to network unavailability or non-match.
+
+When required facts, workstation terms acceptance, or insider gate answers are missing, the system **fails closed** and refuses export.
+
+---
+
+## The 8 Modular Skills
+
+The assistant's capabilities are split into 8 focused, single-purpose on-disk skills:
+
+| Skill | Path | Description |
+|---|---|---|
+| **Start** | `skills/start.md` | Conversational intake and phone-safe mode. Classifies matter (Civil vs. Fraud) and explains terms gate. |
+| **Civil** | `skills/civil.md` | Civil court motions, appeals, and court rule verification without inventing citations or deadlines. |
+| **Lookup** | `skills/lookup.md` | Live public registry queries (CMS NPPES & USAspending). Never uploads case files. |
+| **Observe** | `skills/observe.md` | 6 universal observation rules (sidewalk only, no trespass, no audio recording, no social media, DOJ Endnote 2). |
+| **Receipt** | `skills/receipt.md` | 4-state verification receipt (`whip receipt`) and fail-closed gap audit (`whip gaps`). |
+| **Route** | `skills/route.md` | Multi-track route comparison (DOJ WHIP vs. Civil Qui Tam vs. OIG) and mandatory insider gatekeeper fork (`whip route-hold`). |
+| **Counsel** | `skills/counsel.md` | Retained counsel consultation package and conflict-check roster (`whip conflict-roster`) containing party names only. |
+| **Export** | `skills/export.md` | Fail-closed turnkey export (`whip prepare`), 1,950-character portal limit, EXIF GPS stripping, and packet linter (`packet lint`). |
+
+---
+
+## The 3 Operating Environments
 
 | Environment | Mode | Capabilities & Safety Boundary |
 |---|---|---|
-| **Local Desktop** | Mode 1: Local MCP / CLI | Full local workspace access via `JustLegalOS-CLI.exe` or desktop MCP. Cryptographic evidence hashing and local encrypted vault storage. Hard airgap blocks network sync for `.sealed` matters. |
-| **Cloud Linux Sandbox** | Mode 2: Headless CLI Container | Bot runs in an automated container with `justlegalos-cli` installed. Executes live public data cross-checks (`verify-entity`, `records-pack`, `audit-9b`). Strict rule: never ingest HIPAA PHI or unfiled qui tam complaints into a cloud sandbox. |
-| **Mobile / Pure Web Chat** | Mode 3: Zero-Fabrication Fallback | Bot runs in standard chat without terminal access. **Zero fabrication rule:** never hallucinate SHA-256 hashes, Merkle roots, or fake numeric scores from memory. Directs user to [justlegal.me/qui-tam](https://justlegal.me/qui-tam) for live browser verification. |
+| **Local Desktop / CLI** | Full Local Mode | Local workspace access via `JustLegalOS-CLI.exe` or desktop app. Cryptographic SHA-256 evidence hashing, EXIF stripping, and encrypted vault storage. Hard airgap blocks network sync for confidential matters. |
+| **Headless Linux Container** | Container CLI Mode | Runs in an automated container with `justlegalos-cli` installed. Executes live public data cross-checks (`whip receipt`, `jurisdiction status`). Never ingests non-public insider records into cloud containers. |
+| **Mobile / Phone Chat** | Phone-Safe Mode | Bot runs in standard chat without terminal access. Remains strictly conversational (`skills/start.md`, `skills/lookup.md`). Never asks phone users to run curl commands or compute manual hashes. |
 
 ---
 
-## How to Create and Share on x.ai GrokBot
+## Launch Recipe
 
-1. Log into your x.ai account and navigate to **Grok Bot** (`https://x.ai/bot/create`).
-2. Copy the name, description, and instructions from `MCP_Grok/system_prompt_civil.md` (or `system_prompt_fraud.md`).
-3. Under Bot Settings, select **Share as Template**. This creates an unpublished draft.
-4. Review the draft to ensure no private credentials or internal URLs are included.
-5. Click **Publish as Public Link** and copy the resulting `https://x.ai/bot/<id>` link.
-6. Share this link on X, GitHub, or embed it on [justlegal.me/fraud-triage](https://justlegal.me/fraud-triage).
-
----
-
-## How GrokBot Interacts with JustLegal OS
-
-### Option A: Local Desktop (Windows / macOS)
-When a user has **JustLegal OS** (`JustLegalOS.exe` / `JustLegalOS-CLI.exe`) installed locally:
-1. GrokBot can request authorization to execute read-only diagnostic and document commands:
-   ```bash
-   .\JustLegalOS-CLI.exe --json doctor
-   .\JustLegalOS-CLI.exe --json case context <path>
-   .\JustLegalOS-CLI.exe --json check venue <path>
-   .\JustLegalOS-CLI.exe --json whip compare-routes <path>
-   .\JustLegalOS-CLI.exe --json whip prepare <path>
-   .\JustLegalOS-CLI.exe --json qui-tam verify-entity --name "<target>"
-   .\JustLegalOS-CLI.exe --json qui-tam audit-9b <path>
-   ```
-2. **Explicit User Approval:** Grok requires the user to approve local command execution on their machine.
-3. **Airgap Enforcement:** The engine strictly forbids inspection of `.sealed` or confidential cases, protecting sensitive whistleblower dossiers.
-
-### Option B: Headless Linux / Cloud Container (One-Line Installer)
-For cloud-hosted bots or headless Linux containers, install the standalone CLI with zero desktop dependencies:
-```bash
-curl -sSL https://raw.githubusercontent.com/Just-Liberty-Incorporated/JustLegalOS/main/scripts/install-linux.sh | bash
-```
-Then start the MCP stdio server (runs in bot-safe mode by default):
-```bash
-justlegalos-cli mcp
-```
-By default, high-risk tools like `cloud_pull`, `cloud_push`, `sign_pdf`, and `packs_remove` are completely hidden and blocked, and all file operations are strictly confined to the cases directory. To allow cloud and signature tools, the user must explicitly pass `--unrestricted`.
-
----
-
-## ⚠️ Important Data Boundary: Cloud Bot vs. Local Desktop
-
-1. **Cloud Bot Environment:** When conversing with a cloud-hosted GrokBot (or any remote AI assistant), the conversation text is processed on external cloud servers. Any cases created via a cloud container live on that container, not on the user's personal computer. Never paste unsealed qui tam allegations, patient medical records, or confidential trade secrets into a cloud chat.
-2. **Local Desktop App (`JustLegalOS.exe`):** For confidential, sealed, or sensitive litigation matters (especially False Claims Act / Qui Tam dossiers under 31 U.S.C. § 3730(b)(2)), users must run JustLegal OS locally on their own computer, where files are stored in an encrypted local vault with zero telemetry.
+- **Recipe File**: `grok_recipe.json`
+- **System Prompt**: `system_prompt.md`
+- **Skills Directory**: `skills/`
