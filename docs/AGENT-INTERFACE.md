@@ -149,7 +149,7 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 | `packet lint DIR` | **Pre-Export Audit Linter**: Scans generated export files and fails closed on forbidden legal conclusions or vanity grades |
 | `jurisdiction status DIR` | **Jurisdiction & Rules Verification Receipt**: 5-slot statutory check (state traps, .gov portals, FCA scope, open records, local rules) with traffic-light badges |
 | `jurisdiction lock-rule DIR --slot SLOT --cite TEXT --url URL` | Pin verified primary-source .gov court rule or standing order into case (converts UNVERIFIED_GAP to USER_LOCKED) |
-| `check state-traps --state ST` | Check wiretap recording consent (1-party vs 2-party), CA AB 2624 social media safe harbor, and First Amendment limits |
+| `check state-traps --state ST` | Check wiretap recording consent (1-party vs 2-party), public-space rules, and social media warnings |
 | `init-workspace [--root DIR]` | Bootstraps unified agent workspace (/workspace) with embedded GrokBot skills, templates, CLI binary, and cases directory |
 | `order decode --pdf FILE [--case DIR]` | Decode court order or notice from PDF, detect signer, operative disposition, and candidate deadlines |
 | `timeline audit-mail DIR --order-date DATE [--postmark DATE] [--delivery DATE]` | Audit postmark vs. clerk receipt timestamps for mail delay jurisdictional traps |
@@ -206,7 +206,7 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 - `whip_quick_pack`: Rapid citizen field tip verification and SHA-256 hash compiler.
 - `jurisdiction_status`: 5-slot jurisdiction & court rule readiness receipt with traffic-light badges.
 - `jurisdiction_lock_rule`: Pin verified primary-source .gov rule into case to clear unverified procedural gaps.
-- `check_state_traps`: State-specific wiretapping, 2-party recording consent, and CA AB 2624 audit.
+- `check_state_traps`: State-specific wiretapping, 1-party vs 2-party recording consent, and public-space rules.
 - `init_workspace`: Bootstraps unified GrokBot / agent workspace filesystem.
 - Motion path tools: `case_create`, `draft_import`, `check_fact`, `check_authority`, `check_deadline`, `check_signoff`, `export_pleading`, `export_court_md`.
 - Form packs & guide: `packs_install`, `packs_verify`, `guide_find`, `help_links`.

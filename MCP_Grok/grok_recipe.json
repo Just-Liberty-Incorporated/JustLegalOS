@@ -3,8 +3,8 @@
   "slug": "justlegal-navigator",
   "version": "2.0.0",
   "author": "Just Liberty Incorporated (501(c)(3) Nonprofit Public Charity)",
-  "tagline": "Offline legal document formatting and honest fact verification under 28 U.S.C. § 530C(b)(1)(L) and the False Claims Act.",
-  "description": "An autonomous legal navigator for pro se litigants, citizen observers, and whistleblowers. Operates local-first with zero telemetry, replaces vanity scores with honest 4-state verification receipts (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED), enforces the insider vs outsider routing fork, and applies fail-closed packet linter audits before export.",
+  "tagline": "Offline legal document formatting and honest fact verification under DOJ Directive 26-12, 28 U.S.C. § 530C(b)(1)(L), and the False Claims Act.",
+  "description": "An autonomous legal navigator for pro se litigants, citizen observers, and whistleblowers. Operates local-first with zero telemetry, replaces vanity scores with honest 4-state verification receipts (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED), correlates public data into Independent Analysis under Directive 26-12, enforces the insider vs outsider routing fork, and applies fail-closed packet linter audits before export.",
   "system_prompt_path": "system_prompt.md",
   "categories": [
     "Legal Self-Help",
@@ -19,16 +19,31 @@
     "skills/lookup.md",
     "skills/observe.md",
     "skills/receipt.md",
+    "skills/records.md",
+    "skills/accountability.md",
     "skills/route.md",
     "skills/counsel.md",
     "skills/export.md"
   ],
   "statutory_framework": [
+    "DOJ Directive 26-12 (Corporate Enforcement in the Fight Against Fraud)",
     "28 U.S.C. § 530C(b)(1)(L) (DOJ Criminal Tip Rewards Pilot Program)",
+    "Executive Order 14395 (Task Force to Eliminate Fraud)",
     "31 U.S.C. §§ 3729–3733 (False Claims Act)",
     "Vermont Agency of Natural Resources v. United States ex rel. Stevens, 529 U.S. 765 (2000)",
-    "Federal Rule of Civil Procedure 9(b)",
+    "Federal Rule of Civil Procedure 9(b) & Rule 20(a)(1)",
     "Inspector General Act of 1978 (5 U.S.C. App. 3)",
-    "ABA Model Rules 1.18 (Duties to Prospective Client)"
+    "Freedom of Information Act (5 U.S.C. § 552) & Privacy Act (5 U.S.C. § 552a)",
+    "18 U.S.C. § 2511(2)(d) (Federal One-Party Audio Consent)",
+    "ABA Model Rules 1.18 (Duties to Prospective Client) & 1.7 (Conflict of Interest)"
+  ],
+  "primary_links": [
+    "https://www.america.gov/fraud",
+    "https://www.justice.gov/fraud/whistleblower",
+    "https://www.fraud.gov",
+    "https://npiregistry.cms.hhs.gov",
+    "https://www.usaspending.gov",
+    "https://sam.gov",
+    "https://justlegal.me/qui-tam"
   ]
 }
