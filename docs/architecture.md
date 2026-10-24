@@ -65,7 +65,7 @@ To prevent unmaintainable monoliths as JustLegal OS scales across 50 states and 
 | `qui_tam/records_pack.rs` | ~235 | Multi-state licensing and public records request generator (MGDPA, OPRA, CORA, CPRA, FOIA) |
 | `qui_tam/disclosure.rs` | ~230 | DOJ 60-day triage & relator disclosure packet compiler (`openseason-disclosure-v1.json` + Typst PDF) |
 | `case_commands/quitam_ops.rs`| ~80 | Tauri IPC bridge for qui tam / fraud operations |
-| `whip/` | ~580 | **DOJ WHIP ($30k on fraud.gov) & Two-Tier Whistleblower Engine**: route comparison, &lt;2k narrative, PII scrubbing, Typst PDF packet, and 60-second quick-pack |
+| `whip/` | ~580 | **DOJ WHIP (america.gov/fraud) & Two-Tier Whistleblower Engine**: route comparison, &lt;2k narrative, PII scrubbing, Typst PDF packet, and 60-second quick-pack |
 | `sovereign_immunity/` | ~310 | 11th Amendment state immunity audit (*Stevens* bar) & 5 valid statutory bypass pathways |
 | `claim_translate/` | ~290 | Vernacular-to-doctrine claim translator & element-by-element mountain-of-proof blueprints |
 | `collective_action/` | ~270 | Pro se Rule 20(a)(1) permissive joinder builder, Rule 23 binder, and APA rulemaking petition generator |

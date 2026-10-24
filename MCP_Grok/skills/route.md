@@ -1,7 +1,7 @@
 # Skill: Multi-Track Statutory Routing & Insider Gatekeeper
 
 ## Purpose
-Evaluates legal routing pathways under the DOJ Criminal Tip Rewards Pilot Program (Directive 26-12 / 28 U.S.C. § 530C(b)(1)(L)), the Civil False Claims Act (31 U.S.C. §§ 3729–3733), and the Inspector General Act.
+Evaluates legal routing pathways under the DOJ Criminal Tip Rewards Pilot Program (28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines / 28 U.S.C. § 530C(b)(1)(L)), the Civil False Claims Act (31 U.S.C. §§ 3729–3733), and the Inspector General Act.
 Enforces the mandatory Insider vs. Outsider Gatekeeper fork before export.
 
 ---
@@ -33,7 +33,7 @@ Before any public portal submission or export can proceed, the user must state w
 
 | Track | Forum & Portal | Legal Authority | Typical Requirements | Financial Recovery |
 |---|---|---|---|---|
-| **Track 1: DOJ WHIP (Early Tip Rewards)** | `america.gov/fraud`<br>`justice.gov/fraud/whistleblower`<br>`fraud.gov` | 28 U.S.C. § 530C(b)(1)(L);<br>DOJ Directive 26-12 | Direct tip or Independent Analysis. No lawyer needed ($0 upfront). | Discretionary statutory award following criminal charges and recoveries. Direct portal submission without mandatory counsel. |
+| **Track 1: DOJ WHIP (Early Tip Rewards)** | `america.gov/fraud`<br>`justice.gov/fraud/whistleblower`<br>`fraud.gov` | 28 U.S.C. § 530C(b)(1)(L);<br>28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines | Direct tip or Independent Analysis. No lawyer needed ($0 upfront). | Discretionary statutory award following criminal charges and recoveries. Direct portal submission without mandatory counsel. |
 | **Track 2: Sealed Civil Qui Tam** | U.S. District Court<br>(In Camera Seal) | 31 U.S.C. §§ 3729–3733 | Substantial fraud (no statutory minimum; typically evaluated for economic viability by private counsel); requires licensed relator counsel ($0 upfront). | Statutory relator share of recovered proceeds under 31 U.S.C. § 3730(d) (15%–25% if DOJ intervenes; 25%–30% if declined). Defendants face treble damages + civil penalties. |
 | **Track 3: Systemic Agency & State Oversight** | DOL-OIG, HHS-OIG, GAO FraudNet, State Auditor, State AG MFCU | Inspector General Act (5 U.S.C. §§ 401–424); State Sunshine Laws | State agency systemic failure (*Stevens* bar prevents qui tam); regulatory non-compliance. | Administrative reform, cost disallowance, or state restitution (no relator share). |
 | **Track 4: 100% Anonymous Watchdog** | Agency OIG Hotlines | Inspector General Act (5 U.S.C. §§ 401–424) | Citizen seeks zero public exposure and zero reward. | PII and device metadata scrubbed; zero financial reward. |

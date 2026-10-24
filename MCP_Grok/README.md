@@ -27,7 +27,7 @@ The assistant's capabilities are split into 10 focused, single-purpose on-disk s
 | **Civil** | `skills/civil.md` | Civil court motions, appeals, docket reconciliation, and 1-page Attorney Consultation Dossiers. |
 | **Lookup** | `skills/lookup.md` | Live public registry queries (CMS NPPES, USAspending, SAM.gov). Never uploads case files. |
 | **Observe** | `skills/observe.md` | Lawful evidence & recording rules (safe public sidewalk observations vs. 1-party wiretap consent under 18 U.S.C. § 2511(2)(d)). |
-| **Receipt** | `skills/receipt.md` | 4-state verification receipt (`whip receipt`), fail-closed gap audit (`whip gaps`), and Independent Analysis correlation block (DOJ Directive 26-12). |
+| **Receipt** | `skills/receipt.md` | 4-state verification receipt (`whip receipt`), fail-closed gap audit (`whip gaps`), and Independent Analysis correlation block (28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines). |
 | **Records** | `skills/records.md` | The Open Records Lifecycle (FOIA, Privacy Act, CORA, CPRA, OPRA, CO Form B-652, CWC IB-4/ICON logs). |
 | **Accountability** | `skills/accountability.md` | 14-Pathway Accountability Map (*Stevens* bar, *Ex parte Young*, ADA Title II, Rehab Act § 504, Civil RICO, Rule 20 Joinder). |
 | **Route** | `skills/route.md` | 4-Track statutory routing (DOJ WHIP on america.gov/fraud vs. Sealed Qui Tam vs. OIG Oversight) and mandatory insider gatekeeper fork (`whip route-hold`). |

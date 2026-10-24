@@ -200,7 +200,7 @@ To prevent catastrophic procedural errors—such as inadvertently destroying a w
           Track A: Relator Reward              Track B: Citizen Watchdog
           (Qui Tam Counsel First)              (Direct Agency Portals)
                      │                                   │
-        • High-dollar ($1M+) & Firsthand      • Sub-$1M or localized abuse
+        • Non-public firsthand evidence (any dollar amount)      • Localized or single-facility abuse
         • 15%–30% Statutory Bounty           • Rapid administrative stop-payment
         • 31 U.S.C. § 3730(b)(2) Seal         • License revocation / suspension
         • NEVER submit to public portals      • Character-limited web form fields

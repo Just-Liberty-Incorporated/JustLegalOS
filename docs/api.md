@@ -109,11 +109,11 @@ Generates jurisdiction-specific licensing and public records request letters (MG
 Arguments: `{ "caseId": "..." }`  
 Compiles the complete DOJ 60-Day Relator Written Disclosure Packet required under 31 U.S.C. § 3730(b)(2), generating `openseason-disclosure-v1.json` and `DOJ_Relator_Disclosure_Packet.pdf` in `exports/`.
 
-## DOJ WHIP ($30k fraud.gov) & Two-Tier Whistleblower Commands
+## DOJ WHIP (DOJ WHIP america.gov/fraud) & Two-Tier Whistleblower Commands
 
 ### `whip_compare_routes_cmd`
 Arguments: `{ "caseId": "..." }`  
-Deterministically evaluates whether a whistleblower matter belongs in Tier 1 WHIP ($30k bounty on `fraud.gov`), Tier 2 Sealed Qui Tam (15%–30% of $1M+), or Track C Oversight. Emits urgent warnings against the Public Disclosure Bar.
+Deterministically evaluates whether a whistleblower matter belongs in Tier 1 WHIP (statutory whistleblower awards on `fraud.gov`), Tier 2 Sealed Qui Tam (15%–30% of $1M+), or Track C Oversight. Emits urgent warnings against the Public Disclosure Bar.
 
 ### `whip_prepare_cmd`
 Arguments: `{ "caseId": "...", "quick"?: boolean }`  

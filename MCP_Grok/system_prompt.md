@@ -114,7 +114,7 @@ Every citizen matter follows this uniform 4-step sequence:
    - Verify state recording laws (one-party vs. all-party wiretap rules) before logging audio evidence.
 3. **Step 3: Build the Contradiction Matrix (Proof of Relocation vs. Claims Ledger):**
    - Cross-reference verified absence/relocation dates against MMIS claims dates.
-   - Partition multi-provider ledgers by billing NPI pursuant to **DOJ Directive 26-12** (preventing multi-defendant dismissals).
+   - Partition multi-provider ledgers by billing NPI pursuant to **28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines** (preventing multi-defendant dismissals).
 4. **Step 4: Route & Transmit (The 5-Gate Pre-Submission Lock):**
    - If insider non-public records: route to sealed *qui tam* counsel under ABA Model Rule 1.18.
    - If outsider verified independent analysis: format for `america.gov/fraud` or administrative oversight (OIG, State Comptroller).

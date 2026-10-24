@@ -240,7 +240,7 @@ flowchart LR
 State SOS, Wiretap Rules)"]
     S2 --> S3["3. Contradiction Matrix
 (Relocation vs Claims Ledger
-Directive 26-12 Split)"]
+28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines Split)"]
     S3 --> S4["4. Route & Transmit
 (5-Gate Pre-Submission Lock
 18 U.S.C. § 1001 Warning)"]
@@ -255,7 +255,7 @@ Directive 26-12 Split)"]
    - Audits state-specific recording rules (one-party vs. all-party wiretap laws) before evidentiary audio is logged.
 3. **Step 3: Build the Contradiction Matrix (Relocation vs. Claims Auditing):**
    - Ingests claims ledgers (`.pdf`, `.csv`, `.tsv`, `.json`) and cross-references transaction dates against documented absence/relocation dates.
-   - Partitions multi-provider ledgers into discrete dossiers pursuant to **DOJ Directive 26-12** to prevent multi-defendant dismissals.
+   - Partitions multi-provider ledgers into discrete dossiers pursuant to **28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines** to prevent multi-defendant dismissals.
 4. **Step 4: Route & Transmit (The 5-Gate Pre-Submission Protocol):**
    - Evaluates the Insider vs. Outsider fork: non-public insider records route exclusively to sealed relator counsel under ABA Model Rule 1.18.
    - External disclosures for `america.gov/fraud` or agency OIGs proceed only after all 5 Pre-Submission Gates pass and the human explicitly authorizes transmission.

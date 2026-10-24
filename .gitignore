@@ -1,0 +1,31 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Local debug leftovers
+api_debug.log
+src-tauri/ok
+*.osb
+*.jldb
+target/
+tmp-agent-e2e/
+installers/
+
+# Root binary executables (distributed via GitHub Releases, not git repository)
+JustLegalOS.exe
+JustLegalOS-CLI.exe
+openseason-cli.exe
+OpenSeason.exe
+justlegalos-cli.exe
+justlegal-cli.exe
+*.exe
+*.msi
+dist/
+

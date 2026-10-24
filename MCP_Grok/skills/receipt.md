@@ -1,7 +1,7 @@
 # Skill: 4-State Verification Receipt & Independent Analysis Correlation
 
 ## Purpose
-Replaces artificial 0–100 scores and vanity grades with an honest, factual verification receipt, fail-closed gap audit, and the **Independent Analysis Correlation Block** pursuant to DOJ Directive 26-12 and 28 U.S.C. § 530C(b)(1)(L).
+Replaces artificial 0–100 scores and vanity grades with an honest, factual verification receipt, fail-closed gap audit, and the **Independent Analysis Correlation Block** pursuant to 28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines and 28 U.S.C. § 530C(b)(1)(L).
 
 ---
 
@@ -17,16 +17,16 @@ Every row in the JustLegal OS verification receipt is classified into one of fou
 
 ---
 
-## 2. The Independent Analysis Correlation Block (DOJ Directive 26-12)
+## 2. The Independent Analysis Correlation Block (28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines)
 
-Under the DOJ Criminal Tip Rewards Pilot Program (Directive 26-12; 28 U.S.C. § 530C(b)(1)(L)), qualifying original information includes **"Independent Analysis"**:
+Under the DOJ Criminal Tip Rewards Pilot Program (28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines; 28 U.S.C. § 530C(b)(1)(L)), qualifying original information includes **"Independent Analysis"**:
 > *"The individual's own analysis, whether done alone or in combination with others. Analysis means the individual's examination and evaluation of information that may be publicly available, but which reveals information that is not generally known or available to the public."*
 
 When public data and on-the-ground observations are correlated, the engine generates the following structured correlation block:
 
 ```text
 ======================================================================
-INDEPENDENT ANALYSIS CORRELATION BLOCK (DOJ DIRECTIVE 26-12)
+INDEPENDENT ANALYSIS CORRELATION BLOCK (28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP)
 Authority: 28 U.S.C. § 530C(b)(1)(L) | Evaluated via JustLegal OS
 ======================================================================
 1. REGISTERED PUBLIC ATTRIBUTES:

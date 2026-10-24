@@ -97,7 +97,7 @@ Run these from PowerShell in `c:\Users\Deus\Documents\DocumentBuilder`:
 ---
 
 ### Issue J: Accidental Forfeiture of Relator Reward under Public Disclosure Bar (31 U.S.C. § 3730(e)(4))
-- **Cause:** Litigant submits a $1M+ contractor claim directly to `fraud.gov` or posts allegations/photos on TikTok, X, or YouTube before filing under seal.
+- **Cause:** Litigant submits a federal contractor claim directly to `fraud.gov` or posts allegations/photos on TikTok, X, or YouTube before filing under seal.
 - **Fix:** Run `justlegalos-cli --json whip compare-routes <case>` BEFORE submitting! High-dollar claims against private contractors (e.g. Deloitte, Maximus) must be filed under seal in federal court through contingency relator counsel to preserve the relator's 15%–30% bounty.
 
 ---

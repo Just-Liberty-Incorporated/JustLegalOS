@@ -33,7 +33,7 @@ When an individual or group experiences systemic harm, the bot cross-checks the 
 | # | Pathway | Governing Legal Authority | Proper Target | Available Remedy |
 |---|---|---|---|---|
 | **1** | **Federal Contractor Qui Tam** | 31 U.S.C. §§ 3729–3733 | Private Prime Tech / Claims Contractor | Treble damages, statutory penalties, 15%–25% (intervened) or 25%–30% (declined) relator share. |
-| **2** | **DOJ Criminal Tip Rewards (WHIP)** | 28 U.S.C. § 530C(b)(1)(L) / Directive 26-12 | Individuals / Healthcare Providers / Vendors | Discretionary statutory award following criminal charges & forfeiture recoveries. |
+| **2** | **DOJ Criminal Tip Rewards (WHIP)** | 28 U.S.C. § 530C(b)(1)(L) / 28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines | Individuals / Healthcare Providers / Vendors | Discretionary statutory award following criminal charges & forfeiture recoveries. |
 | **3** | **Official-Capacity Injunction** | *Ex parte Young*, 209 U.S. 123 | State Executive Director (Official Capacity) | Federal court injunction ordering cessation of unlawful automated hold. |
 | **4** | **ADA Title II Civil Rights** | 42 U.S.C. § 12132; *United States v. Georgia*, 546 U.S. 151 (2006) | State Agency & Officials | Compensatory damages & systemic accessibility modifications (validly abrogates state sovereign immunity for 14th Amendment violations). |
 | **5** | **Rehabilitation Act § 504** | 29 U.S.C. § 794; 42 U.S.C. § 2000d-7 | State Agency (Fund Recipient) | Injunctive relief & damages based on federal grant nexus. |
