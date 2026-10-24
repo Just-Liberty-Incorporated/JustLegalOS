@@ -120,7 +120,7 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 | `ada petition DIR --name TEXT --accommodations "remote,reading_time..." [--phone P] [--email E]` | Generate Title II ADA accommodation petition (42 U.S.C. § 12132; 28 C.F.R. Part 35; NJ Directive #01-19) |
 | `doctor` | System diagnostic & integrity verification (CLI version, cases/packs roots, offline crypto, airgap status, qui tam engine) |
 | `qui-tam verify-entity [--name TEXT] [--npi NPI] [--state STATE]` | Cross-reference entity across CMS NPPES v2.1 and USAspending.gov to detect ghost clinics and shell entities |
-| `qui-tam audit-9b DIR` | Evaluate case against FRCP Rule 9(b) particularity standards (Who, What, When, Where, How, Scienter; 0–100 score) |
+| `qui-tam audit-9b DIR` | Evaluate case against FRCP Rule 9(b) particularity standards (Who, What, When, Where, How, Scienter; 4-state verification receipt) |
 | `qui-tam ingest-observation DIR --file FILE --notes TEXT [--observer NAME]` | Ingest site observation photo/video, extract EXIF GPS/timestamps, dual-hash (SHA-256/512), mark read-only, and log to `provenance.json` |
 | `qui-tam records-pack DIR --state STATE [--agency AGENCY]` | Generate statutory FOIA/public records request for facility licensing (MGDPA, OPRA, CORA, CPRA, FOIA) |
 | `qui-tam export-disclosure DIR` | Compile turnkey DOJ 60-Day Relator Written Disclosure Packet (`openseason-disclosure-v1.json` + `DOJ_Relator_Disclosure_Packet.pdf`) |
@@ -146,6 +146,11 @@ Equivalent via Cargo: `cargo run --manifest-path src-tauri/Cargo.toml --bin just
 | `whip compare-routes DIR` | **DOJ WHIP Route Evaluator**: Evaluates DOJ Tip Rewards Pilot vs. Civil Qui Tam vs. Agency Hotline |
 | `whip prepare DIR [--quick]` | Compile turnkey `america.gov/fraud` submission packet (≤1,950 chars, full SHA-256 hashes, EXIF GPS stripped) |
 | `whip quick-pack --name TEXT [--file FILE...] [--notes TEXT] [--out DIR]` | Rapid field verification & WHIP packet generator from target name and photos |
+| `whip unmask [--target TEXT] [--state ST] [--type brand|phone|url|address]` | **Passive Surface Clue Unmasker**: Cross-references ads, flyers, burner numbers to NPPES registry & corporate records (Archetype 3) |
+| `whip contradiction DIR --relocation DATE [--claims FILE]` | **Forensic Contradiction Engine**: Audits claims ledger against verified relocation/absence dates to flag impossible billing (Exhibit 2) |
+| `whip split-providers DIR [--claims FILE]` | **Provider Partition Engine**: Splits multi-provider claims ledgers into distinct tip dossiers per DOJ WHIP 1-tip-per-provider policy |
+| `records audit-provider DIR --npi NPI --name NAME --state ST [--sector SECTOR] [--fee-waiver]` | **Stage 2 Provider Audit Generator**: Drafts targeted state open records requests (EVV override logs, billing totals, CMS-2567 surveys) |
+| `states audit` | **50-State Dataset Integrity Linter**: Verifies all 51 jurisdictions, 0 banned phrases, 0 root fallbacks |
 | `packet lint DIR` | **Pre-Export Audit Linter**: Scans generated export files and fails closed on forbidden legal conclusions or vanity grades |
 | `jurisdiction status DIR` | **Jurisdiction & Rules Verification Receipt**: 5-slot statutory check (state traps, .gov portals, FCA scope, open records, local rules) with traffic-light badges |
 | `jurisdiction lock-rule DIR --slot SLOT --cite TEXT --url URL` | Pin verified primary-source .gov court rule or standing order into case (converts UNVERIFIED_GAP to USER_LOCKED) |

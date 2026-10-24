@@ -26,7 +26,7 @@ Consequently, the government is almost always forced to request repeated six-mon
 #### The OpenSeason Solution
 OpenSeason automates the first 40 hours of a federal investigation before the dossier ever leaves the relator's workstation. Operating strictly offline in an encrypted airgap, OpenSeason:
 1. Cross-references entities against live, keyless federal databases (CMS NPPES v2.1 and USAspending.gov).
-2. Computes an objective 0–100 viability score across the six core elements of **FRCP Rule 9(b)**.
+2. Evaluates the six core particularity elements of **FRCP Rule 9(b)** under an unembellished 4-state verification receipt without synthetic scores.
 3. Cryptographically seals physical site observations (GPS EXIF extraction, SHA-256 and SHA-512 dual hashing, read-only disk lock, and an immutable `provenance.json` Merkle log).
 4. Generates state-specific FOIA/public records requests (MGDPA, OPRA, CORA, CPRA) to obtain official licensing files.
 5. Assembles a turnkey **DOJ 60-Day Relator Written Disclosure Packet** in both machine-readable JSON (`justlegal-disclosure-v1.json` with backward-compatible `openseason-disclosure-v1.json`) and a court-ready Typst PDF (`DOJ_Relator_Disclosure_Packet.pdf`).
@@ -100,7 +100,7 @@ The qui tam subsystem consists of five modular Rust components:
 |---|---|---|
 | `types.rs` | `src-tauri/src/qui_tam/types.rs` | Serde models for NPI records, Rule 9(b) audits, observations, FOIA packs, and disclosure packets. |
 | `nppes.rs` | `src-tauri/src/qui_tam/nppes.rs` | Async HTTP client for CMS NPPES API (`https://npiregistry.cms.hhs.gov/api/?version=2.1`) and USAspending awards lookup. |
-| `rule9b.rs` | `src-tauri/src/qui_tam/rule9b.rs` | Deterministic 6-element FRCP Rule 9(b) viability scoring engine (0–100 scale). |
+| `rule9b.rs` | `src-tauri/src/qui_tam/rule9b.rs` | Deterministic 6-element FRCP Rule 9(b) particularity evaluation engine & 4-state verification receipt. |
 | `observation.rs` | `src-tauri/src/qui_tam/observation.rs` | EXIF GPS/timestamp extraction, SHA-256/SHA-512 hashing, read-only file locking, and Merkle provenance logging. |
 | `records_pack.rs` | `src-tauri/src/qui_tam/records_pack.rs` | State public records request generator (MGDPA, OPRA, CORA, CPRA, 5 U.S.C. § 552). |
 | `disclosure.rs` | `src-tauri/src/qui_tam/disclosure.rs` | Compiles `justlegal-disclosure-v1.json` (and `openseason-disclosure-v1.json`) and Typst court-formatted `DOJ_Relator_Disclosure_Packet.pdf`. |
@@ -121,7 +121,7 @@ All capabilities are available to both human operators and autonomous local AI a
 ```bash
 .\JustLegalOS-CLI.exe --json qui-tam audit-9b ./my-case
 ```
-*Audits `case.json` against the 6 Rule 9(b) elements (Who, What, When, Where, How, Scienter) and outputs a deterministic score with missing element warnings.*
+*Audits `case.json` against the 6 Rule 9(b) elements (Who, What, When, Where, How, Scienter) and outputs a 4-state verification receipt with missing element warnings.*
 
 #### 3. Field Observation Ingestion (`qui-tam ingest-observation`)
 ```bash
@@ -171,8 +171,8 @@ Generated via JustLegal.me / Just Liberty Inc. (501c3) Verification Engine
 • TARGET ENTITY: North Star Healthcare LLC | NPI: 1234567890 | UEI: ABCD1234EFGH
 • REGISTERED TAXONOMY: 251J00000X vs. Observed Status: Empty Storefront
 • VERIFIED FEDERAL OBLIGATIONS: $2,450,000.00 (USAspending Confirmed)
-• FRCP RULE 9(b) READINESS SCORE: 88/100 (GRADE: A-)
-• EVIDENCE MANIFEST HASH (SHA-256): e3b0c44298fc1c149afbf4c8996fb92427ae41e4...
+• FRCP RULE 9(b) PARTICULARITY STATUS: Developing (Claims Proof & Specific Drawdown Evidence Needed)
+• EVIDENCE MANIFEST HASH (SHA-256): b94d27b9934d3e08a52e52d7da7dabfac484efe3...
 • VERIFICATION SPECIFICATION: https://justlegal.me/qui-tam
 ======================================================================
 ```
@@ -181,45 +181,51 @@ Generated via JustLegal.me / Just Liberty Inc. (501c3) Verification Engine
 1. **Target & NPI**: Official entity name and 10-digit National Provider Identifier validated against the live CMS NPPES v2.1 registry.
 2. **Taxonomy Match**: Cross-checked against CMS taxonomy codes (e.g. physical clinic vs. non-emergency transportation/dispatch).
 3. **Federal Program & Verified Draw**: Identified funding pipeline and confirmed prime award obligations from USAspending.gov.
-4. **Rule 9(b) Readiness**: Objective letter grade (A+ to D/F) and 0–100 viability score across the 6 particularity elements.
+4. **Rule 9(b) Particularity Status**: 6-element statutory readiness tier evaluating whether factual allegations meet pleading requirements.
 5. **Evidence Digest**: Merkle SHA-256 cryptographic root hash of all logged photographic/documentary evidence.
 6. **Triage Standard URL**: Direct reference to the public triage standard (`https://justlegal.me/qui-tam`) allowing government analysts and intake attorneys to verify schema compliance in seconds.
 
 ---
 
-### 7. Dual-Track Final Submission Engine
+### 7. Multi-Track Whistleblower Routing Engine (WHIP vs. Qui Tam vs. Agency Oversight)
 
-To prevent catastrophic procedural errors—such as inadvertently destroying a whistleblower's 15%–30% relator bounty under the False Claims Act's public disclosure bar—OpenSeason implements a strict two-track routing engine:
+To prevent catastrophic procedural errors—such as inadvertently destroying a whistleblower's 15%–30% relator bounty under the False Claims Act's public disclosure bar or submitting non-public insider records to a public web portal—JustLegal OS implements a deterministic multi-track routing engine:
 
 ```
                             Completed Case Evaluation
                                        │
-                     ┌─────────────────┴─────────────────┐
-                     │                                   │
-                     ▼                                   ▼
-          Track A: Relator Reward              Track B: Citizen Watchdog
-          (Qui Tam Counsel First)              (Direct Agency Portals)
-                     │                                   │
-        • Non-public firsthand evidence (any dollar amount)      • Localized or single-facility abuse
-        • 15%–30% Statutory Bounty           • Rapid administrative stop-payment
-        • 31 U.S.C. § 3730(b)(2) Seal         • License revocation / suspension
-        • NEVER submit to public portals      • Character-limited web form fields
-        • $0 Upfront Contingency              • 501(c)(3) Public Benefit ($0 fees)
-        • ABA Model Rule 1.18 Privileged      • HHS-OIG / DOJ / State AG MFCU
+        ┌──────────────────────────────┼──────────────────────────────┐
+        │                              │                              │
+        ▼                              ▼                              ▼
+ Track 1: DOJ WHIP             Track 2: Sealed Qui Tam       Track 3: Citizen Watchdog
+ (fraud.gov / Tip Rewards)     (Civil FCA Counsel First)     (Administrative Oversight)
+        │                              │                              │
+• Street-Level Observations    • Non-Public Insider Proof     • Localized Facility Abuse
+• Independent Analysis         • 15%–25% (Intervened)         • Rapid Payment Suspension
+• 28 U.S.C. § 530C(b)(1)(L)    • 25%–30% (Declined)           • State Licensure Revocation
+• 28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines              • 31 U.S.C. § 3730(b)(2) Seal  • Pre-Trimmed ≤1,950 Chars
+• Discretionary Tip Award      • NEVER submit to web portal   • HHS-OIG / State AG MFCU
+• Zero Attorney Required       • $0 Upfront Contingency       • 501(c)(3) Public Benefit
 ```
 
-#### Track A: The Relator Reward Track (Qui Tam Counsel First)
-- **Eligibility**: Firsthand insider evidence, documentation of fraudulent billing, and federal exposure exceeding $1,000,000.
-- **Statutory Relator Bounty**: 15% to 25% if DOJ intervenes; 25% to 30% if the relator proceeds independently (**31 U.S.C. § 3730(d)**).
-- **Mandatory In Camera Court Seal**: Under **31 U.S.C. § 3730(b)(2)**, qui tam complaints must be filed in secret by retained legal counsel in federal district court. Submitting the dossier to a public web portal prior to filing under seal risks forfeiting relator status under the public disclosure bar (**31 U.S.C. § 3730(e)(4)**).
+#### Track 1: DOJ Whistleblower Incentive Program (WHIP on fraud.gov)
+- **Authority**: 28 U.S.C. § 530C(b)(1)(L), 28 U.S.C. § 530C(b)(1)(L) / DOJ WHIP Guidelines, and Executive Order 14395.
+- **Eligibility**: Street-level observations of shuttered storefronts, ghost clinics, vacant daycares, or independent analysis correlating public datasets. No attorney required ($0 upfront).
+- **Statutory Reward**: Discretionary early-stage bounty following criminal charges and recoveries, with potential eligibility for stacked recoveries upon criminal forfeiture.
+- **Portals**: `https://www.america.gov/fraud` and `https://www.fraud.gov`.
+
+#### Track 2: The Relator Reward Track (Civil Qui Tam Counsel First)
+- **Eligibility**: Firsthand insider evidence, non-public corporate records, documentation of fraudulent billing, and actionable claims. (While the False Claims Act contains no statutory dollar minimum, private relator counsel generally evaluate economic scale to justify contingency litigation).
+- **Statutory Relator Bounty**: 15% to 25% of recovered proceeds if DOJ intervenes; 25% to 30% if the relator proceeds independently (**31 U.S.C. § 3730(d)**). Defendants face treble damages and statutory civil penalties under 31 U.S.C. § 3729(a).
+- **Mandatory In Camera Court Seal**: Under **31 U.S.C. § 3730(b)(2)**, qui tam complaints must be filed in secret by retained legal counsel in federal district court. Submitting non-public records to a public web portal prior to filing under seal risks forfeiting relator status under the public disclosure bar (**31 U.S.C. § 3730(e)(4)**).
 - **$0 Upfront Cost**: Legitimate qui tam plaintiff firms represent whistleblowers on 100% contingency. The relator pays $0 out of pocket.
-- **ABA Model Rule 1.18 Privilege**: The attorney inquiry package generated by OpenSeason explicitly establishes prospective-client confidentiality.
+- **ABA Model Rule 1.18 Privilege**: The attorney inquiry package generated by JustLegal OS explicitly establishes prospective-client confidentiality.
 - **Nonprofit Fee-Splitting Ethics**: Under **ABA Model Rule 5.4**, Just Liberty Inc. (501(c)(3) nonprofit) never splits or accepts contingency fees.
 
-#### Track B: Citizen Watchdog / Administrative Enforcement Track
-- **Eligibility**: Localized abuse, shell clinic storefronts, community elder/patient protection, or damages under $1,000,000.
+#### Track 3: Citizen Watchdog / Administrative Enforcement Track
+- **Eligibility**: Localized abuse, shell clinic storefronts, community elder/patient protection, public observations, or direct tips where the citizen seeks immediate administrative action rather than filing a sealed federal lawsuit.
 - **Direct Administrative Action**: Bypasses the 60-day court seal process to enable immediate agency audits, Medicare/Medicaid payment suspensions (42 C.F.R. § 405.371), and state licensing revocations.
-- **Character-Limited Web Form Blocks**: Federal and state portals (HHS-OIG, DOJ, State MFCU) strictly limit description fields to 1,500–2,000 characters. OpenSeason formats auto-trimmed copyable blocks that fit within these constraints while retaining the standardized Calling Card header.
+- **Character-Limited Web Form Blocks**: Federal and state portals (HHS-OIG, DOJ, State MFCU) strictly limit description fields to 1,500–2,000 characters. JustLegal OS formats auto-trimmed copyable blocks (≤ 1,950 characters) that fit within these constraints while retaining the standardized Calling Card header.
 
 ---
 

@@ -245,9 +245,9 @@ Federal qui tam complaints must be filed under seal in federal district court wi
        TRACK A: Relator Reward Track                   TRACK B: Citizen Watchdog Track
        (Qui Tam Counsel First)                         (Direct Agency OIG Web Portals)
        ──────────────────────────────────────          ─────────────────────────────────────
-       • Potential fraud > $1,000,000                  • Potential fraud < $1,000,000
-       • Non-public firsthand insider evidence         • Regulatory non-compliance / localized
-       • Preserves 15%–30% relator bounty              • Immediate administrative audit
+       • Substantial fraud & private counsel           • Public tips & localized non-compliance
+       • Non-public firsthand insider evidence         • Passive observation / public records
+       • Preserves statutory relator share (15%–30%)   • Immediate administrative audit
        • 100% contingency ($0 upfront cost)            • Forfeits statutory relator reward
        • Privileged ABA Model Rule 1.18 package        • Pre-trimmed <2,000 char portal auto-fills
        • In camera court seal strictly protected       • Injects [JUSTLEGAL OS | OPEN-SEASON] Card
@@ -266,8 +266,8 @@ Generated via JustLegal.me / Just Liberty Inc. (501c3) Verification Engine
 • TARGET ENTITY: [Verified Legal Name] | NPI: [10-Digit NPI] | UEI: [12-Char UEI]
 • REGISTERED TAXONOMY: 251J00000X vs. Observed Status: Empty Facility
 • VERIFIED FEDERAL OBLIGATIONS: $3,450,000 (USAspending Confirmed)
-• FRCP RULE 9(b) READINESS SCORE: 88/100 (GRADE: A-)
-• EVIDENCE MANIFEST HASH (SHA-256): e3b0c44298fc1c149afbf4c8996fb92427ae41e4...
+• FRCP RULE 9(b) PARTICULARITY STATUS: Developing (Claims Proof & Drawdown Evidence Needed)
+• EVIDENCE MANIFEST HASH (SHA-256): b94d27b9934d3e08a52e52d7da7dabfac484efe3...
 • VERIFICATION SPECIFICATION: https://justlegal.me/qui-tam
 ======================================================================
 ```

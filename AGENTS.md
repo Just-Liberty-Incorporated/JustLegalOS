@@ -93,6 +93,10 @@ cargo run --manifest-path src-tauri/Cargo.toml --bin justlegalos-cli -- --json e
 .\JustLegalOS-CLI.exe --json whip prepare ./my-case
 .\JustLegalOS-CLI.exe --json packet lint ./my-case
 .\JustLegalOS-CLI.exe --json whip quick-pack --name "Target Clinic LLC" --file "dark_door.jpg" --notes "Closed during posted hours"
+.\JustLegalOS-CLI.exe --json whip unmask --target "303-555-0199" --state CO
+.\JustLegalOS-CLI.exe --json whip contradiction ./my-case --relocation 2024-06-01
+.\JustLegalOS-CLI.exe --json whip split-providers ./my-case
+.\JustLegalOS-CLI.exe --json states audit
 
 # Vernacular-to-Doctrine Translator & Mountain-of-Proof Blueprint (P17)
 .\JustLegalOS-CLI.exe --json claim translate --vernacular "The agency and contractor committed treason and took kickbacks to freeze our unemployment accounts"
@@ -109,6 +113,7 @@ cargo run --manifest-path src-tauri/Cargo.toml --bin justlegalos-cli -- --json e
 .\JustLegalOS-CLI.exe --json records track ./my-case --id CORA-01 --agency "CDLE Custodian" --sent 2026-03-01 --days 3
 .\JustLegalOS-CLI.exe --json records followup ./my-case --id CORA-01 --agency "CDLE Custodian" --kind late
 .\JustLegalOS-CLI.exe --json records org
+.\JustLegalOS-CLI.exe --json records audit-provider ./my-case --npi 1093847561 --name "Alpine Home Care LLC" --state CO
 
 # 14-Pathway Systematic Accountability Map (P1)
 .\JustLegalOS-CLI.exe --json accountability map ./my-case --state CO --program UI --target-type state-agency
@@ -161,4 +166,4 @@ Use only obviously fake names in tests and examples (Jordan Example, Sample Coun
 - Confidential (False Claims vault) is one case type inside the builder.
 - justlegal.me account sync is planned for standard cases only, and is stubbed.
 - USAspending and CMS NPPES lookups are keyless public-records searches used by Confidential mode. They do not upload the case folder.
-- The tool never files or serves.
+- The tool never files or serves court pleadings. In AI chat / GrokBot, browser-assisted portal reporting follows the 5-Gate Pre-Submission Protocol with mandatory human review.

@@ -61,7 +61,7 @@ The window and the CLI call the same functions (`check::run_all`, `court_md::imp
 
 ### `list_rule_packs`
 
-Returns bundled packs: `nj-app-div`, `co-mandamus`, `generic-us-appellate`.
+Returns bundled packs: `nj-app-div`, `co-app-div`, `co-mandamus`, `fed-app`, `generic-us-appellate`.
 
 ### Forms packs and finder
 
@@ -95,7 +95,7 @@ Directly cross-checks entity against CMS NPPES v2.1 public registry and USAspend
 
 ### `quitam_audit_9b_cmd`
 Arguments: `{ "caseId": "..." }`  
-Performs deterministic FRCP Rule 9(b) 6-element viability scoring (Who, What, When, Where, How, Scienter). Returns an objective 0–100 score and pinpoint checklist of missing statutory elements.
+Performs deterministic FRCP Rule 9(b) 6-element particularity evaluation (Who, What, When, Where, How, Scienter). Returns an unembellished 4-state verification receipt (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED) and pinpoint checklist of missing statutory elements.
 
 ### `quitam_ingest_observation_cmd`
 Arguments: `{ "caseId": "...", "filePath": "...", "notes": "...", "observer"?: "..." }`  
@@ -109,11 +109,11 @@ Generates jurisdiction-specific licensing and public records request letters (MG
 Arguments: `{ "caseId": "..." }`  
 Compiles the complete DOJ 60-Day Relator Written Disclosure Packet required under 31 U.S.C. § 3730(b)(2), generating `openseason-disclosure-v1.json` and `DOJ_Relator_Disclosure_Packet.pdf` in `exports/`.
 
-## DOJ WHIP (DOJ WHIP america.gov/fraud) & Two-Tier Whistleblower Commands
+## DOJ WHIP (Early Tip Rewards) & Enforcement Route Commands
 
 ### `whip_compare_routes_cmd`
 Arguments: `{ "caseId": "..." }`  
-Deterministically evaluates whether a whistleblower matter belongs in Tier 1 WHIP (statutory whistleblower awards on `fraud.gov`), Tier 2 Sealed Qui Tam (15%–30% of $1M+), or Track C Oversight. Emits urgent warnings against the Public Disclosure Bar.
+Deterministically evaluates whether a whistleblower matter belongs in Track 1 WHIP (tip rewards on `fraud.gov`), Track 2 Sealed Qui Tam (15%–25% intervened / 25%–30% declined under 31 U.S.C. § 3730(d)), or Track 3 Oversight. Emits urgent warnings against the Public Disclosure Bar.
 
 ### `whip_prepare_cmd`
 Arguments: `{ "caseId": "...", "quick"?: boolean }`  
