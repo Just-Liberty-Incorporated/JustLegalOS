@@ -13,11 +13,12 @@ The engine categorizes records requests by jurisdiction and legal authority:
 |---|---|---|---|
 | **Federal FOIA** | 5 U.S.C. § 552 | Prime federal contracts, grant applications, federal audit reports (HHS, DOL, SBA). | 20 working days (subject to +10-day extension for unusual circumstances). |
 | **Federal Privacy Act** | 5 U.S.C. § 552a | First-party records held by federal agencies (own benefit claims, wage logs). | 30 calendar days baseline. |
-| **State Open Records (CORA)** | C.R.S. § 24-72-201 et seq. | Colorado state agencies (CDLE, HCPF), prime contractor agreements, vendor invoices. | 3 working days (subject to +7-day extension for extenuating circumstances). |
-| **State Open Records (OPRA)** | N.J.S.A. 47:1A-1 et seq. | New Jersey state and municipal contracts, agency correspondence. | 7 business days baseline. |
-| **State Open Records (CPRA)** | Cal. Gov. Code § 7920.000 | California public records, vendor contracts, agency audits. | 10 calendar days baseline. |
-| **Claimant Own-File Access** | 20 C.F.R. § 603.5(c) / CO Form B-652 | Unemployment insurance files, complete employer wage records, disqualification determinations (20 C.F.R. § 603.5(d) for designated agents/attorneys). | Immediate/administrative schedule (free to claimant). |
-| **Multi-State Wage Data** | Interstate CWC / IB-4 / ICON Logs | Intercepted multi-state wage records and wage-transfer audit trails. | Agency administrative timeline. |
+| **Medicaid Claims & Capitation** | 45 C.F.R. § 164.524 & 42 C.F.R. § 431.60 | Complete MMIS paid/denied claims ledger, 10-digit NPIs, and monthly MCO capitation payments. | 30 calendar days mandatory federal baseline ($0 for electronic delivery). |
+| **Claimant UI Own-File Access** | 20 C.F.R. § 603.5(c) / State Forms | Unemployment insurance files, complete employer wage records, internal examiner notes, IB-4 logs. | Administrative schedule (free to claimant; check state forms like CO B-652, NC DESLEGAL 100). |
+| **SNAP / TANF Casefile Access** | 7 C.F.R. § 273.15(p)(1) | Complete household casefile examination prior to or during fair hearings. | Prior to administrative proceedings. |
+| **State Open Records (CORA, OPRA, etc.)** | State Sunshine Acts | Public vendor contracts, IT amendments, facility health/fire inspection records. | State statutory windows (e.g. CO 3 days, NJ 7 days, CA 10 days). |
+
+> **Critical Stage 1 vs. Stage 4 Firewall:** Personal records demands (Medicaid, UI, SNAP) must be directed exclusively to administrative records custodians / HIPAA Privacy Officers. NEVER submit a personal records request to an OIG or MFCU fraud hotline (such as MedicaidFraud@osc.nj.gov), as premature reporting damages legal standing and blows whistleblower confidentiality prior to receiving the claims ledger.
 
 > **Statutory Clock Notice:** Statutory deadlines are initial baseline requirements under state and federal law. In practice, agencies frequently assert statutory extensions, tolling for scope clarification, or backlog delays. The engine logs baseline dates without certifying judicial enforcement.
 

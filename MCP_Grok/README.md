@@ -40,9 +40,9 @@ The assistant's capabilities are split into 10 focused, single-purpose on-disk s
 
 | Environment | Mode | Capabilities & Safety Boundary |
 |---|---|---|
-| **Local Desktop / CLI** | Full Local Mode | Local workspace access via `JustLegalOS-CLI.exe` or desktop app. Cryptographic SHA-256 evidence hashing, EXIF stripping, and encrypted vault storage. Hard airgap blocks network sync for confidential matters. |
-| **Headless Linux Container** | Container CLI Mode | Runs in an automated container with `justlegalos-cli` installed. Executes live public data cross-checks (`whip receipt`, `jurisdiction status`). Never ingests non-public insider records into cloud containers. |
-| **Mobile / Phone Chat** | Phone-Safe Mode | Bot runs in standard chat without terminal access. Remains strictly conversational (`skills/start.md`, `skills/lookup.md`). Never asks phone users to run curl commands or compute manual hashes. |
+| **GrokBot Linux Workspace (In Chat)** | In-Session CLI Mode (Option A) | Runs directly in LawBot's built-in Linux computer environment on x.ai. With user consent, installs `justlegalos-cli` to run deterministic checks (`whip receipt`, `qui-tam audit-9b`, `jurisdiction status`), format court packets, and query public APIs live in chat. Never ingests non-public insider records into cloud containers. |
+| **Local Desktop / CLI (Your Computer)** | 100% Offline Airgapped Mode (Option B) | Standalone local application (`JustLegal OS` / `JustLegalOS-CLI.exe`) running locally on Windows or macOS. Cryptographic SHA-256 evidence hashing, EXIF GPS stripping, and client-side encrypted vault storage. Hard airgap permanently blocks network sync for sealed matters with zero telemetry. |
+| **Mobile / Phone Chat** | Phone-Safe Mode | Bot runs in standard mobile chat without workspace tools. Remains strictly conversational (`skills/start.md`, `skills/lookup.md`). Walks users through legal concepts and explains court procedures without demanding terminal commands or manual hash calculation. |
 
 ---
 

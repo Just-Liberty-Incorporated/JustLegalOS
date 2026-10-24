@@ -33,8 +33,8 @@ Before any public portal submission or export can proceed, the user must state w
 
 | Track | Forum & Portal | Legal Authority | Typical Requirements | Financial Recovery |
 |---|---|---|---|---|
-| **Track 1: DOJ WHIP Fast-Track** | `america.gov/fraud`<br>`justice.gov/fraud/whistleblower`<br>`fraud.gov` | 28 U.S.C. § 530C(b)(1)(L);<br>DOJ Directive 26-12 | Direct tip or Independent Analysis. No lawyer needed ($0 upfront). | Discretionary **$10,000 to $30,000** early award following criminal charges. Preserves eligibility for larger stacked awards upon asset forfeiture. |
-| **Track 2: Sealed Civil Qui Tam** | U.S. District Court<br>(In Camera Seal) | 31 U.S.C. §§ 3729–3733 | $1M+ fraud; insider records; requires licensed relator counsel ($0 upfront contingency). | **15% to 25%** if DOJ intervenes; **25% to 30%** if DOJ declines (treble damages). Evaluated under DOJ's 60–120 day benefits-fraud review clock. |
+| **Track 1: DOJ WHIP (Early Tip Rewards)** | `america.gov/fraud`<br>`justice.gov/fraud/whistleblower`<br>`fraud.gov` | 28 U.S.C. § 530C(b)(1)(L);<br>DOJ Directive 26-12 | Direct tip or Independent Analysis. No lawyer needed ($0 upfront). | Discretionary statutory award following criminal charges and recoveries. Direct portal submission without mandatory counsel. |
+| **Track 2: Sealed Civil Qui Tam** | U.S. District Court<br>(In Camera Seal) | 31 U.S.C. §§ 3729–3733 | Substantial fraud (no statutory minimum; typically evaluated for economic viability by private counsel); requires licensed relator counsel ($0 upfront). | Statutory relator share of recovered proceeds under 31 U.S.C. § 3730(d) (15%–25% if DOJ intervenes; 25%–30% if declined). Defendants face treble damages + civil penalties. |
 | **Track 3: Systemic Agency & State Oversight** | DOL-OIG, HHS-OIG, GAO FraudNet, State Auditor, State AG MFCU | Inspector General Act (5 U.S.C. §§ 401–424); State Sunshine Laws | State agency systemic failure (*Stevens* bar prevents qui tam); regulatory non-compliance. | Administrative reform, cost disallowance, or state restitution (no relator share). |
 | **Track 4: 100% Anonymous Watchdog** | Agency OIG Hotlines | Inspector General Act (5 U.S.C. §§ 401–424) | Citizen seeks zero public exposure and zero reward. | PII and device metadata scrubbed; zero financial reward. |
 
@@ -42,9 +42,9 @@ Before any public portal submission or export can proceed, the user must state w
 
 ## 3. The 8 Covered Departments & 4 Priority Areas (DOJ WHIP)
 
-The DOJ WHIP program (backed by a $25 Million Treasury commitment) offers early-stage rewards for fraud impacting:
+The DOJ WHIP program offers statutory rewards for original information concerning fraud impacting:
 - **8 Covered Federal Departments:** Health and Human Services (HHS), Department of Labor (DOL / Unemployment Insurance), Department of Agriculture (USDA / SNAP), Housing and Urban Development (HUD), Department of Education (ED), Veterans Affairs (VA), Department of War / Defense (DOD), and the Small Business Administration (SBA).
-- **4 Priority Healthcare Sectors:** Hospice, home health care, day care, and special services fraud (including billing for non-existent patients, ghost storefronts, and kickbacks).
+- **4 Priority Care Sectors:** Hospice care, home health care, adult/child day care, and special services fraud (including billing for non-existent patients, ghost storefronts, and kickbacks).
 
 ---
 

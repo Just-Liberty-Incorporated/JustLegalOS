@@ -52,7 +52,7 @@ graph TD
 |---|---|---|---|
 | **[JustLegal.me](https://justlegal.me)** | React, TypeScript, Vite, Firebase | **Public Legal Resource Hub:** 22,936 court forms, 16,023 mirrored PDFs, in-browser PDF tools, legal aid directories, fee waiver guides, and optional authenticated case sync. | Existing operational website; UX and deep-linking upgrades active. |
 | **JustLegal OS Desktop** | Tauri v2, Svelte 5, Rust (`open_season_lib`) | **Local-First Legal Operating System:** Offline case dossiers, multi-tier matter management, 1-click Bates stamping, court record reconstruction, ADA Title II petitions, and zero-telemetry vault. | Pre-compiled standalone `.exe`, `.msi`, and source builds ready. |
-| **JustLegal Assistant / GrokBot** | Single Public Recipe, 8 Modular Skills, CLI Bridge | **Conversational Guide & Agent Operator:** Unified public conversational triage for civil procedure and fraud intake; 8 on-disk modular skills with fail-closed verification receipts. | Unified `grok_recipe.json` and 8 modular skills ready in `MCP_Grok/`. |
+| **JustLegal Assistant / GrokBot** | Single Public Recipe, 11 Modular Skills, CLI Bridge | **Conversational Guide & Agent Operator:** Unified public conversational triage for civil procedure and fraud intake; 11 on-disk modular skills with fail-closed verification receipts. | Unified `grok_recipe.json` and 11 modular skills ready in `MCP_Grok/`. |
 
 ---
 
@@ -71,7 +71,7 @@ The public **[JustLegal.me](https://justlegal.me)** platform hosts one of the la
 
 ---
 
-## 21 Production Subsystems & 117 Deterministic Tools (Pure-Rust Engine & CLI)
+## 23 Production Subsystems & 120 Deterministic Tools (Pure-Rust Engine & CLI)
 
 The deterministic Rust core (`src-tauri/src/`) and native command-line interface (**`JustLegalOS-CLI.exe`**) expose 18 modular subsystems across 111 commands that both human operators and autonomous AI agents can operate with mathematical reproducibility:
 
@@ -214,16 +214,78 @@ All commands output structured, envelope-wrapped JSON (`{ ok, never_files, never
 
 ---
 
-## Two-Tier Whistleblower Economy: WHIP (fraud.gov) & Sealed Qui Tam (EO 14395)
+## Dual-Track Whistleblower Verification: DOJ WHIP & Sealed Qui Tam (EO 14395)
 
 Built specifically to operationalize the White House / DOJ **Fraud Whistleblower Incentive Program (WHIP on fraud.gov)**, the **DOJ May 27, 2026 Benefits-Fraud Directive**, and **False Claims Act** (*31 U.S.C. §§ 3729–3733*) triage:
 
 1. **Tier 1: Fast-Track Citizen Bounty (`WHIP` via `fraud.gov`):** Administrative bounty track for street-level observations. Generates character-limited (≤1,950 character) submissions, scrubs personal identifying information, strips EXIF GPS coordinates, and compiles a tamper-proof photographic PDF packet with full 64-character SHA-256 digests.
-2. **Tier 2: Sealed Qui Tam Lawsuit (31 U.S.C. § 3730 — 15% to 30% Relator Share):** For contractor and institutional schemes (e.g., IT contracts, regional healthcare billing). Evaluates statutory intervention windows without premature public disclosure.
+2. **Track 2: Sealed Qui Tam Lawsuit (31 U.S.C. §§ 3729–3733 — 15% to 30% Relator Share):** For contractor and institutional schemes (e.g., IT contracts, regional healthcare billing). Evaluates statutory intervention windows without premature public disclosure.
 3. **Insider Gatekeeper Fork (`whip route-hold`):** Non-public insider records held by the relator trigger an automatic lock blocking public portal export (`portal_export_blocked = true`). The system instead exports a factual index and a conflict-check roster (names and identifiers only, zero narrative) for retained counsel.
 4. **Fail-Closed 4-State Verification Receipt (`whip receipt` & `whip gaps`):** Replaces artificial score gauges with an unembellished 4-state table (`VERIFIED`, `USER_STATED`, `MISSING`, `LOOKUP_FAILED`). Exits with code 1 on blocking gaps before allowing export.
 5. **Pre-Export Audit Linter (`packet lint`):** Scans all generated export files and fails closed if any forbidden vanity phrases, unsworn certifications, or invented legal conclusions are detected.
 6. **Factual Calling Card:** Injects a clean, factual header with the public verification URL (`https://justlegal.me/qui-tam`) without asserting unverified legal conclusions.
+
+---
+
+## The Master 4-Step Funnel Across All Surfaces
+
+JustLegal OS, the Desktop GUI, the CLI, and GrokBot guide citizens and investigators through a deterministic 4-step sequence powered by a single normalized dataset:
+
+```mermaid
+flowchart LR
+    S1["1. Get Proof
+(State Forms + Statutory Rider
+30-Day Clock)"] --> S2["2. Verify Target
+(CMS NPPES, USAspending,
+State SOS, Wiretap Rules)"]
+    S2 --> S3["3. Contradiction Matrix
+(Relocation vs Claims Ledger
+Directive 26-12 Split)"]
+    S3 --> S4["4. Route & Transmit
+(5-Gate Pre-Submission Lock
+18 U.S.C. § 1001 Warning)"]
+```
+
+1. **Step 1: Get Your Proof (First-Party Statutory Discovery & 30-Day Countdown):**
+   - Direct statutory requests for Medicaid claims histories (**45 C.F.R. § 164.524**), Unemployment claim files (**20 C.F.R. § 603.5(c)**), SNAP casefiles (**7 C.F.R. § 273.15(p)**), and state vendor contracts (**CORA/OPRA/FOIA**).
+   - Solves the mailroom vs. backend database dilemma with the **"Official State Form + Itemized Statutory Rider"** pattern.
+   - Enforces the **Stage 1 vs. Stage 4 Firewall**: personal records requests are strictly quarantined from fraud prosecution hotlines.
+2. **Step 2: Verify Your Target (Objective Cross-Registry Corroboration):**
+   - Verifies rendering and billing entities against CMS NPPES v2.1 (10-digit NPIs), USAspending federal obligations, state corporate registries, and state licensing boards.
+   - Audits state-specific recording rules (one-party vs. all-party wiretap laws) before evidentiary audio is logged.
+3. **Step 3: Build the Contradiction Matrix (Relocation vs. Claims Auditing):**
+   - Ingests claims ledgers (`.pdf`, `.csv`, `.tsv`, `.json`) and cross-references transaction dates against documented absence/relocation dates.
+   - Partitions multi-provider ledgers into discrete dossiers pursuant to **DOJ Directive 26-12** to prevent multi-defendant dismissals.
+4. **Step 4: Route & Transmit (The 5-Gate Pre-Submission Protocol):**
+   - Evaluates the Insider vs. Outsider fork: non-public insider records route exclusively to sealed relator counsel under ABA Model Rule 1.18.
+   - External disclosures for `america.gov/fraud` or agency OIGs proceed only after all 5 Pre-Submission Gates pass and the human explicitly authorizes transmission.
+
+---
+
+## The 5-Gate Pre-Submission Lock (Zero Autonomous Filing)
+
+To prevent premature submissions, safeguard statutory standing, and protect against automated overreach, JustLegal OS and GrokBot enforce a mandatory 5-gate protocol:
+
+| Gate | Verification Check | Failure Action |
+|---|---|---|
+| **Gate 1: Verification Receipt** | Target credentials verified on CMS NPPES & USAspending; data partitioned into `VERIFIED` vs. `USER_STATED`. | Blocks submission until entity credentials resolve. |
+| **Gate 2: Lawful Evidence & Privacy** | Audio evidence complies with state wiretap laws; third-party PII scrubbed; photographic EXIF GPS tags stripped. | Blocks submission until evidence is legally grounded. |
+| **Gate 3: Insider & Route Clearance** | If user holds non-public insider records, public web portal export is locked (`portal_export_blocked = true`). | Routes user to zero-narrative conflict roster for sealed counsel. |
+| **Gate 4: Pre-Export Packet Linter** | Narrative $\le 1,950$ characters; 64-char SHA-256 hashes verified; 0 banned vanity or inflammatory phrases. | Fails closed (exit code 1) until text is compliant. |
+| **Gate 5: Explicit Human Review ("GO")** | Renders exact form fields in chat/browser; displays statutory warning; awaits user's affirmative confirmation. | Halts execution. Never auto-submits without explicit consent. |
+
+---
+
+## 50-State Legal Discovery & The 6 Operational Pillars
+
+State public records and beneficiary access rules vary widely. JustLegal OS compiles these rules into **`data/states_50.json`** across 51 jurisdictions (50 States + D.C.) under 6 operational pillars:
+
+1. **Anti-Rejection Form Rules (Stage 1):** Provides the official mandatory state agency form number and URL, while generating the **"Cover Demand + Itemized Statutory Rider"** to legally compel backend MMIS codes, 10-digit NPIs, and monthly MCO capitation ledgers.
+2. **Public Registry Lookup Engines (Stage 2):** Direct deep-search URLs for state spending checkbooks, corporate business registries, day care licensing portals, and health facility verification.
+3. **State Litigation Traps & Wiretap Laws:** State-specific response deadlines, exhaustion rules, notice-of-claim deadlines, and audio recording consent classifications (one-party vs. all-party).
+4. **Contradiction & Splitting Playbook (Stage 3):** Step-by-step methodology for isolating billing impossibility across dates of service.
+5. **Enforcement Receivers (Stage 4):** Authoritative contacts for State Medicaid Fraud Control Units (MFCUs), State Auditor hotlines, and federal whistleblower coordinators.
+6. **Statutory Anti-Abuse Shield (18 U.S.C. § 1001):** Submitting false or fictitious statements to government bodies is a federal crime. JustLegal OS enforces strictly objective, non-speculative documentation.
 
 ---
 

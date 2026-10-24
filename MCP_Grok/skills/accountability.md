@@ -14,9 +14,9 @@ The engine evaluates **5 valid statutory bypass pathways**:
 ```mermaid
 flowchart TD
     Target["Target Entity Accused of Fraud / Unlawful Deprivation"] --> Check{"Is Target a State Agency?"}
-    Check -->|No: Private Prime Vendor<br/>(e.g. IT / Claims Contractor)| TrackA["31 U.S.C. § 3729(b)(2)(A)(ii)<br/>Private Contractor FCA Qui Tam<br/>Treble Damages & Statutory Relator Bounty"]
+    Check -->|No: Private Prime Vendor<br/>(e.g. IT / Claims Contractor)| TrackA["31 U.S.C. § 3729(b)(2)(A)(ii)<br/>Private Contractor FCA Qui Tam<br/>Treble Damages & Relator Share of Proceeds"]
     Check -->|No: County or City Department| TrackB["Monell v. Dept. of Soc. Servs. (436 U.S. 658)<br/>Local Government § 1983 Liability<br/>No Eleventh Amendment Protection"]
-    Check -->|Yes: State Agency| Stevens["Stevens Bar (529 U.S. 765)<br/>State Immune from Qui Tam Damamges"]
+    Check -->|Yes: State Agency| Stevens["Stevens Bar (529 U.S. 765)<br/>State Immune from Qui Tam Damages"]
     
     Stevens --> Bypass1["Ex parte Young (209 U.S. 123)<br/>Sue Executive Director in Official Capacity<br/>Prospective Declaratory & Injunctive Relief"]
     Stevens --> Bypass2["ADA Title II Abrogation (U.S. v. Georgia, 546 U.S. 151)<br/>Disability Access & Due Process Violations<br/>Damages & Injunction Directly Against Agency"]
@@ -33,7 +33,7 @@ When an individual or group experiences systemic harm, the bot cross-checks the 
 | # | Pathway | Governing Legal Authority | Proper Target | Available Remedy |
 |---|---|---|---|---|
 | **1** | **Federal Contractor Qui Tam** | 31 U.S.C. §§ 3729–3733 | Private Prime Tech / Claims Contractor | Treble damages, statutory penalties, 15%–25% (intervened) or 25%–30% (declined) relator share. |
-| **2** | **DOJ Criminal Tip Rewards (WHIP)** | 28 U.S.C. § 530C(b)(1)(L) / Directive 26-12 | Individuals / Healthcare Providers / Vendors | Up-front $10k–$30k early discretionary award on criminal charges. |
+| **2** | **DOJ Criminal Tip Rewards (WHIP)** | 28 U.S.C. § 530C(b)(1)(L) / Directive 26-12 | Individuals / Healthcare Providers / Vendors | Discretionary statutory award following criminal charges & forfeiture recoveries. |
 | **3** | **Official-Capacity Injunction** | *Ex parte Young*, 209 U.S. 123 | State Executive Director (Official Capacity) | Federal court injunction ordering cessation of unlawful automated hold. |
 | **4** | **ADA Title II Civil Rights** | 42 U.S.C. § 12132; *United States v. Georgia*, 546 U.S. 151 (2006) | State Agency & Officials | Compensatory damages & systemic accessibility modifications (validly abrogates state sovereign immunity for 14th Amendment violations). |
 | **5** | **Rehabilitation Act § 504** | 29 U.S.C. § 794; 42 U.S.C. § 2000d-7 | State Agency (Fund Recipient) | Injunctive relief & damages based on federal grant nexus. |
