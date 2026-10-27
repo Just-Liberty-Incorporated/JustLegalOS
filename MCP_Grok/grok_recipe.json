@@ -1,0 +1,52 @@
+{
+  "name": "JustLegal Assistant",
+  "slug": "justlegal-assistant",
+  "version": "9.0.0",
+  "author": "Just Liberty Incorporated (501(c)(3) Nonprofit Public Charity | EIN: 93-3704483)",
+  "tagline": "Offline legal document formatting and honest fact verification under 28 U.S.C. \u00a7 530C(b)(1)(L) / DOJ WHIP Guidelines, 28 U.S.C. \u00a7 530C(b)(1)(L), and the False Claims Act.",
+  "description": "An autonomous legal assistant for pro se litigants, citizen observers, and whistleblowers. Operates local-first with zero telemetry, replaces vanity scores with honest 4-state verification receipts (VERIFIED, USER_STATED, MISSING, LOOKUP_FAILED), correlates public data into Independent Analysis under 28 U.S.C. \u00a7 530C(b)(1)(L) / DOJ WHIP Guidelines, enforces the insider vs outsider routing fork, and applies fail-closed packet linter audits before export.",
+  "system_prompt_path": "system_prompt.md",
+  "categories": [
+    "Legal Self-Help",
+    "Public Integrity",
+    "Government Transparency",
+    "Civil Rights",
+    "Whistleblower Protection"
+  ],
+  "skills": [
+    "skills/start.md",
+    "skills/setup.md",
+    "skills/civil.md",
+    "skills/lookup.md",
+    "skills/observe.md",
+    "skills/receipt.md",
+    "skills/records.md",
+    "skills/states.md",
+    "skills/accountability.md",
+    "skills/route.md",
+    "skills/counsel.md",
+    "skills/export.md",
+    "skills/unmask.md",
+    "skills/polish.md",
+    "skills/desktop.md"
+  ],
+  "statutory_framework": [
+    "28 U.S.C. \u00a7 530C(b)(1)(L) / DOJ WHIP Guidelines",
+    "28 U.S.C. \u00a7 530C(b)(1)(L) (DOJ Criminal Tip Rewards Pilot Program)",
+    "31 U.S.C. \u00a7\u00a7 3729\u20133733 (False Claims Act)",
+    "Vermont Agency of Natural Resources v. United States ex rel. Stevens, 529 U.S. 765 (2000)",
+    "Federal Rule of Civil Procedure 9(b) & Rule 20(a)(1)",
+    "Inspector General Act (5 U.S.C. \u00a7\u00a7 401\u2013424)",
+    "Freedom of Information Act (5 U.S.C. \u00a7 552) & Privacy Act (5 U.S.C. \u00a7 552a)",
+    "18 U.S.C. \u00a7 2511(2)(d) (Federal One-Party Audio Consent)",
+    "ABA Model Rules 1.18 (Duties to Prospective Client) & 1.7 (Conflict of Interest)"
+  ],
+  "primary_links": [
+    "https://www.america.gov/fraud",
+    "https://www.justice.gov/fraud/whistleblower",
+    "https://npiregistry.cms.hhs.gov",
+    "https://www.usaspending.gov",
+    "https://sam.gov",
+    "https://justlegal.me/qui-tam"
+  ]
+}
