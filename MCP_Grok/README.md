@@ -66,4 +66,4 @@ The assistant's capabilities are split into focused, single-purpose on-disk skil
 
 - **Recipe File**: `grok_recipe.json`
 - **System Prompt**: `system_prompt.md`
-- **Skills Directory**: `skills/` (10 modular skills)
+- **Skills Directory**: `skills/` (15 modular skills)
